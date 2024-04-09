@@ -74,11 +74,12 @@ public class ApplicationDB {
 				System.out.println(resultSet.getInt("id"));
 				System.out.println(resultSet.getString("name"));
 			}
+			
+			connection.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	
 	
