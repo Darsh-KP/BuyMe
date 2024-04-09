@@ -2,14 +2,18 @@ package com.cs336.pkg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+
 
 public class ApplicationDB {
 	
 	public ApplicationDB(){
 		
 	}
-
+	
+	
 	public Connection getConnection(){
 		
 		//Create a connection string
@@ -31,7 +35,7 @@ public class ApplicationDB {
 		}
 		try {
 			//Create a connection to your DB
-			connection = DriverManager.getConnection(connectionUrl,"root", "password");
+			connection = DriverManager.getConnection(connectionUrl,"root", "etheman63");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -55,11 +59,26 @@ public class ApplicationDB {
 	
 	
 	public static void main(String[] args) {
-		ApplicationDB dao = new ApplicationDB();
-		Connection connection = dao.getConnection();
+		try {
+			Connection connection = DriverManager.getConnection(
+					"jdbc:mysql://localhost:3306/test",
+					"root",
+					"etheman63"
+					);
+			
+			Statement statement = connection.createStatement();
+			
+			ResultSet resultSet = statement.executeQuery("select * from user");
+			
+			while (resultSet.next()) {
+				System.out.println(resultSet.getInt("id"));
+				System.out.println(resultSet.getString("name"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		System.out.println(connection);		
-		dao.closeConnection(connection);
 	}
 	
 	
