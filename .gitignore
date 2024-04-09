@@ -5,3 +5,4 @@ build/classes/.DS_Store
 .idea
 BuyMe.iml
 /build/
+src/main/java/com/buyme/database/mySQL.properties
