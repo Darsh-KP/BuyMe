@@ -1,4 +1,4 @@
-package controller;
+package com.buyme.controller;
 
 public class loginController {
 
