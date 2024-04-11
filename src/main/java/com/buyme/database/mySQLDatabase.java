@@ -1,7 +1,5 @@
 package com.buyme.database;
 
-import com.sun.tools.javac.Main;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
