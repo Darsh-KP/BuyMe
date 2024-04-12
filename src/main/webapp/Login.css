@@ -1,26 +1,26 @@
 body {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     align-items: center;
     min-height: 100vh;
     background-color: #000000;
 }
 
 .login-container {
+    margin-right: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background-color: white;
     width: 25%;
     padding: 30px 40px;
 }
 
 .login-container input {
-    width: 100%;
-    height: 100%;
+    width: 25em;
+    height: 4vh;
     background: transparent;
     outline: none;
     border: 2px solid rgba(79, 79, 79, 1);
     border-radius: 40px;
-}
-
-.login-container input::placeholder {
-    color: greenyellow;
 }
