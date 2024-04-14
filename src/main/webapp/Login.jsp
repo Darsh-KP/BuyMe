@@ -6,27 +6,20 @@
 <%@ page import="java.sql.*" %>
 
 <%
-    System.out.println("Starting...");
     // Get username and password
     String username = request.getParameter("username");
     String password = request.getParameter("password");
 
-    System.out.println(username + " " + password);
     try {
         // Create connection
         MyDatabase database = new MyDatabase();
         Connection loginConnection = database.newConnection();
 
-        System.out.println("Connection made!");
-
-        // Check for credentials
+        // Check for credentials in the database
         PreparedStatement preparedStatement = loginConnection.prepareStatement("SELECT COUNT(*) AS userExists FROM testlogin WHERE name=? AND password=?");
         preparedStatement.setString(1, username);
         preparedStatement.setString(2, password);
-
         ResultSet resultSet = preparedStatement.executeQuery();
-
-        System.out.println("Executed Query");
 
         resultSet.next();
         if (resultSet.getInt("userExists") <= 0) {
@@ -44,6 +37,7 @@
         preparedStatement.close();
         loginConnection.close();
     } catch (SQLException e) {
+        System.out.println("Error logging in...");
         System.out.println(e.getMessage());
     }
 %>
