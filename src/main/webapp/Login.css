@@ -1,9 +1,15 @@
 body {
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
     min-height: 100vh;
     background-color: #F8D2C2;
+}
+
+.logolarge {
+    width: 40%;
+    aspect-ratio: 1/1;
+
 }
 
 .login-container {
@@ -43,14 +49,3 @@ body {
 .login-container input[type="submit"]:hover {
     background-color: #D66978;
 }
-
-.logo {
-    width: 100px;
-    height: 100px;
-    margin-bottom: 20px;
-    background-image: url('placeholder_logo.png');
-    background-size: cover;
-    border-radius: 50%;
-}
-
-
