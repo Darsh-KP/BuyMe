@@ -29,7 +29,7 @@
         } else {
             // User exists, log them in
             System.out.println("Logging in...");
-            response.sendRedirect("loginpage.jsp");
+            response.sendRedirect("Logout.html");
         }
 
         //Close connection
