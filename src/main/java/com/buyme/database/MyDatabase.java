@@ -1,20 +1,24 @@
 package com.buyme.database;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
-public class mySQLDatabase {
-	public mySQLDatabase() {}
+public class MyDatabase {
+	public MyDatabase() {}
 
 	public Connection newConnection() {
 		Connection connection = null;
 		try {
+			Class.forName("com.mysql.jdbc.Driver");
+
 			Properties mySQLCredentials = new Properties();
-			mySQLCredentials.load(new FileInputStream("./src/main/java/com/buyme/database/mySQL.properties"));
+
+			InputStream inputStream = getClass().getResourceAsStream("/com/buyme/database/mySQL.properties");
+			mySQLCredentials.load(inputStream);
 
 			connection = DriverManager.getConnection(
 					mySQLCredentials.getProperty("url"),
@@ -27,16 +31,17 @@ public class mySQLDatabase {
 		} catch (IOException ioE) {
 			System.out.println("Couldn't read database credentials.");
 			//ioE.printStackTrace();
-		}
+		} catch (ClassNotFoundException e) {
+			System.out.println("Couldn't load database driver.");
+        }
 
-		return connection;
+        return connection;
 	}
 
-	public void CloseConnection(Connection connection) {
-		try {
-			connection.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+	public static void main(String[] args) throws SQLException {
+		MyDatabase db = new MyDatabase();
+		Connection con = db.newConnection();
+		System.out.println(con);
+		con.close();
 	}
 }
