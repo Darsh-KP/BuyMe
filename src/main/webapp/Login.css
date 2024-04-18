@@ -5,7 +5,8 @@ body {
     min-height: 100vh;
     overflow: hidden;
     background-color: #F8D2C2;
-    padding: 0 5vw
+    padding: 0 5vw;
+    gap: 5vw;
 }
 
 .logoDisplay {
@@ -23,7 +24,7 @@ body {
     background-color: #FCA6A9;
     width: 25vw;
     height: 70vh;
-    padding: 30px 40px;
+    padding: 3% 0;
     border-radius: min(3vw, 3vh);
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
 }
