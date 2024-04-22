@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+    /* Default colors for the website */
+
+    /* Used for backgrounds of a webpage */
+    --background: #F8D2C2;
+    /* Main color for major elements on a webpage  */
+    --primary: #D66978;
+    /* Used to add visual interests. Often used for buttons, links, borders, etc. */
+    --secondary: #430F1B;
+
+    /* Extra colors for effects */
+    --extra1: #FCA6A9;
+    --extra2: #A14258;
+}
+
+*{
+    /* Default font for the website */
+    font-family: 'Poppins', sans-serif;
+}
