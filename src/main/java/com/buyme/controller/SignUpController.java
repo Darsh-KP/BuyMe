@@ -25,15 +25,20 @@ public class SignUpController {
             preparedStatement.setString(6, email);
             preparedStatement.executeUpdate();
             
-            // User exists, log them in
+   
+            preparedStatement.close();
+            SignUpConnection.close();
+            
+      
             if (MyDatabase.debug) System.out.println("Signing Up...");
-            	return true;
+            return true;
         } catch (SQLException e) {
             if (MyDatabase.debug) {
-                System.out.println("Error Signing Up...");
-                System.out.println(e.printStackTrace();
+                System.out.println("Error logging in...");
+                e.printStackTrace();
             }
         }
 
         return false;
     }
+}

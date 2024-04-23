@@ -14,13 +14,15 @@
     String address = request.getParameter("address");
     String email = request.getParameter("email");
 
+ // User being created
     if (!SignUpController.attemptSignUpController(firstName, lastName, username, password, email, address)) {
-        // User doesn't exist, back to log in
         System.out.println("User does not exists");
         response.sendRedirect("Login.html");
     }
 
     // User does exists
     session.setAttribute("user", username);
-    response.sendRedirect("Logout.jsp");
+    response.sendRedirect("Logout.html");
 %>
+
+  
