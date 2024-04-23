@@ -7,20 +7,21 @@
 
 <%
     // Get username and password
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
-    String firstName = request.getParameter("firstName");
-    String lastName = request.getParameter("lastName");
-    String address = request.getParameter("address");
-    String email = request.getParameter("email");
+    String username = request.getParameter("username").trim();
+    String password = request.getParameter("password").trim();
+    String firstName = request.getParameter("firstName").trim();
+    String lastName = request.getParameter("lastName").trim();
+    String address = request.getParameter("address").trim();
+    String email = request.getParameter("email").trim();
 
  // User being created
     if (!SignUpController.attemptSignUpController(firstName, lastName, username, password, email, address)) {
         System.out.println("User does not exists");
         response.sendRedirect("Login.html");
+        return;
     }
 
-    // User does exists
+    // User does exist
     session.setAttribute("user", username);
     response.sendRedirect("Logout.html");
 %>
