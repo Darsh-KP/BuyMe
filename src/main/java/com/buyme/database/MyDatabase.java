@@ -10,6 +10,8 @@ import java.util.Properties;
 
 // Class used to make connection to the database
 public class MyDatabase {
+	public static final boolean debug = false;
+
 	public MyDatabase() {}
 
 	public Connection newConnection() {
@@ -31,13 +33,15 @@ public class MyDatabase {
 					mySQLCredentials.getProperty("password")
 					);
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			// SQL error
+			if (debug) {
+				System.out.println("Database error: " + e.getMessage());
+				e.printStackTrace();
+			}
 		} catch (IOException ioE) {
-			System.out.println("Couldn't read database credentials.");
-			//ioE.printStackTrace();
+			if (debug) System.out.println("Couldn't read database credentials.");
 		} catch (ClassNotFoundException e) {
-			System.out.println("Couldn't load database driver.");
+			if (debug) System.out.println("Couldn't load database driver.");
         }
 
 		// Return the connection
