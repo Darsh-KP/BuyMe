@@ -8,16 +8,17 @@
 
 <%
     // Get username and password
-    String username = request.getParameter("username");
-    String password = request.getParameter("password");
+    String username = (request.getParameter("username")).trim();
+    String password = (request.getParameter("password")).trim();
 
     if (!loginController.attemptLogin(username, password)) {
         // User doesn't exist, back to log in
         System.out.println("User does not exists");
         response.sendRedirect("Login.html");
+        return;
     }
 
     // User does exists
     session.setAttribute("user", username);
-    response.sendRedirect("Logout.jsp");
+    response.sendRedirect("Logout.html");
 %>

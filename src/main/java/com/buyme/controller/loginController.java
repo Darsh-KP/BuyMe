@@ -39,7 +39,7 @@ public class loginController {
         } catch (SQLException e) {
             if (MyDatabase.debug) {
                 System.out.println("Error logging in...");
-                System.out.println(e.printStackTrace();
+                e.printStackTrace();
             }
         }
 
