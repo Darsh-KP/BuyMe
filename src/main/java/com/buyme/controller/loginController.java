@@ -14,7 +14,7 @@ public class loginController {
 
             // Check for credentials in the database
             PreparedStatement preparedStatement = loginConnection.prepareStatement(
-                    "SELECT COUNT(*) AS userExists FROM testlogin WHERE name=? AND password=?");
+                    "SELECT COUNT(*) AS userExists FROM user WHERE username=? AND password=?");
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
