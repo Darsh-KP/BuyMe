@@ -23,7 +23,7 @@
 
     // User does exist
     session.setAttribute("user", username);
-    response.sendRedirect("Logout.html");
+    response.sendRedirect("Login.jsp");
 %>
 
   
