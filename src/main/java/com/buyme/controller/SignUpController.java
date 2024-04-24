@@ -14,12 +14,11 @@ public class SignUpController {
             Connection SignUpConnection = database.newConnection();
             
             PreparedStatement redundancypreparedStatement = SignUpConnection.prepareStatement(
-                    "SELECT COUNT(*) FROM User WHERE username = '?''");
-            		redundancypreparedStatement.setString(1, username);
-            		ResultSet resultSet = redundancypreparedStatement.executeQuery();
-            		resultSet.next();
-                    int userExists = resultSet.getInt("userExists");
-            
+                    "SELECT COUNT(*) as userExists FROM User WHERE username = ?");
+            redundancypreparedStatement.setString(1, username);
+            ResultSet resultSet = redundancypreparedStatement.executeQuery();
+            resultSet.next();
+            int userExists = resultSet.getInt("userExists");
 
 	        if ((userExists) >= 1) {
 	            // User doesn't exists/incorrect credentials
