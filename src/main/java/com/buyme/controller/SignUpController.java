@@ -44,7 +44,7 @@ public class SignUpController {
             SignUpConnection.close();
             resultSet.close();
       
-            if (MyDatabase.debug) System.out.println("Signing Up...");
+            if (MyDatabase.debug) System.out.println("Signing Up..." + username);
             return true;
         } catch (SQLException e) {
             if (MyDatabase.debug) {
