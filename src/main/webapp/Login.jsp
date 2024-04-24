@@ -13,12 +13,15 @@
 
     if (!loginController.attemptLogin(username, password)) {
         // User doesn't exist, back to log in
-        System.out.println("User does not exists");
-        response.sendRedirect("Login.html");
+        out.println("<script type=\"text/javascript\">");
+        out.println("alert('Username or password does not match.');");
+        out.println("location='Login.html';");
+        out.println("</script>");
         return;
     }
 
     // User does exists
     session.setAttribute("user", username);
+    if (MyDatabase.debug) System.out.println(session.getAttribute("user"));
     response.sendRedirect("Logout.html");
 %>
