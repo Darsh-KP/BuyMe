@@ -1,0 +1,70 @@
+
+/*
+/* Basic styling for the navigation bar */
+nav {
+    background-color: #430f1b; /* Background color */
+    padding: 5px; /* Padding */
+}
+
+nav ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center-align the items */
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px; /* Space between menu items */
+}
+
+nav ul li a {
+    text-decoration: none; /* Remove underline from links */
+    color: #f8d2c2; /* Text color */
+    font-weight: bold; /* Bold text */
+}
+
+/* Hover effect for links */
+nav ul li a:hover {
+    color: #fca6a9; /* Change text color on hover */
+}
+
+/* CSS for the logo */
+.logotiny {
+    max-width: 90px; /* Set the maximum width of the logo */
+    width: auto; /* Maintain aspect ratio */
+    height: auto; /* Maintain aspect ratio */
+}
+
+.profile-picture {
+    width: 40px; /* Set width */
+    height: 40px; /* Set height */
+    border-radius: 50%; /* Make it circular */
+    background-color: #f8d2c2; /* Default background color */
+    margin-left: 20px; /* Space between profile picture and navigation items */
+}
+
+/* Basic styling for the navigation bar */
+nav {
+    background-color: #430f1b; /* Background color */
+    padding: 5px 5px; /* Padding */
+    display: flex; /* Make the navigation items aligned */
+    align-items: center; /* Align items vertically */
+}
+
+nav ul {
+    list-style-type: none; /* Remove bullet points */
+    margin: 0;
+    padding: 0;
+    text-align: center; /* Center-align the items */
+    margin-right: auto; /* Push the navigation items to the right */
+}
+
+
+
+
+
+/* Hover effect for links */
+nav ul li a:hover {
+    color: #fca6a9; /* Change text color on hover */
+}

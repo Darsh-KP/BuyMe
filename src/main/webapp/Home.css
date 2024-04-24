@@ -1,0 +1,98 @@
+@import "default.css";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    padding: 15px;
+    background-color: var(--background); /* Deep burgundy */
+}
+
+.nav-list {
+    display: flex;
+    gap: 20px;
+    list-style: none;
+}
+
+.logo img {
+    width: auto;
+    height: auto;
+    border-radius: 50%;
+    max-width: 90px;
+}
+
+nav .logo {
+    width: 100px; /* Adjust the width of the logo */
+    height: auto; /* Maintain aspect ratio */
+    margin-right: 20px; /* Add some spacing between the logo and the menu */
+}
+
+.nav-list li a {
+    text-decoration: none;
+    color: #f8d2c2; /* Soft pink */
+}
+
+.nav-list li a:hover {
+    color: #fca6a9; /* Coral */
+}
+
+.rightnav input[type="text"] {
+    padding: 8px;
+    font-size: 17px;
+    border: 2px solid #f8d2c2; /* Soft pink */
+    border-radius: 9px;
+}
+
+.rightnav .btn {
+    padding: 8px 20px;
+    margin-left: 10px;
+    border: 2px solid #f8d2c2; /* Soft pink */
+    border-radius: 8px;
+    background: #a14258; /* Deep burgundy */
+    color: #f8d2c2; /* Soft pink */
+    cursor: pointer;
+}
+
+.background {
+    background: #430f1b; /* Dark burgundy */
+    color: #f8d2c2; /* Soft pink */
+}
+
+.firstsection,
+.secondsection,
+.section {
+    height: 400px;
+}
+
+.text-big {
+    font-size: 35px;
+    font-weight: bold;
+}
+
+.text-small {
+    font-size: 18px;
+}
+
+.thumbnail img {
+    max-width: 250px;
+    border-radius: 26px;
+    margin-top: 19px;
+}
+
+.text-footer {
+    padding: 30px 0;
+    font-family: 'Ubuntu', sans-serif;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    padding: 15px;
+}
