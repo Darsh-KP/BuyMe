@@ -24,29 +24,28 @@
         <input type="password" id="password" name="password" required maxlength="15">
         <input type="submit" value="Log In">
     </form>
-    New here? <a href="SignUp.html">Sign Up</a>
-
-    <%
-        // Check if the form was submitted
-        if (request.getMethod().equalsIgnoreCase("POST")) {
-            // Get username and password
-            String username = (request.getParameter("username")).trim();
-            String password = (request.getParameter("password")).trim();
-
-            if (!loginController.attemptLogin(username, password)) {
-                // User doesn't exist, back to log in
-                %>
-                <script>alert("username or password does not match.")</script>
-                <%
-                return;
-            }
-
-            // User does exists
-            session.setAttribute("user", username);
-            if (MyDatabase.debug) System.out.println(session.getAttribute("user"));
-            response.sendRedirect("Home.jsp");
-        }
-    %>
+    New here? <a href="SignUp.jsp">Sign Up</a>
 </div>
+<%
+    // Check if the form was submitted
+    if (request.getMethod().equalsIgnoreCase("POST")) {
+        // Get username and password
+        String username = (request.getParameter("username")).trim();
+        String password = (request.getParameter("password")).trim();
+
+        if (!loginController.attemptLogin(username, password)) {
+            // User doesn't exist, back to log in
+            %>
+            <script>alert("username or password does not match.")</script>
+            <%
+            return;
+        }
+
+        // User does exists
+        session.setAttribute("user", username);
+        if (MyDatabase.debug) System.out.println(session.getAttribute("user"));
+        response.sendRedirect("Home.jsp");
+    }
+%>
 </body>
 </html>
