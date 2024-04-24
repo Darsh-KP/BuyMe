@@ -12,6 +12,21 @@ public class SignUpController {
             // Create connection//
             MyDatabase database = new MyDatabase();
             Connection SignUpConnection = database.newConnection();
+            
+            PreparedStatement redundancypreparedStatement = SignUpConnection.prepareStatement(
+                    "SELECT COUNT(*) FROM User WHERE username = '?''");
+            		redundancypreparedStatement.setString(1, username);
+            		ResultSet resultSet = redundancypreparedStatement.executeQuery();
+            		resultSet.next();
+                    int userExists = resultSet.getInt("userExists");
+            
+
+	        if ((userExists) >= 1) {
+	            // User doesn't exists/incorrect credentials
+	            if (MyDatabase.debug) System.out.println("User already exists.");
+	            return false;
+	        }
+	
             PreparedStatement preparedStatement = SignUpConnection.prepareStatement(
                     "INSERT INTO User (username, password, fName, lName, address, email) \n"
                     + "VALUES (?, ?, ?, ?, ?, ?);\n"
@@ -28,7 +43,7 @@ public class SignUpController {
    
             preparedStatement.close();
             SignUpConnection.close();
-            
+            resultSet.close();
       
             if (MyDatabase.debug) System.out.println("Signing Up...");
             return true;
