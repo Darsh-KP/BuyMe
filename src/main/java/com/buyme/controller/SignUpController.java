@@ -34,7 +34,7 @@ public class SignUpController {
             return true;
         } catch (SQLException e) {
             if (MyDatabase.debug) {
-                System.out.println("Error logging in...");
+                System.out.println("Error Signing Up...");
                 e.printStackTrace();
             }
         }
