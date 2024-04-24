@@ -17,7 +17,7 @@
  // User being created
     if (!SignUpController.attemptSignUpController(firstName, lastName, username, password, email, address)) {
         System.out.println("User does not exists");
-        response.sendRedirect("Login.html");
+        response.sendRedirect("Home.jsp");
         return;
     }
 
