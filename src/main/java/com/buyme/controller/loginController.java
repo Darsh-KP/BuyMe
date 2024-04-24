@@ -34,7 +34,7 @@ public class loginController {
             }
 
             // User exists, log them in
-            if (MyDatabase.debug) System.out.println("Logging in...");
+            if (MyDatabase.debug) System.out.println("Logging in..." + username);
             return true;
         } catch (SQLException e) {
             if (MyDatabase.debug) {

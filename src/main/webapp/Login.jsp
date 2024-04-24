@@ -43,7 +43,7 @@
 
         // User does exists
         session.setAttribute("user", username);
-        if (MyDatabase.debug) System.out.println(session.getAttribute("user"));
+        if (MyDatabase.debug) System.out.println("Session: "  + session.getAttribute("user"));
         response.sendRedirect("Home.jsp");
     }
 %>
