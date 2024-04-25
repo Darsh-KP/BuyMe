@@ -8,10 +8,12 @@
 
     <style>
 
-        .product-card-list {
+        /* product card style */
+        .product-list-container {
             display: flex;
-            flex-wrap: wrap;
-            justify-content: left;
+            flex-wrap: nowrap; /* Ensures that the cards won't wrap onto a new line */
+            overflow-x: auto; /* Allows horizontal scrolling if the cards overflow the container */
+            padding-bottom: 20px; 
         }
 
         .product-card {
@@ -32,13 +34,11 @@
             box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        /* Product Title Styles */
         .product-title {
             font-weight: bold;
             margin-bottom: 10px;
         }
 
-        /* Product Image Styles */
         .product-image {
             width: 100%;
             height: 150px;
@@ -47,18 +47,48 @@
             margin-bottom: 10px;
         }
 
-        /* Product Price Styles */
         .product-price {
             color: black;
             font-size: 1.2em;
             margin-bottom: 10px;
         }
 
-        /* Product Description Styles */
         .product-description {
             font-size: 1em;
             margin-bottom: 10px;
         }
+
+        /* trending card style */
+        .trending-product-card {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100px;
+            height: 100px;
+            margin: 8px;
+        }
+
+        .trending-product-card a {
+            color: inherit; 
+            text-decoration: none; 
+        }
+
+        .trending-product-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .trending-product-image {
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+
+
+
 
         .header {
             background-color: lightgrey; /* Background color of the header */
@@ -67,6 +97,38 @@
             text-align: center; /* Aligning the content in the center */
             font-size: 2em;
         }
+
+
+
+
+        /* filter sidebar styling */
+        .sidebar {
+            width: 200px;
+            padding: 20px;
+            border-right: 1px solid lightgray;
+            background-color: #f7f7f7;
+            margin-bottom: 20px;
+            float: left;
+            height: 100%;
+            overflow-y: auto;
+
+        }
+
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+        }
+
+        .section {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .section:nth-child(2) {
+            border-left: 1px solid lightgray;
+        }
+
 
 
     </style>
@@ -82,39 +144,141 @@
             <p class="header">Product List</p>
         </div>
 
-        <section>
-
-            <div class="product-card-list">
-
-
-                <!-- individual card-->
-                <div class="product-card">
-                    <a href="product-page.html">
-        
-                        <div class="product-title">Name</div>
-            
-                        <div class="product-image"></div>
-            
-                        <div class="product-price">Price</div>
-            
-                        <div class="product-description">Description</div>
-            
-                        <div class="product-addtocart"></div>
-                    </a>
-        
-                </div>
-        
-        
-
-        
+        <!-- Side Filter Panel -->
+        <div class="sidebar">
+            <h2>Filter Options</h2>
+            <div class="filter-option">
+                <label for="category">Category:</label>
+                <select id="category">
+                    <option value="all">All</option>
+                    <!-- Add more category options here -->
+                </select>
             </div>
+            <div class="filter-option">
+                <label for="price">Price:</label>
+                <select id="price">
+                    <option value="asc">Low to High</option>
+                    <option value="desc">High to Low</option>
+                </select>
+            </div>
+            <div class="filter-option">
+                <label for="status">Status:</label>
+                <select id="status">
+                    <option value="all">All</option>
+                    <option value="available">Available</option>
+                    <option value="sold">Sold</option>
+                    <!-- Add more status options here -->
+                </select>
+            </div>
+        </div>
+
+  
 
 
-        </section>
+
+
+
+        <div class="main-content">
+
+            <!-- trending card section  -->
+            <section>
+
+                <div class="sub-section hdr">
+                    <p>Trending Items</p>
+                </div>
+
+                <div class="product-list-container">
+
+                    
+
+                    <!-- individual product card-->
+                    <div class="trending-product-card">
+                        <a href="product-page.html">
+                            <div class="product-title">Name</div>
+                            <div class="trending-product-image"></div>
+                            <div class="product-price">Price</div>
+                        </a>
+                    </div>
+
+                    <!-- individual product card-->
+                    <div class="trending-product-card">
+                        <a href="product-page.html">
+                            <div class="product-title">Name</div>
+                            <div class="trending-product-image"></div>
+                            <div class="product-price">Price</div>
+                        </a>
+                    </div>
+
+                   
+
+                </div>
+
+            </section>
+
+
+            <!-- all product card section-->
+            <section>
+
+                <div class="sub-section hdr">
+                    <p>All Items</p>
+                </div>
+
+                <div class="product-list-container">
+
+                    
+
+
+                        <!-- individual product card-->
+                        <div class="product-card">
+                            <a href="product-page.html">
+                
+                                <div class="product-title">Name</div>
+                    
+                                <div class="product-image"></div>
+                    
+                                <div class="product-price">Price</div>
+                    
+                                <div class="product-endtime">End Time: 2024-04-30 15:00</div>
+
+                                <div class="product-status">Status: Available</div>
+                    
+                            </a>
+                
+                        </div>
+
+                        <!-- individual product card-->
+                        <div class="product-card">
+                            <a href="product-page.html">
+                
+                                <div class="product-title">Name</div>
+                    
+                                <div class="product-image"></div>
+                    
+                                <div class="product-price">Price</div>
+                    
+                                <div class="product-endtime">End Time: 2024-04-30 15:00</div>
+
+                                <div class="product-status">Status: Available</div>
+                    
+                            </a>
+                
+                        </div>
+
+
+            
+                </div>
+
+            </section>
+
+        </div>
+
+
+        
+
+
+
 
     </div>
-    
-
 
     <script src="script.js"></script>
     
