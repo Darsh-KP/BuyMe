@@ -25,6 +25,7 @@
         <div class="profile">
             <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
             <a href="#">View Your Profile</a>
+            <a href="#" class="logout-button">Log Out</a>
         </div>
     </nav>
 

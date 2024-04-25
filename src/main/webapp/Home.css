@@ -62,6 +62,19 @@ nav {
     background-color: #430F1B; /* Maroon */
 }
 
+.logout-button {
+    padding: 10px 20px;
+    background-color: #A14258;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+.logout-button:hover {
+    background-color: #A14258;
+}
+
 header {
     background-color: #A14258; /* Light Maroon */
     color: #fff;
