@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marketplace Central</title>
+    <title>BuyMe</title>
     <link rel="stylesheet" href="Home.css">
+    <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
     <nav>
         <div class="logo">
-            <img src="./data/LogoFinal.png" alt="Marketplace Central Logo">
+            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
         </div>
         <div class="nav-links">
             <a href="#">Home</a>

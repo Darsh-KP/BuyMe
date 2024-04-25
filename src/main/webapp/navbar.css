@@ -1,9 +1,7 @@
 
-/*
-/* Basic styling for the navigation bar */
 nav {
     background-color: #430f1b; /* Background color */
-    padding: 5px; /* Padding */
+    padding: 5px 0; /* Padding */
 }
 
 nav ul {
@@ -47,7 +45,7 @@ nav ul li a:hover {
 /* Basic styling for the navigation bar */
 nav {
     background-color: #430f1b; /* Background color */
-    padding: 5px 5px; /* Padding */
+    padding: 5px px; /* Padding */
     display: flex; /* Make the navigation items aligned */
     align-items: center; /* Align items vertically */
 }

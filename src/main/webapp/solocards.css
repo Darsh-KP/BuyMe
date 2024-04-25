@@ -1,0 +1,133 @@
+ /* CSS styles */
+ body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f2f2f2;
+}
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+.image-container {
+    flex: 1;
+}
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+.product-details {
+    flex: 1;
+    padding: 20px;
+}
+.title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.seller-info {
+    margin-bottom: 10px;
+}
+.price {
+    font-size: 24px;
+    color: #007bff;
+    margin-bottom: 10px;
+}
+.quantity-info {
+    margin-bottom: 10px;
+}
+.buttons {
+    margin-top: 20px;
+}
+.button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px;
+    text-decoration: none;
+}
+.button:hover {
+    background-color: #0056b3;
+}
+.heart-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    color: #007bff;
+}
+.heart-button:hover {
+    color: #0056b3;
+}
+
+nav {
+    background-color: #430F1B; /* Maroon */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #D66978; /* Light Maroon */
+}
+
+.search input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.search button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #FCA6A9; /* Light Coral */
+    color: #fff;
+    cursor: pointer;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile img {
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #430F1B; /* Maroon */
+}
+
+.seller-info {
+    margin-bottom: 10px;
+    background-color: rgba(255, 255, 255, 0.5); /* Transparent white */
+    padding: 10px;
+    border-radius: 4px;
+}
