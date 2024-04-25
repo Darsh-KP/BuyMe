@@ -1,2 +1,270 @@
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #F8D2C2; /* Light Peach */
+            color: #430F1B; /* Dark Maroon */
+        }
 
+        header {
+            background-color: #A14258; /* Light Maroon */
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .sub-section-hdr {
+            background:#FCA6A9;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            margin-top: 20px;
+            margin-right: 20px;
+            padding: 10px;
+            text-decoration: none;
+            color: #430F1B; /* Dark Maroon */
+        }
+
+        nav {
+            background-color: #430F1B; /* Maroon */
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 10px;
+            background-color: #D66978; /* Light Maroon */
+        }
+
+        .search input {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+        }
+
+        .search button {
+            padding: 5px 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #FCA6A9; /* Light Coral */
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .profile {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile img {
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .profile a {
+            text-decoration: none;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #430F1B; /* Maroon */
+        }
+        
+        
+        
+        /* product card style */
+        .product-list-container {
+            display: flex;
+            flex-wrap: wrap; /* Ensures that the cards won't wrap onto a new line */
+            padding-bottom: 20px; 
+        }
+
+        .product-card {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 20px;
+            width: 200px;
+            margin: 8px;
+            background: antiquewhite;
+        }
+
+        .product-card a {
+            color: inherit; 
+            text-decoration: none; 
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .product-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 150px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: black;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .product-description {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        /* trending card style */
+        .trending-product-card {
+            border: 1px solid lightgray;
+            border-radius: 5px;
+            padding: 10px;
+            width: 100px;
+            height: 100px;
+            margin: 8px;
+            background: antiquewhite;
+        }
+
+        .trending-product-card a {
+            color: inherit; 
+            text-decoration: none; 
+        }
+
+        .trending-product-card:hover {
+            transform: translateY(-5px); 
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .trending-product-image {
+            width: 100%;
+            height: 100%;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+
+
+
+
+        .header {
+            background-color: lightgrey; /* Background color of the header */
+            color: black; /* Text color */
+            padding: 20px; /* Padding around the content inside the header */
+            text-align: center; /* Aligning the content in the center */
+            font-size: 2em;
+        }
+
+
+
+
+        /* filter sidebar styling */
+        .sidebar {
+            width: 200px;
+            padding: 20px;
+            border-right: 1px solid lightgray;
+            background-color:antiquewhite;
+            margin-bottom: 20px;
+            float: left;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .filter-title {
+            margin-bottom: 8px; 
+        }
+
+        .sidebar .filter-option {
+            margin-bottom: 24px; 
+        }
+
+        .sidebar label {
+            margin-bottom: 5px; 
+        }
+
+        .sidebar select,
+        .sidebar input[type="text"] {
+            margin-bottom: 8px; 
+        }
+
+        .price-inputs {
+            margin-bottom: 8px; 
+        }
+
+        .sidebar input[type="checkbox"] {
+            margin-bottom: 8px; 
+        }
+
+        .currency {
+            display: inline-block;
+            width: 10px; 
+        }
+        
+        .price-inputs {
+            display: flex;
+            align-items: center;
+        }
+        
+        .price-inputs input[type="text"] {
+            width: 60px; 
+        }
+
+        .dash {
+            margin: 0 5px; 
+        }
+
+
+        /* main content */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            margin-left: 260px;
+        }
+
+        .section {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .section:nth-child(2) {
+            border-left: 1px solid lightgray;
+        }
+
+        /* add new product button styling */
+        .add-product-button {
+            position: fixed;
+            bottom: 20px;
+            left: 40px;
+            padding: 10px 20px;
+            background-color:#FCA6A9; 
+            color:#430F1B;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .add-product-button:hover {
+            background-color:#D66978; 
+        }
+
+        
 

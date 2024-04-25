@@ -5,170 +5,55 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
-
-    <style>
-
-        /* product card style */
-        .product-list-container {
-            display: flex;
-            flex-wrap: nowrap; /* Ensures that the cards won't wrap onto a new line */
-            overflow-x: auto; /* Allows horizontal scrolling if the cards overflow the container */
-            padding-bottom: 20px; 
-        }
-
-        .product-card {
-            border: 1px solid lightgray;
-            border-radius: 5px;
-            padding: 20px;
-            width: 200px;
-            margin: 8px;
-        }
-
-        .product-card a {
-            color: inherit; 
-            text-decoration: none; 
-        }
-
-        .product-card:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .product-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 150px;
-            background-color: #f2f2f2;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-        .product-price {
-            color: black;
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-
-        .product-description {
-            font-size: 1em;
-            margin-bottom: 10px;
-        }
-
-        /* trending card style */
-        .trending-product-card {
-            border: 1px solid lightgray;
-            border-radius: 5px;
-            padding: 10px;
-            width: 100px;
-            height: 100px;
-            margin: 8px;
-        }
-
-        .trending-product-card a {
-            color: inherit; 
-            text-decoration: none; 
-        }
-
-        .trending-product-card:hover {
-            transform: translateY(-5px); 
-            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .trending-product-image {
-            width: 100%;
-            height: 100%;
-            background-color: #f2f2f2;
-            border-radius: 5px;
-            margin-bottom: 10px;
-        }
-
-
-
-
-
-        .header {
-            background-color: lightgrey; /* Background color of the header */
-            color: black; /* Text color */
-            padding: 20px; /* Padding around the content inside the header */
-            text-align: center; /* Aligning the content in the center */
-            font-size: 2em;
-        }
-
-
-
-
-        /* filter sidebar styling */
-        .sidebar {
-            width: 200px;
-            padding: 20px;
-            border-right: 1px solid lightgray;
-            background-color: #f7f7f7;
-            margin-bottom: 20px;
-            float: left;
-            height: 100%;
-            overflow-y: auto;
-
-        }
-
-        .main-content {
-            display: flex;
-            flex-direction: column;
-            margin-left: 260px;
-        }
-
-        .section {
-            flex: 1;
-            padding: 20px;
-        }
-
-        .section:nth-child(2) {
-            border-left: 1px solid lightgray;
-        }
-
-        /* add new product button styling */
-        .add-product-button {
-            position: fixed;
-            bottom: 20px;
-            left: 20px;
-            padding: 10px 20px;
-            background-color: lightgrey; 
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        .add-product-button:hover {
-            background-color: grey; 
-        }
-
-
-    </style>
-    
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="prodlist.css">
 </head>
 
 <body>
 
+    <nav>
+        <div class="logo">
+            <img src="./data/LogoFinal.png" alt="Marketplace Central Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Tickets</a>
+            <a href="#">Listings</a>
+            <a href="#">Wishlist</a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="profile">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <a href="#">View Your Profile</a>
+        </div>
+    </nav>
+
     <div class="content">
 
-        <div class="pagetitle">
-            <p class="header">Product List</p>
-        </div>
+        <header>
+            <h1>Listings</h1>
+        </header>
+
 
         <!-- Side Filter Panel -->
         <div class="sidebar">
             <h2>Filter Options</h2>
             <div class="filter-option">
-                <label for="category">Category:</label>
-                <select id="category">
-                    <option value="all">All</option>
-                    <!-- Add more category options here -->
-                </select>
+                <div class="filter-title">
+                    <label for="category">Category:</label>
+                </div>
+                
+                <div>
+                    <input type="checkbox" id="category1" name="category1">
+                    <label for="category1">Category 1</label><br>
+                    <input type="checkbox" id="category2" name="category2">
+                    <label for="category2">Category 2</label><br>
+                    <input type="checkbox" id="category3" name="category3">
+                    <label for="category3">Category 3</label>
+                </div>
+
             </div>
             <div class="filter-option">
                 <label for="price">Price:</label>
@@ -176,12 +61,22 @@
                     <option value="asc">Low to High</option>
                     <option value="desc">High to Low</option>
                 </select>
+                
+                
+                <div class="price-inputs">
+                    <span class="currency">$</span>
+                    <input type="text" id="minPrice" name="minPrice" placeholder="Min">
+                    <span class="dash">-</span>
+                    <span class="currency">$</span>
+                    <input type="text" id="maxPrice" name="maxPrice" placeholder="Max">
+                </div>
+
             </div>
             <div class="filter-option">
                 <label for="status">Status:</label>
                 <select id="status">
                     <option value="all">All</option>
-                    <option value="available">Available</option>
+                    <option value="available">In Progress</option>
                     <option value="sold">Sold</option>
                     <!-- Add more status options here -->
                 </select>
@@ -192,15 +87,15 @@
 
 
 
-
+        <!-- main sections  -->
 
         <div class="main-content">
 
             <!-- trending card section  -->
             <section>
 
-                <div class="sub-section hdr">
-                    <p>Trending Items</p>
+                <div class="sub-section-hdr">
+                    <h2>Trending Items</h2>
                 </div>
 
                 <div class="product-list-container">
@@ -235,8 +130,8 @@
             <!-- all product card section-->
             <section>
 
-                <div class="sub-section hdr">
-                    <p>All Items</p>
+                <div class="sub-section-hdr">
+                    <h2>All Items</h2>
                 </div>
 
                 <div class="product-list-container">
@@ -283,7 +178,7 @@
                         <!-- button to add a new product -->
                         <a href="createListing.html">
                 
-                            <button class="add-product-button">Create a Listing!</button>
+                            <button class="add-product-button">Create a Listing</button>
                 
                         </a>
 
