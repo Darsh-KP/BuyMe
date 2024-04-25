@@ -1,3 +1,13 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="com.buyme.database.*"%>
+<%@ page import="com.buyme.controller.*"%>
+<%@ page import="java.sql.*" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.SimpleDateFormat"%>
+<%@ page import="java.util.Date"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +20,7 @@
     <div class="container">
         <h1>Post Your Item!</h1>
         
-        <form action="/submit-your-form-handler" method="POST" enctype="multipart/form-data" onsubmit="return validatePrices();">
+        <form action="PostListing.jsp" method="POST" enctype="multipart/form-data" onsubmit="return validatePrices()">
             
         <div class="form-group">
                 <label for="productName">Product Name:</label>
@@ -23,7 +33,7 @@
             </div>
             
              <div class="form-group">
-                <label for="subcategory">Subcategory:</label>
+                <label for="subcategory">SubCategory:</label>
                 <select id="subcategory" name="subcategory" required>
                     <option value="">--Please choose an option--</option>
                     <option value="SubCat1">temp1</option>
@@ -47,11 +57,13 @@
                 <input type="number" id="minBidIncrement" name="minBidIncrement" required min="0" step="0.01">
             </div>
             
+          <!-- IMAGE IF WE FIGURE IT OUT :DD   
             <div class="form-group">
                 <label for="productImages">Upload Images:</label>
                 <input type="file" id="productImages" name="productImages[]" accept="image/*" multiple>
             </div>
-            
+           -->  
+           
             <div class="form-group">
                 <label for="listingCloseTime">Listing Close Time:</label>
                 <input type="datetime-local" id="listingCloseTime" name="listingCloseTime" required>
@@ -60,6 +72,7 @@
             <button type="submit">Post Product</button>
         </form>
     </div>
+    
     
     <script>
     function validatePrices() {
@@ -72,5 +85,44 @@
         return true; // Allow form submission
     }
     </script>
+    
 </body>
 </html>
+<%
+    // Check if the form was submitted
+        if (request.getMethod().equalsIgnoreCase("POST")) {
+            try {
+                String prodName = request.getParameter("productName");
+                String prodDesc = request.getParameter("productDescription");
+                String subCat = request.getParameter("subcategory");
+                Double initialPrice = Double.parseDouble(request.getParameter("initialPrice"));
+                Double minSellPrice = Double.parseDouble(request.getParameter("minSellPrice"));
+                Double minBidIncrement = Double.parseDouble(request.getParameter("minBidIncrement"));
+                String listingCloseTimeString = request.getParameter("listingCloseTime");
+                Timestamp listingCloseTime = Timestamp.valueOf(listingCloseTimeString.replace("T", " ") + ":00");
+                
+                
+                if (!PostListingController.attemptPost(prodName, prodDesc, subCat, initialPrice, minSellPrice, minBidIncrement, listingCloseTime)) {
+                    %>
+                    <script>alert("failed to post listing")</script>
+                    <%
+                    return;
+                }
+
+                // Assuming here you would insert these into your database
+                // Example database operation omitted for brevity
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            } catch (IllegalArgumentException e) {
+            	e.printStackTrace();
+            } catch (Exception e) {
+            	e.printStackTrace();
+            }
+            
+            
+            
+        }
+    %>
+</body>
+</html>
+  
