@@ -1,13 +1,12 @@
- /* CSS styles */
- body {
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f2f2f2;
+    background-color: var(--background, #F8D2C2); /* Using provided background color */
 }
 .container {
     display: flex;
-    max-width: 1200px;
+    max-width: 800px;
     margin: 20px auto;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -16,12 +15,17 @@
 }
 .image-container {
     flex: 1;
+    text-align: center;
+    position: relative;
 }
+
 .image-container img {
-    width: 100%;
+    max-width: 90%;
     height: auto;
     display: block;
+    margin: auto;
 }
+
 .product-details {
     flex: 1;
     padding: 20px;
@@ -30,104 +34,155 @@
     font-size: 24px;
     font-weight: bold;
     margin-bottom: 10px;
+    color: var(--primary, #D66978); /* Using provided primary color */
 }
 .seller-info {
     margin-bottom: 10px;
+    color: var(--secondary, #430F1B); /* Using provided secondary color */
 }
 .price {
     font-size: 24px;
-    color: #007bff;
+    color: var(--primary, #D66978); /* Using provided primary color */
     margin-bottom: 10px;
 }
-.quantity-info {
+.condition {
+    margin-bottom: 10px;
+    color: var(--secondary, #430F1B); /* Using provided secondary color */
+}
+.quantity-info, .size-info {
     margin-bottom: 10px;
 }
 .buttons {
     margin-top: 20px;
+    display: flex;
 }
 .button {
+    flex: 1;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: var(--primary, #D66978); /* Using provided primary color */
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     margin-right: 10px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .button:hover {
-    background-color: #0056b3;
+    background-color: var(--extra1, #FCA6A9); /* Using provided extra1 color */
 }
-.heart-button {
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 20px;
-    color: #007bff;
-}
-.heart-button:hover {
-    color: #0056b3;
+.heart-icon {
+    margin-right: 5px;
 }
 
-nav {
-    background-color: #430F1B; /* Maroon */
-    color: #fff;
+.image-container {
+    position: relative;
+    text-align: center;
+}
+.listing-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: calc(100% - 40px); /* Adjust width based on padding */
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    margin-bottom: 20px; /* Add some margin at the bottom */
+    padding-right: 20px; /* Adjust the padding to move the content towards the right */
 }
 
-.logo img {
-    height: 40px;
-}
 
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
+.listing-info div {
     margin-right: 10px;
-    background-color: #D66978; /* Light Maroon */
 }
 
-.search input {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-}
-
-.search button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #FCA6A9; /* Light Coral */
-    color: #fff;
-    cursor: pointer;
-}
-
-.profile {
+.listing-info .bidding-info {
     display: flex;
     align-items: center;
 }
 
-.profile img {
-    height: 30px;
-    border-radius: 50%;
+.listing-info .bidding-info input[type="number"] {
+    width: 80px;
     margin-right: 10px;
 }
 
-.profile a {
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #430F1B; /* Maroon */
+.listing-info .bidding-info button {
+    padding: 8px 8px;
+}
+
+.product-details .buttons {
+    display: flex;
+    align-items: center; /* Align buttons vertically with bidding info */
 }
 
 .seller-info {
-    margin-bottom: 10px;
-    background-color: rgba(255, 255, 255, 0.5); /* Transparent white */
+    background-color: rgba(67, 15, 27, 0.7); /* Semi-transparent background color */
+    color: #fff; /* Text color */
+    padding: 5px 10px; /* Add padding */
+    border-radius: 4px; /* Add border radius for rounded corners */
+    margin-bottom: 10px; /* Add some space at the bottom */
+    display: inline-block; /* Display as inline-block */
+}
+
+/* solocards.css */
+
+.subcategories-section {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.subcategories-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: #F8D2C2;
+}
+
+.subcategories-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.subcategory-card {
+    width: 200px;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    margin: 0 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.subcategory-card:hover {
+    transform: translateY(-10px);
+}
+
+.subcategory-card img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #F8D2C2;
+}
+
+.subcategory-details {
     padding: 10px;
-    border-radius: 4px;
+}
+
+.subcategory-title {
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.subcategory-price {
+    color: #F8D2C2;
+    font-size: 14px;
+}
+
+.shirt {
+    background-color: #430F1B; /* Light Orange */
+}
+
+.pant {
+    background-color: #430F1B; /* Light Blue */
 }

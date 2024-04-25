@@ -4,97 +4,42 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mainstays Vanilla Scented Single-Wick Large Jar Candle</title>
-    <style>
-        /* CSS styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f2f2f2;
-        }
-        .container {
-            display: flex;
-            max-width: 800px;
-            margin: 20px auto;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .image-container {
-            flex: 1;
-        }
-        .image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
-        .product-details {
-            flex: 1;
-            padding: 20px;
-        }
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .seller-info {
-            margin-bottom: 10px;
-        }
-        .price {
-            font-size: 24px;
-            color: #007bff;
-            margin-bottom: 10px;
-        }
-        .condition {
-            margin-bottom: 10px;
-        }
-        .quantity-info, .size-info {
-            margin-bottom: 10px;
-        }
-        .buttons {
-            margin-top: 20px;
-            display: flex;
-        }
-        .button {
-            flex: 1;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: #fff;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            margin-right: 10px;
-            text-decoration: none;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .button:hover {
-            background-color: #0056b3;
-        }
-        .heart-icon {
-            margin-right: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="solocards.css">
+    <link rel="stylesheet" href="styles.css"> <!-- Add link to the new CSS file -->
 </head>
 <body>
     <div class="container">
         <div class="image-container">
             <!-- Placeholder image for candle -->
-            <img src="candle.jpg" alt="Mainstays Vanilla Scented Single-Wick Large Jar Candle">
+            <img src="./data/RUhat.jpg" alt="Mainstays Vanilla Scented Single-Wick Large Jar Candle">
+            <div class="listing-info">
+                <div class="listing-dates">
+                    <div>Listing Start Date: April 25, 2024</div>
+                    <div>Listing Close Date: April 30, 2024</div>
+                </div>
+                <div class="status">Status: Available</div>
+                <div class="bidding-info">
+                    <div>Minimum Bidding Increment: US $1.00</div>
+                    <div>
+                        <label for="bid">Your Bid:</label>
+                        <input type="number" id="bid" name="bid" min="20.99" step="1.00">
+                        <button onclick="placeBid()" class="button">Place Bid</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="product-details">
-            <div class="title">Mainstays Vanilla Scented Single-Wick Large Jar Candle</div> 
+            <div class="title">Official Collegiate Dad Cap - The U18 Adjustable Relaxed-Fit Hat with Team Logo</div> 
+            <div class="description">College reunions, university sporting events, or general campus shenanigans – express your school spirit with a look as unique as you are. Designed for daily wear, our strapback dad hat showcases a breathable all-season weave in a classic baseball silhouette that pairs with everything from your favorite tee shirt to business button-up.</div>
             <div class="seller-info">
-                <span>PHT Express Store</span><br>
+                <span>Rutgers Store</span><br>
                 <span>99.4% positive</span><br>
             </div>
-            <div class="price">US $11.69</div>
+            <div class="price">US $20.99</div>
             <div class="condition">Condition: New</div>
             <div class="quantity-info">
                 <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" max = "100">
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
             </div>
             <div class="size-info">
                 <label for="size">Size:</label>
@@ -110,6 +55,27 @@
             </div>
         </div>
     </div>
+    <!-- Place this code after the main container and before the closing body tag -->
+
+<div class="subcategories-section">
+    <h2 class="subcategories-title">Subcategories</h2>
+    <div class="subcategories-container">
+        <div class="subcategory-card shirt">
+            <img src="./data/RUshirt.jpg" alt="Shirts">
+            <div class="subcategory-details">
+                <div class="subcategory-title">Men's Shirts</div>
+                <div class="subcategory-price">$29.99</div>
+            </div>
+        </div>
+        <div class="subcategory-card pant">
+            <img src="./data/RUpants.jpg" alt="Pants">
+            <div class="subcategory-details">
+                <div class="subcategory-title">Men's Pants</div>
+                <div class="subcategory-price">$39.99</div>
+            </div>
+        </div>
+    </div>
+</div>
 
     <script>
         function addToCart() {
@@ -119,6 +85,12 @@
             
             // Perform further actions (e.g., send data to server, update cart)
             alert("Added " + quantity + " item(s) of size " + size + " to cart!");
+        }
+
+        function placeBid() {
+            var bidAmount = document.getElementById('bid').value;
+            // Perform further actions (e.g., send bid to server, update bidding status)
+            alert("Your bid of US $" + bidAmount + " has been placed!");
         }
     </script>
 </body>
