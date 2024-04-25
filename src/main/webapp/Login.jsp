@@ -30,8 +30,8 @@
     // Check if the form was submitted
     if (request.getMethod().equalsIgnoreCase("POST")) {
         // Get username and password
-        String username = (request.getParameter("username")).trim();
-        String password = (request.getParameter("password")).trim();
+        String username = request.getParameter("username").trim();
+        String password = request.getParameter("password").trim();
 
         if (!loginController.attemptLogin(username, password)) {
             // User doesn't exist, back to log in

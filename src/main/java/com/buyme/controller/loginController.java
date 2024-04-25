@@ -1,6 +1,8 @@
 package com.buyme.controller;
 
 import com.buyme.database.MyDatabase;
+import com.buyme.database.PasswordSecurity;
+
 import java.sql.*;
 
 public class loginController {
@@ -14,22 +16,27 @@ public class loginController {
 
             // Check for credentials in the database
             PreparedStatement preparedStatement = loginConnection.prepareStatement(
-                    "SELECT COUNT(*) AS userExists FROM user WHERE username=? AND password=?");
+                    "SELECT password_hash, password_salt FROM user WHERE username=?");
             preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
             ResultSet resultSet = preparedStatement.executeQuery();
 
-            resultSet.next();
-            int userExists = resultSet.getInt("userExists");
+            if (!resultSet.next()) {
+                // No results, incorrect credentials
+                return false;
+            }
+
+            // Get stored hash and salt
+            String storedPasswordHash = resultSet.getString("password_hash");
+            String storedSalt = resultSet.getString("password_salt");
 
             //Close connection
             resultSet.close();
             preparedStatement.close();
             loginConnection.close();
 
-            if ((userExists) <= 0) {
-                // User doesn't exists/incorrect credentials
-                if (MyDatabase.debug) System.out.println("User does not exists.");
+            // Verify password
+            if (!PasswordSecurity.verifyPassword(password, storedPasswordHash, storedSalt)) {
+                // Passwords don't match
                 return false;
             }
 

@@ -30,8 +30,8 @@
         <input type="text" id="address" name="address" required maxlength="100">
         <label for="username">Username</label>
         <label for="password">Password</label>
-        <input type="text" id="username" name="username" required maxlength="20">
-        <input type="password" id="password" name="password" required maxlength="15">
+        <input type="text" id="username" name="username" required minlength="5" maxlength="20">
+        <input type="password" id="password" name="password" required minlength="8" maxlength="255">
         <input type="submit" value="Sign Up">
     </form>
     Already have an account? <a href="Login.jsp">Log In</a>
