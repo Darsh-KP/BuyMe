@@ -1,180 +1,99 @@
-@import "default.css";
-
-* {
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    background-color: #F8D2C2; /* Light Peach */
+    color: #430F1B; /* Dark Maroon */
 }
 
-.navbar {
+nav {
+    background-color: #430F1B; /* Maroon */
+    color: #fff;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    position: sticky;
-    top: 0;
-    padding: 15px;
-    background-color: var(--background); /* Deep burgundy */
-}
-
-.nav-list {
-    display: flex;
-    gap: 20px;
-    list-style: none;
+    align-items: center;
+    padding: 10px 20px;
 }
 
 .logo img {
-    width: auto;
-    height: auto;
-    border-radius: 50%;
-    max-width: 90px;
+    height: 40px;
 }
 
-nav .logo {
-    width: 100px; /* Adjust the width of the logo */
-    height: auto; /* Maintain aspect ratio */
-    margin-right: 20px; /* Add some spacing between the logo and the menu */
-}
-
-.nav-list li a {
+.nav-links a {
     text-decoration: none;
-    color: #f8d2c2; /* Soft pink */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #D66978; /* Light Maroon */
 }
 
-.nav-list li a:hover {
-    color: #fca6a9; /* Coral */
+.search input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
 }
 
-.rightnav input[type="text"] {
-    padding: 8px;
-    font-size: 17px;
-    border: 2px solid #f8d2c2; /* Soft pink */
-    border-radius: 9px;
-}
-
-.rightnav .btn {
-    padding: 8px 20px;
-    margin-left: 10px;
-    border: 2px solid #f8d2c2; /* Soft pink */
-    border-radius: 8px;
-    background: #a14258; /* Deep burgundy */
-    color: #f8d2c2; /* Soft pink */
+.search button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #FCA6A9; /* Light Coral */
+    color: #fff;
     cursor: pointer;
 }
 
-.background {
-    background: #430f1b; /* Dark burgundy */
-    color: #f8d2c2; /* Soft pink */
+.profile {
+    display: flex;
+    align-items: center;
 }
 
-.firstsection,
-.secondsection,
-.section {
-    height: 400px;
+.profile img {
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
 }
 
-.text-big {
-    font-size: 35px;
-    font-weight: bold;
+.profile a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #430F1B; /* Maroon */
 }
 
-.text-small {
-    font-size: 18px;
-}
-
-.thumbnail img {
-    max-width: 250px;
-    border-radius: 26px;
-    margin-top: 19px;
-}
-
-.text-footer {
-    padding: 30px 0;
-    font-family: 'Ubuntu', sans-serif;
+header {
+    background-color: #A14258; /* Light Maroon */
+    color: #fff;
     text-align: center;
+    padding: 20px;
+}
+
+.features {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding: 20px;
+}
+
+.feature {
+    width: 45%;
+    background-color: #FCA6A9; /* Light Coral */
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    text-decoration: none;
+    color: #430F1B; /* Dark Maroon */
+}
+
+.feature:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 footer {
+    background-color: #A14258; /* Maroon */
+    color: #fff;
     text-align: center;
-    padding: 15px;
-}
-
-/* Additional CSS for improved styling */
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    position: relative; /* Added to make space for the fixed navbar */
-}
-
-.navbar {
-    background-color: var(--background);
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 1000; /* Added to ensure navbar stays on top */
-}
-
-.nav-list {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    float: right;
-}
-
-.nav-list li {
-    display: inline;
-    margin-left: 20px;
-}
-
-.nav-list li a {
-    color: var(--primary);
-    text-decoration: none;
-    padding: 10px 15px;
-    transition: all 0.3s ease;
-}
-
-.nav-list li a:hover {
-    background-color: var(--extra2);
-}
-
-.logo img {
-    width: auto;
-    height: auto;
-    border-radius: 50%;
-    max-width: 90px;
-}
-
-.box-main {
     padding: 20px;
-    margin: 80px auto 0; /* Adjusted top margin to account for navbar height */
-    max-width: 800px;
-    text-align: center;
-}
-
-.text-big {
-    font-size: 32px;
-    margin-bottom: 20px;
-}
-
-.text-small {
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-.background {
-    background-color: var(--background);
-    color: #333;
-}
-
-.section {
-    padding: 50px 0;
-}
-
-.thumbnail img {
-    max-width: 100%;
-    height: auto;
-}
-
-.text-footer {
-    text-align: center;
-    margin-top: 20px;
 }
