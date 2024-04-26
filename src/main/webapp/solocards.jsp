@@ -8,24 +8,61 @@
     <link rel="stylesheet" href="styles.css"> <!-- Add link to the new CSS file -->
 </head>
 <body>
+
+    <nav>
+        <div class="logo">
+            <img src="./data/LogoFinal.png" alt="Marketplace Central Logo">
+        </div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Tickets</a>
+            <a href="#">Listings</a>
+            <a href="#">Wishlist</a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="profile">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <a href="#">View Your Profile</a>
+        </div>
+    </nav>
+
+
+
     <div class="container">
         <div class="image-container">
             <!-- Placeholder image for candle -->
             <img src="./data/RUhat.jpg" alt="Mainstays Vanilla Scented Single-Wick Large Jar Candle">
             <div class="listing-info">
-                <div class="listing-dates">
-                    <div>Listing Start Date: April 25, 2024</div>
-                    <div>Listing Close Date: April 30, 2024</div>
+
+                <div class="dates-container">
+
+                    <div class="listing-dates">
+                        <p>Start Date: April 25, 2024</p>
+                        <p>Close Date: April 30, 2024</p>
+                    </div>
+                    <div class="status">
+                        <div class="circle green"></div>
+                        <div class="text">Available</div>
+                    </div>
+    
+                    
                 </div>
-                <div class="status">Status: Available</div>
-                <div class="bidding-info">
-                    <div>Minimum Bidding Increment: US $1.00</div>
-                    <div>
+                
+                <div class="bidding-container">
+                
+                    <div class="bid-info"> 
                         <label for="bid">Your Bid:</label>
                         <input type="number" id="bid" name="bid" min="20.99" step="1.00">
                         <button onclick="placeBid()" class="button">Place Bid</button>
                     </div>
+                    
+                    <p>Minimum Bidding Increment: US $1.00</p>
+
                 </div>
+                
             </div>
         </div>
         <div class="product-details">

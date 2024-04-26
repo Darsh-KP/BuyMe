@@ -136,15 +136,16 @@
             margin-bottom: 10px;
         }
 
-        /* trending card style */
+        /* Trending card style */
         .trending-product-card {
             border: 1px solid lightgray;
-            border-radius: 5px;
-            padding: 10px;
-            width: 100px;
-            height: 100px;
+            border-radius: 8px;
+            padding: 12px;
+            width: 150px;
+            height: 200px;
             margin: 8px;
             background: antiquewhite;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
         }
 
         .trending-product-card a {
@@ -159,13 +160,28 @@
 
         .trending-product-image {
             width: 100%;
-            height: 100%;
-            background-color: #f2f2f2;
-            border-radius: 5px;
+            height: 70%;
+            border-radius: 8px;
             margin-bottom: 10px;
+            background-image: url('path_to_your_image.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background: white;
         }
 
-        .logo {
+        .trending-product-title {
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .trending-product-price {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .trending-logo {
             position: absolute; /* Position the logo absolutely */
             top: 0;
             right: 0;
@@ -264,5 +280,32 @@
             background-color:#D66978; 
         }
 
+        /* styling for reset and submit buttons */
+        .filter-buttons {
+            margin-top: 20px;
+        }
         
+        .reset-button, .submit-button {
+            background-color:#FCA6A9;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 12px;
+            margin-right: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        
+        .reset-button:hover, .submit-button:hover {
+            background-color:#D66978;
+        }
+        
+        .reset-button:active, .submit-button:active {
+            background-color: #D66978;
+        }
 
+
+        

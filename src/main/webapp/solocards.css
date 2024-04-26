@@ -38,6 +38,7 @@ body {
 }
 .seller-info {
     margin-bottom: 10px;
+    margin-top: 10px;
     color: var(--secondary, #430F1B); /* Using provided secondary color */
 }
 .price {
@@ -93,9 +94,82 @@ body {
     padding-right: 20px; /* Adjust the padding to move the content towards the right */
 }
 
+.dates-container {
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    margin-left: 8px;
+    width: 500px;
+}
+
+.listing-dates {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin-left: 10px;
+    font-size: 12px; /* Adjust as needed */
+    width: 160px;
+
+}
+
+.status {
+    margin-top: 10px;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.status .circle {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px; /* Adjust as needed */
+}
+
+.green {
+    background-color: green;
+}
+
+/* Define styles for the red circle */
+.red {
+    background-color: red;
+}
+
+.status .text {
+    font-size: 14px; /* Adjust as needed */
+}
+
 
 .listing-info div {
+    margin-right: 0px;
+}
+
+
+/* bid info styling */
+.bidding-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.bid-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px; 
+}
+
+.bid-info label,
+.bid-info input[type="number"],
+.bid-info button {
     margin-right: 10px;
+}
+
+.bid-info input[type="number"] {
+    width: 80px;
+}
+
+.bid-info button {
+    padding: 8px 16px;
+    margin-right: 0; /* Remove margin-right from the button */
 }
 
 .listing-info .bidding-info {
@@ -109,7 +183,7 @@ body {
 }
 
 .listing-info .bidding-info button {
-    padding: 8px 8px;
+    padding: 8px 12px;
 }
 
 .product-details .buttons {
@@ -186,3 +260,61 @@ body {
 .pant {
     background-color: #430F1B; /* Light Blue */
 }
+
+
+nav {
+    background-color: #430F1B; /* Maroon */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-right: 10px;
+    background-color: #D66978; /* Light Maroon */
+}
+
+.search input {
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
+.search button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #FCA6A9; /* Light Coral */
+    color: #fff;
+    cursor: pointer;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+}
+
+.profile img {
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile a {
+    text-decoration: none;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #430F1B; /* Maroon */
+}
+
