@@ -33,17 +33,18 @@
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
 
+        // Attempt log in
         if (!loginController.attemptLogin(username, password)) {
             // User doesn't exist, back to log in
             %>
-            <script>alert("username or password does not match.")</script>
+            <script>alert("Username or password does not match. Please try again!")</script>
             <%
             return;
         }
 
-        // User does exists
+        // User does exist, log them in and save session information
         session.setAttribute("user", username);
-        if (MyDatabase.debug) System.out.println("Session: "  + session.getAttribute("user"));
+        if (myDatabase.debug) System.out.println("Session: "  + session.getAttribute("user"));
         response.sendRedirect("Home.jsp");
     }
 %>

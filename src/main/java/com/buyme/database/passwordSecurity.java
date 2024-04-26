@@ -5,8 +5,8 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Base64;
 
-public class PasswordSecurity {
-    private PasswordSecurity() {}
+public class passwordSecurity {
+    private passwordSecurity() {}
 
     // Method to generate a random salt
     public static String generateSalt() {
@@ -26,7 +26,7 @@ public class PasswordSecurity {
             byte[] hashedBytes = digest.digest(password.getBytes());
             return Base64.getEncoder().encodeToString(hashedBytes);
         } catch (NoSuchAlgorithmException e) {
-            if (MyDatabase.debug) System.out.println("Couldn't load algorithm for password hashing.");
+            if (myDatabase.debug) System.out.println("Couldn't load algorithm for password hashing.");
             return null;
         }
     }

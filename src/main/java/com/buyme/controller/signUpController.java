@@ -1,17 +1,17 @@
 package com.buyme.controller;
 
-import com.buyme.database.MyDatabase;
+import com.buyme.database.myDatabase;
 import com.buyme.database.*;
 
 import java.sql.*;
 
-public class SignUpController {
-    private SignUpController() {}
+public class signUpController {
+    private signUpController() {}
 
     public static boolean attemptSignUpController(String firstName, String lastName, String username, String password, String email, String address) {
     	try {
             // Create connection
-            MyDatabase database = new MyDatabase();
+            myDatabase database = new myDatabase();
             Connection SignUpConnection = database.newConnection();
 
             // Check if the username is taken
@@ -24,18 +24,18 @@ public class SignUpController {
 
                 if ((userExists) >= 1) {
                     // Username taken
-                    if (MyDatabase.debug) System.out.println("User already exists.");
+                    if (myDatabase.debug) System.out.println("User already exists.");
                     return false;
                 }
             }
 
             // Get password hash
-            String passwordSalt = PasswordSecurity.generateSalt();
-            String passwordHash = PasswordSecurity.hashPassword(password, passwordSalt);
+            String passwordSalt = passwordSecurity.generateSalt();
+            String passwordHash = passwordSecurity.hashPassword(password, passwordSalt);
 
             // Check if password was hashed
             if (passwordHash == null) {
-                if (MyDatabase.debug) System.out.println("Password hash is null.");
+                if (myDatabase.debug) System.out.println("Password hash is null.");
                 return false;
             }
 
@@ -58,11 +58,12 @@ public class SignUpController {
             preparedStatement.close();
             SignUpConnection.close();
             resultSet.close();
-      
-            if (MyDatabase.debug) System.out.println("Signing Up... " + username);
+
+            // User created
+            if (myDatabase.debug) System.out.println("Signing Up... " + username);
             return true;
         } catch (SQLException e) {
-            if (MyDatabase.debug) {
+            if (myDatabase.debug) {
                 System.out.println("Error Signing Up...");
                 e.printStackTrace();
             }

@@ -1,7 +1,7 @@
 package com.buyme.controller;
 
-import com.buyme.database.MyDatabase;
-import com.buyme.database.PasswordSecurity;
+import com.buyme.database.myDatabase;
+import com.buyme.database.passwordSecurity;
 
 import java.sql.*;
 
@@ -11,7 +11,7 @@ public class loginController {
     public static boolean attemptLogin(String username, String password) {
         try {
             // Create connection
-            MyDatabase database = new MyDatabase();
+            myDatabase database = new myDatabase();
             Connection loginConnection = database.newConnection();
 
             // Check for credentials in the database
@@ -35,16 +35,16 @@ public class loginController {
             loginConnection.close();
 
             // Verify password
-            if (!PasswordSecurity.verifyPassword(password, storedPasswordHash, storedSalt)) {
+            if (!passwordSecurity.verifyPassword(password, storedPasswordHash, storedSalt)) {
                 // Passwords don't match
                 return false;
             }
 
-            // User exists, log them in
-            if (MyDatabase.debug) System.out.println("Logging in... " + username);
+            // User exists
+            if (myDatabase.debug) System.out.println("Logging in... " + username);
             return true;
         } catch (SQLException e) {
-            if (MyDatabase.debug) {
+            if (myDatabase.debug) {
                 System.out.println("Error logging in...");
                 e.printStackTrace();
             }

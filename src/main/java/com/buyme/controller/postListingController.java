@@ -1,15 +1,18 @@
 package com.buyme.controller;
 
-import com.buyme.database.MyDatabase;
+import com.buyme.database.myDatabase;
 import java.sql.*;
+import java.time.LocalDateTime;
 
-public class PostListingController {
-    private PostListingController() {}
+public class postListingController {
+    private postListingController() {}
 
-    public static boolean attemptPost(String productName, String productDescription, String subcategory, double initialPrice, double minSellPrice, double minBidIncrement, Timestamp listingCloseTime) {
+    public static boolean attemptPost(String productName, String productDescription, String subcategory,
+                                      double initialPrice, double minSellPrice, double minBidIncrement,
+                                      LocalDateTime listingCloseDateTime, LocalDateTime listingPostDateTime, String sellerUsername) {
         try {
             // Create connection
-            MyDatabase database = new MyDatabase();
+            myDatabase database = new myDatabase();
             Connection postConnection = database.newConnection();
 
             // Check for credentials in the database
@@ -23,14 +26,13 @@ public class PostListingController {
             preparedStatement.setDouble(4, initialPrice);
             preparedStatement.setDouble(5, minSellPrice);
             preparedStatement.setDouble(6, minBidIncrement);
-            preparedStatement.setTimestamp(7, listingCloseTime);
             preparedStatement.executeUpdate();
 
             // User exists, log them in
-            if (MyDatabase.debug) System.out.println("Posted a Listing...");
+            if (myDatabase.debug) System.out.println("Posted a Listing...");
             return true;
         } catch (SQLException e) {
-            if (MyDatabase.debug) {
+            if (myDatabase.debug) {
                 System.out.println("Error posting...");
                 e.printStackTrace();
             }

@@ -9,10 +9,10 @@ import java.util.Properties;
 
 
 // Class used to make connection to the database
-public class MyDatabase {
+public class myDatabase {
 	public static final boolean debug = true;
 
-	public MyDatabase() {}
+	public myDatabase() {}
 
 	public Connection newConnection() {
 		// To store the connection
@@ -50,7 +50,7 @@ public class MyDatabase {
 	
 	public static void main(String[] args) throws SQLException {
 		// To test if connection to database works
-		MyDatabase db = new MyDatabase();
+		myDatabase db = new myDatabase();
 		Connection con = db.newConnection();
 		System.out.println(con);
 		con.close();

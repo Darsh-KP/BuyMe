@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="com.buyme.database.*" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -56,5 +60,9 @@
     <footer>
         <p>Join the Thriving Community Today!</p>
     </footer>
+
+<%
+    if (myDatabase.debug) System.out.println("Home Session: "  + session.getAttribute("user"));
+%>
 </body>
 </html>

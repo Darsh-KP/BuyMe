@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
         pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ page import="com.buyme.database.*"%>
 <%@ page import="com.buyme.controller.*"%>
-<%@ page import="java.sql.*" %>
 
 <!DOCTYPE html>
 <html lang="en-US">
@@ -39,7 +37,7 @@
 <%
     // Check if the form was submitted
     if (request.getMethod().equalsIgnoreCase("POST")) {
-        // Get username and password
+        // Get username, password, and other details
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
         String firstName = request.getParameter("firstName").trim();
@@ -47,16 +45,16 @@
         String address = request.getParameter("address").trim();
         String email = request.getParameter("email").trim();
 
-        // User already exists
-        if (!SignUpController.attemptSignUpController(firstName, lastName, username, password, email, address)) {
+        // Attempt sign up
+        if (!signUpController.attemptSignUpController(firstName, lastName, username, password, email, address)) {
+            // Username taken, try again
             %>
-            <script>alert("username taken.")</script>
+            <script>alert("Username taken. Choose a different username.")</script>
             <%
             return;
         }
 
-        // User created
-        session.setAttribute("user", username);
+        // User created, redirect to log in
         response.sendRedirect("Login.jsp");
     }
 %>
