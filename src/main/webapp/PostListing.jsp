@@ -102,7 +102,8 @@
         String sellerUsername = session.getAttribute("user").toString();
 
         // Attempt new post
-        if (!true) {
+        if (!postListingController.attemptPost(productName, productDescription, subcategory, initialPrice,
+                minSellPrice, minBidIncrement, listingCloseDateTime, listingPostDateTime, sellerUsername)) {
             // Failed to post listing
             %>
             <script>alert("Failed to post listing.")</script>

@@ -16,7 +16,7 @@ public class loginController {
 
             // Check for credentials in the database
             PreparedStatement preparedStatement = loginConnection.prepareStatement(
-                    "SELECT password_hash, password_salt FROM user WHERE username=?");
+                    "SELECT password_hash, password_salt FROM user WHERE username=?;");
             preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
 

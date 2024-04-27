@@ -15,20 +15,27 @@ public class postListingController {
             myDatabase database = new myDatabase();
             Connection postConnection = database.newConnection();
 
-            // Check for credentials in the database
+            // Insert posting into database
             PreparedStatement preparedStatement = postConnection.prepareStatement(
-            		"INSERT INTO listing (product_Name, description, subcategory, initialPrice, minSellPrice, minBidIncrement, listingCloseTime) \n"
-                    + "VALUES (?, ?, ?, ?, ?, ?);\n"
-                    + "");
+            		"INSERT INTO listing (product_nanme, description, subcategory, initial_price, " +
+                            "min_sell_price, min_bid_increment, close_date_time, post_date_time, seller_username) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
             preparedStatement.setString(1, productName);
             preparedStatement.setString(2, productDescription);
             preparedStatement.setString(3, subcategory);
             preparedStatement.setDouble(4, initialPrice);
             preparedStatement.setDouble(5, minSellPrice);
             preparedStatement.setDouble(6, minBidIncrement);
+            preparedStatement.setTimestamp(7, Timestamp.valueOf(listingCloseDateTime));
+            preparedStatement.setTimestamp(8, Timestamp.valueOf(listingPostDateTime));
+            preparedStatement.setString(9, sellerUsername);
             preparedStatement.executeUpdate();
 
-            // User exists, log them in
+            // Close connections
+            preparedStatement.close();
+            postConnection.close();
+
+            // Success
             if (myDatabase.debug) System.out.println("Posted a Listing...");
             return true;
         } catch (SQLException e) {
