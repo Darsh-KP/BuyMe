@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mainstays Vanilla Scented Single-Wick Large Jar Candle</title>
     <link rel="stylesheet" href="solocards.css">
-    <link rel="stylesheet" href="styles.css"> <!-- Add link to the new CSS file -->
 </head>
 <body>
 
