@@ -8,7 +8,7 @@ import java.sql.*;
 public class signUpController {
     private signUpController() {}
 
-    public static boolean attemptSignUpController(String firstName, String lastName, String username, String password, String email, String address) {
+    public static boolean attemptSignUp(String firstName, String lastName, String username, String password, String email, String address) {
     	try {
             // Create connection
             myDatabase database = new myDatabase();

@@ -1,16 +1,16 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product List</title>
-    <link rel="stylesheet" href="prodlist.css">
+    <link rel="stylesheet" href="Listings.css">
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
-
 <body>
-
     <nav>
         <div class="logo">
             <img src="./data/LogoFinal.png" alt="Marketplace Central Logo">
@@ -32,11 +32,9 @@
     </nav>
 
     <div class="content">
-
         <header>
             <h1>Listings</h1>
         </header>
-
 
         <!-- Side Filter Panel -->
         <div class="sidebar">
@@ -54,7 +52,6 @@
                     <input type="checkbox" id="category3" name="category3">
                     <label for="category3">Hats</label>
                 </div>
-
             </div>
             <div class="filter-option">
                 <label for="price">Price:</label>
@@ -62,8 +59,7 @@
                     <option value="asc">Low to High</option>
                     <option value="desc">High to Low</option>
                 </select>
-                
-                
+
                 <div class="price-inputs">
                     <span class="currency">$</span>
                     <input type="text" id="minPrice" name="minPrice" placeholder="Min">
@@ -71,7 +67,6 @@
                     <span class="currency">$</span>
                     <input type="text" id="maxPrice" name="maxPrice" placeholder="Max">
                 </div>
-
             </div>
             <div class="filter-option">
                 <label for="status">Status:</label>
@@ -90,26 +85,16 @@
 
         </div>
 
-  
-
-
-
         <!-- main sections  -->
-
         <div class="main-content">
-
             <!-- trending card section  -->
             <section>
-
                 <div class="sub-section-hdr">
                     <h2>Trending Items</h2>
                     <img src="./data/TrendingLogo.png" alt="Logo" class="trending-logo">
                 </div>
 
                 <div class="product-list-container">
-
-                    
-
                     <!-- individual product card-->
                     <div class="trending-product-card">
                         <a href="product-page.html">
@@ -127,88 +112,45 @@
                             <div class="product-price">Price</div>
                         </a>
                     </div>
-
-                   
-
                 </div>
-
             </section>
-
 
             <!-- all product card section-->
             <section>
-
                 <div class="sub-section-hdr">
                     <h2>All Items</h2>
                 </div>
 
+
+                <!-- Section that displays all product card-->
                 <div class="product-list-container">
+                    <!-- Populate all listings from the database-->
+                    <%
+                        out.print("<div class=\"product-card\" data-product-id=\"1\" onclick=\"productCardClicked()\">\n" +
+                                "   <div class=\"product-title\">Name</div>\n" +
+                                "   <div class=\"product-image\"></div>\n" +
+                                "   <div class=\"product-price\">Price</div>\n" +
+                                "   <div class=\"product-endtime\">End Time: 2024-04-30 15:00</div>\n" +
+                                "   <div class=\"product-status\">Status: Available</div>\n" +
+                                "</div>");
 
-                    
+                    %>
+                    <!-- individual product card-->
+                    <div class="product-card" data-product-id="1" onclick="productCardClicked()">
+                        <div class="product-title">Name</div>
+                        <div class="product-image"></div>
+                        <div class="product-price">Price</div>
+                        <div class="product-endtime">End Time: 2024-04-30 15:00</div>
+                        <div class="product-status">Status: Available</div>
+                    </div>
 
-
-                        <!-- individual product card-->
-                        <div class="product-card">
-                            <a href="product-page.html">
-                
-                                <div class="product-title">Name</div>
-                    
-                                <div class="product-image"></div>
-                    
-                                <div class="product-price">Price</div>
-                    
-                                <div class="product-endtime">End Time: 2024-04-30 15:00</div>
-
-                                <div class="product-status">Status: Available</div>
-                    
-                            </a>
-                
-                        </div>
-
-                        <!-- individual product card-->
-                        <div class="product-card">
-                            <a href="product-page.html">
-                
-                                <div class="product-title">Name</div>
-                    
-                                <div class="product-image"></div>
-                    
-                                <div class="product-price">Price</div>
-                    
-                                <div class="product-endtime">End Time: 2024-04-30 15:00</div>
-
-                                <div class="product-status">Status: Available</div>
-                    
-                            </a>
-                
-                        </div>
-
-                        <!-- button to add a new product -->
-                        <a href="PostListing.jsp">
-                
-                            <button class="add-product-button">Create a Listing</button>
-                
-                        </a>
-
-                        
+                    <!-- button to add a new product -->
+                    <a href="PostListing.jsp">
+                        <button class="add-product-button">Create a Listing</button>
+                    </a>
                 </div>
-
-
-
             </section>
-
         </div>
-
-
-        
-
-
-
-
     </div>
-
-    <script src="script.js"></script>
-    
 </body>
-
 </html>

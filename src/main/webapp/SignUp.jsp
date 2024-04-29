@@ -46,7 +46,7 @@
         String email = request.getParameter("email").trim();
 
         // Attempt sign up
-        if (!signUpController.attemptSignUpController(firstName, lastName, username, password, email, address)) {
+        if (!signUpController.attemptSignUp(firstName, lastName, username, password, email, address)) {
             // Username taken, try again
             %>
             <script>alert("Username taken. Choose a different username.")</script>
@@ -60,5 +60,3 @@
 %>
 </body>
 </html>
-
-  

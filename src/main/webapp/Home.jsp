@@ -19,7 +19,7 @@
         <div class="nav-links">
             <a href="">Home</a>
             <a href="">Tickets</a>
-            <a href="prodlist.html">Listings</a>
+            <a href="Listings.jsp">Listings</a>
             <a href="">Wishlist</a>
         </div>
         <div class="search">
@@ -39,11 +39,11 @@
     </header>
 
     <section class="features">
-        <a href="prodlist.html" class="feature">
+        <a href="Listings.jsp" class="feature">
             <h2>Listings</h2>
             <p>Discover a treasure trove of products, neatly categorized for your convenience. From gadgets to fashion, find what you need in just a click!</p>
         </a>
-        <a href="prodlist.html" class="feature">
+        <a href="Listings.jsp" class="feature">
             <h2>Bidding</h2>
             <p>Experience the adrenaline rush of auctions! Place your bids and compete for the best deals on your favorite items.</p>
         </a>
