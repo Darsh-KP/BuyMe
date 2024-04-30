@@ -138,10 +138,10 @@
 
                         // Debug
                         if (myDatabase.debug) System.out.println("Loading product cards...");
-                        
+
                         // Display each product
                         for (HashMap<String, String> productDisplay : allProductDisplays) {
-                            out.print("<div class=\"product-card\" data-product-id=\"" + productDisplay.get("productId") + "\" onclick=\"productCardClicked()\">\n" +
+                            out.print("<div class=\"product-card\" data-product-id=\"" + productDisplay.get("productId") + "\" onclick=\"productCardClicked(this)\">\n" +
                                     "   <div class=\"product-title\">" + productDisplay.get("productName") + "</div>\n" +
                                     "   <div class=\"product-image\"></div>\n" +
                                     "   <div class=\"product-price\">" + productDisplay.get("priceDisplay") + "</div>\n" +
@@ -159,5 +159,28 @@
             </section>
         </div>
     </div>
+
+    <script>
+        function productCardClicked(element) {
+            // Get productID from the card that was clicked
+            var productID = element.getAttribute('data-product-id');
+
+            // Create form in order to POST id
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "solocards.jsp")
+
+            // Attach productID
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "productID");
+            input.setAttribute("value", productID);
+
+            // Submit Form
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
 </body>
 </html>
