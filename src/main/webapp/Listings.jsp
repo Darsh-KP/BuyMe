@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.buyme.controller.*" %>
+<%@ page import="com.buyme.database.myDatabase" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -126,23 +130,26 @@
                 <div class="product-list-container">
                     <!-- Populate all listings from the database-->
                     <%
-                        out.print("<div class=\"product-card\" data-product-id=\"1\" onclick=\"productCardClicked()\">\n" +
-                                "   <div class=\"product-title\">Name</div>\n" +
-                                "   <div class=\"product-image\"></div>\n" +
-                                "   <div class=\"product-price\">Price</div>\n" +
-                                "   <div class=\"product-endtime\">End Time: 2024-04-30 15:00</div>\n" +
-                                "   <div class=\"product-status\">Status: Available</div>\n" +
-                                "</div>");
+                        // Get all products to display
+                        List<HashMap<String, String>> allProductDisplays = listingsController.getAllListingsDisplayStrings();
 
+                        // If none are returned, nothing to display
+                        if (allProductDisplays == null) return;
+
+                        // Debug
+                        if (myDatabase.debug) System.out.println("Loading product cards...");
+                        
+                        // Display each product
+                        for (HashMap<String, String> productDisplay : allProductDisplays) {
+                            out.print("<div class=\"product-card\" data-product-id=\"" + productDisplay.get("productId") + "\" onclick=\"productCardClicked()\">\n" +
+                                    "   <div class=\"product-title\">" + productDisplay.get("productName") + "</div>\n" +
+                                    "   <div class=\"product-image\"></div>\n" +
+                                    "   <div class=\"product-price\">" + productDisplay.get("priceDisplay") + "</div>\n" +
+                                    "   <div class=\"product-endtime\">" + productDisplay.get("dateDisplay") + "</div>\n" +
+                                    "   <div class=\"product-status\">" + productDisplay.get("statusDisplay") + "</div>\n" +
+                                    "</div>");
+                        }
                     %>
-                    <!-- individual product card-->
-                    <div class="product-card" data-product-id="1" onclick="productCardClicked()">
-                        <div class="product-title">Name</div>
-                        <div class="product-image"></div>
-                        <div class="product-price">Price</div>
-                        <div class="product-endtime">End Time: 2024-04-30 15:00</div>
-                        <div class="product-status">Status: Available</div>
-                    </div>
 
                     <!-- button to add a new product -->
                     <a href="PostListing.jsp">
