@@ -7,7 +7,6 @@
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="com.buyme.database.myDatabase" %>
 
 
 <!DOCTYPE html>
@@ -38,7 +37,7 @@
 			    <select id="subcategory" name="subcategory" required>
 			        <option value="">--Please choose an option--</option>
 			        <% 
-			            List<String> subCategories = myDatabase.getAllSubCategories(); 
+			            List<String> subCategories = postListingController.getAllSubCategories();
 			            for(String subCategory : subCategories) { 
 			        %>
 			                <option value="<%= subCategory %>"><%= subCategory %></option>

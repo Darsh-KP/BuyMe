@@ -83,7 +83,6 @@ public class postListingController {
                 e.printStackTrace();
             }
         }
-        return subCategories; 
-    	
+        return subCategories;
     }
 }
