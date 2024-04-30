@@ -5,6 +5,10 @@
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.time.format.DateTimeFormatter" %>
 <%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="com.buyme.database.myDatabase" %>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -30,14 +34,19 @@
             </div>
             
              <div>
-                <label for="subcategory">SubCategory:</label>
-                <select id="subcategory" name="subcategory" required>
-                    <option value="">--Please choose an option--</option>
-                    <option value="SubCat1">temp1</option>
-                    <option value="SubCat2">temp2</option>
-                    <option value="SubCat3">temp3</option>
-                </select>
-            </div>
+			    <label for="subcategory">SubCategory:</label>
+			    <select id="subcategory" name="subcategory" required>
+			        <option value="">--Please choose an option--</option>
+			        <% 
+			            List<String> subCategories = myDatabase.getAllSubCategories(); 
+			            for(String subCategory : subCategories) { 
+			        %>
+			                <option value="<%= subCategory %>"><%= subCategory %></option>
+			        <%
+			            }
+			        %>
+			    </select>
+			</div>
             
             <div>
                 <label for="initialPrice">Initial Price: $</label>

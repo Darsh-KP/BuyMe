@@ -1,8 +1,13 @@
 package com.buyme.controller;
-
 import com.buyme.database.myDatabase;
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class postListingController {
     private postListingController() {}
@@ -46,5 +51,39 @@ public class postListingController {
         }
 
         return false;
+    }
+    
+    public static List<String> getAllSubCategories() {
+        List<String> subCategories = new ArrayList<String>();
+    	try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection postConnection = database.newConnection();
+            
+            PreparedStatement preparedStatement = postConnection.prepareStatement(
+            		"Select property_value from properties where property_key LIKE 'sub_category%'");
+            ResultSet resultSet = preparedStatement.executeQuery();
+            
+
+            boolean hasResults = false;
+            while (resultSet.next()) {
+                hasResults = true;
+                String subCategory = resultSet.getString("property_value");
+                subCategories.add(subCategory);
+                if (myDatabase.debug) System.out.println("Pulling subcategory name: " + subCategory);
+            }
+
+            if (!hasResults && myDatabase.debug) {
+                System.out.println("No subcategories found.");
+            }
+            
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error pulling subcategory names...");
+                e.printStackTrace();
+            }
+        }
+        return subCategories; 
+    	
     }
 }
