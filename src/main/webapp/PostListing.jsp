@@ -20,7 +20,11 @@
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
-    <div>
+  
+
+  
+  
+    <div class = "container">
         <h1>Post Your Item!</h1>
         
         <form action="PostListingServlet" method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
@@ -82,7 +86,6 @@
             <button type="submit">Post Product</button>
         </form>
     </div>
-
     <script>
         function validateForm() {
             if (!validatePrices()) return false;
