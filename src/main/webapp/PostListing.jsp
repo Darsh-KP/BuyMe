@@ -19,7 +19,11 @@
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
-    <div>
+  
+
+  
+  
+    <div class = "container">
         <h1>Post Your Item!</h1>
         
         <form action="PostListing.jsp" method="POST" onsubmit="return validatePrices()">
@@ -78,7 +82,6 @@
             <button type="submit">Post Product</button>
         </form>
     </div>
-
     <script>
     function validatePrices() {
         var initialPrice = document.getElementById('initialPrice').value;

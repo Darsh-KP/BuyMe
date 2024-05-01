@@ -9,6 +9,30 @@
     <link rel="stylesheet" href="SampleTicket.css">
 </head>
 <body>
+
+      <!-- Nav Bar -->
+
+      <nav>
+        <div class="logo">
+            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
+        </div>
+        <div class="nav-links">
+            <a href="">Home</a>
+            <a href="">Tickets</a>
+            <a href="Listings.jsp">Listings</a>
+            <a href="">Wishlist</a>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="Search...">
+            <button>Search</button>
+        </div>
+        <div class="profile">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <a href="#">View Your Profile</a>
+            <a href="#" class="logout-button">Log Out</a>
+        </div>
+    </nav>
+    
     <div class="chatbox">
         <div class="chat-header">
             <h1>Ticket Number 1235</h1>

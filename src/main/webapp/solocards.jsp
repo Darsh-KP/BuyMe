@@ -82,28 +82,6 @@
         </div>
     </div>
 
-
-
-    <div class="subcategories-section">
-        <h2 class="subcategories-title">Subcategories</h2>
-        <div class="subcategories-container">
-            <div class="subcategory-card shirt">
-                <img src="./data/RUshirt.jpg" alt="Shirts">
-                <div class="subcategory-details">
-                    <div class="subcategory-title">Men's Shirts</div>
-                    <div class="subcategory-price">$29.99</div>
-                </div>
-            </div>
-            <div class="subcategory-card pant">
-                <img src="./data/RUpants.jpg" alt="Pants">
-                <div class="subcategory-details">
-                    <div class="subcategory-title">Men's Pants</div>
-                    <div class="subcategory-price">$39.99</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <!-- History of Bids Section -->
     <div class="history-of-bids">
         <h2>History of Bids</h2>
@@ -128,6 +106,26 @@
     </div>
 
     <!-- Place this code after the main container and before the closing body tag -->
+
+    <div class="subcategories-section">
+        <h2 class="subcategories-title">Similar Items</h2>
+        <div class="subcategories-container">
+            <div class="subcategory-card shirt">
+                <img src="./data/RUshirt.jpg" alt="Shirts">
+                <div class="subcategory-details">
+                    <div class="subcategory-title">Men's Shirts</div>
+                    <div class="subcategory-price">$29.99</div>
+                </div>
+            </div>
+            <div class="subcategory-card pant">
+                <img src="./data/RUpants.jpg" alt="Pants">
+                <div class="subcategory-details">
+                    <div class="subcategory-title">Men's Pants</div>
+                    <div class="subcategory-price">$39.99</div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div class="product-list-container">
         <!-- individual product card-->

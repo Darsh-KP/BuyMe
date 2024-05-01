@@ -144,8 +144,7 @@ body {
     margin-right: 0px;
 }
 
-
-/* bid info styling */
+/* Bid info styling */
 .bidding-info {
     display: flex;
     flex-direction: column;
@@ -153,18 +152,21 @@ body {
 
 .bid-info {
     display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
     align-items: center;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
 }
 
 .bid-info label,
 .bid-info input[type="number"],
 .bid-info button {
     margin-right: 10px;
+    margin-bottom: 5px; /* Add bottom margin */
 }
 
 .bid-info input[type="number"] {
-    width: 80px;
+    width: 100%; /* Make input full width */
+    max-width: 150px; /* Limit maximum width */
 }
 
 .bid-info button {
@@ -172,13 +174,9 @@ body {
     margin-right: 0; /* Remove margin-right from the button */
 }
 
-.listing-info .bidding-info {
-    display: flex;
-    align-items: center;
-}
-
 .listing-info .bidding-info input[type="number"] {
-    width: 80px;
+    width: 100%; /* Make input full width */
+    max-width: 150px; /* Limit maximum width */
     margin-right: 10px;
 }
 
@@ -186,11 +184,7 @@ body {
     padding: 8px 12px;
 }
 
-.product-details .buttons {
-    display: flex;
-    align-items: center; /* Align buttons vertically with bidding info */
-}
-
+/* Seller info */
 .seller-info {
     background-color: rgba(67, 15, 27, 0.7); /* Semi-transparent background color */
     color: #fff; /* Text color */
@@ -198,10 +192,11 @@ body {
     border-radius: 4px; /* Add border radius for rounded corners */
     margin-bottom: 10px; /* Add some space at the bottom */
     display: inline-block; /* Display as inline-block */
+    max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 /* solocards.css */
-
+/* Subcategories Section */
 .subcategories-section {
     text-align: center;
     margin-top: 40px;
@@ -210,12 +205,15 @@ body {
 .subcategories-title {
     font-size: 24px;
     font-weight: bold;
-    color: #F8D2C2;
+    color: #6b3a25;
+    margin-bottom: 20px; /* Add bottom margin for spacing */
 }
+
 
 .subcategories-container {
     display: flex;
-    justify-content: right;
+    justify-content: center;
+    flex-wrap: wrap; /* Allow items to wrap */
     margin-top: 20px;
 }
 
@@ -224,7 +222,7 @@ body {
     border-radius: 8px;
     overflow: hidden;
     transition: transform 0.3s ease;
-    margin: 0 10px;
+    margin: 0 10px 20px; /* Add bottom margin for spacing between cards */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -319,18 +317,15 @@ nav {
 }
 
 /* Add this CSS after the provided CSS */
-
+/* History of Bids Section */
 .history-of-bids {
-    float: center; /* Change float to right */
-    width: fit-content;
-    max-width: calc(50% - 20px); /* adjust the value as needed */
-    margin-top: -250px; /* shift the box up */
-    margin-left: 100px; /* Adjust margin-right to move it slightly to the right */
+    width: 100%; /* Adjust width to full width */
+    max-width: 800px; /* Limit maximum width */
+    margin: 20px auto; /* Center the section */
     padding: 10px;
     background-color: #FCA6A9;
     border-radius: 8px;
     color: #000; /* Black text color */
-    clear: center; /* ensure it clears the float */
 }
 
 .history-of-bids h2 {
@@ -344,7 +339,7 @@ nav {
     margin-bottom: 5px;
     padding: 5px;
     background-color: #f9f9f9; /* Light gray background color */
-    border-radius: 400px;
+    border-radius: 4px;
 }
 
 .bid-item p {
@@ -353,5 +348,23 @@ nav {
     color: #000; /* Black text color */
 }
 
+/* Media Queries for Responsive Layout */
 
+/* Adjustments for Subcategories Section on Small Screens */
+@media only screen and (max-width: 600px) {
+    .subcategories-container {
+        justify-content: center; /* Center items */
+    }
 
+    .subcategory-card {
+        width: calc(50% - 20px); /* Two cards per row */
+        margin: 0 10px 20px; /* Add margin between cards */
+    }
+}
+
+/* Adjustments for History of Bids Section on Small Screens */
+@media only screen and (max-width: 600px) {
+    .history-of-bids {
+        margin-top: 20px; /* Add space at the top */
+    }
+}
