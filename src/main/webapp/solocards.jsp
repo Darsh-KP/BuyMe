@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mainstays Vanilla Scented Single-Wick Large Jar Candle</title>
     <link rel="stylesheet" href="solocards.css">
+
 </head>
 <body>
 
@@ -28,16 +29,12 @@
         </div>
     </nav>
 
-
-
     <div class="container">
         <div class="image-container">
             <!-- Placeholder image for candle -->
             <img src="./data/RUhat.jpg" alt="Mainstays Vanilla Scented Single-Wick Large Jar Candle">
             <div class="listing-info">
-
                 <div class="dates-container">
-
                     <div class="listing-dates">
                         <p>Start Date: April 25, 2024</p>
                         <p>Close Date: April 30, 2024</p>
@@ -46,22 +43,15 @@
                         <div class="circle green"></div>
                         <div class="text">Available</div>
                     </div>
-    
-                    
                 </div>
-                
                 <div class="bidding-container">
-                
                     <div class="bid-info"> 
                         <label for="bid">Your Bid:</label>
                         <input type="number" id="bid" name="bid" min="20.99" step="1.00">
                         <button onclick="placeBid()" class="button">Place Bid</button>
                     </div>
-                    
                     <p>Minimum Bidding Increment: US $1.00</p>
-
                 </div>
-                
             </div>
         </div>
         <div class="product-details">
@@ -91,43 +81,64 @@
             </div>
         </div>
     </div>
-    <!-- Place this code after the main container and before the closing body tag -->
 
-<div class="subcategories-section">
-    <h2 class="subcategories-title">Subcategories</h2>
-    <div class="subcategories-container">
-        <div class="subcategory-card shirt">
-            <img src="./data/RUshirt.jpg" alt="Shirts">
-            <div class="subcategory-details">
-                <div class="subcategory-title">Men's Shirts</div>
-                <div class="subcategory-price">$29.99</div>
+
+
+    <div class="subcategories-section">
+        <h2 class="subcategories-title">Subcategories</h2>
+        <div class="subcategories-container">
+            <div class="subcategory-card shirt">
+                <img src="./data/RUshirt.jpg" alt="Shirts">
+                <div class="subcategory-details">
+                    <div class="subcategory-title">Men's Shirts</div>
+                    <div class="subcategory-price">$29.99</div>
+                </div>
             </div>
-        </div>
-        <div class="subcategory-card pant">
-            <img src="./data/RUpants.jpg" alt="Pants">
-            <div class="subcategory-details">
-                <div class="subcategory-title">Men's Pants</div>
-                <div class="subcategory-price">$39.99</div>
+            <div class="subcategory-card pant">
+                <img src="./data/RUpants.jpg" alt="Pants">
+                <div class="subcategory-details">
+                    <div class="subcategory-title">Men's Pants</div>
+                    <div class="subcategory-price">$39.99</div>
+                </div>
             </div>
         </div>
     </div>
-</div>
 
-    <script>
-        function addToCart() {
-            // Get selected values
-            var quantity = document.getElementById('quantity').value;
-            var size = document.getElementById('size').value;
-            
-            // Perform further actions (e.g., send data to server, update cart)
-            alert("Added " + quantity + " item(s) of size " + size + " to cart!");
-        }
+    <!-- History of Bids Section -->
+    <div class="history-of-bids">
+        <h2>History of Bids</h2>
+        <div class="bid-item">
+            <p>John Doe - April 28, 2024 - $21.99</p>
+        </div>
+        <div class="bid-item">
+            <p>Jane Smith - April 27, 2024 - $20.99</p>
+        </div>
+        <div class="bid-item">
+            <p>Zeel Patel - April 29, 2024 - $22.99</p>
+        </div>
+        <div class="bid-item">
+            <p>Omar Elhatab - April 30, 2024 - $10.99</p>
+        </div>
+        <div class="bid-item">
+            <p>Darsh Patel - April 27, 2024 - $20.99</p>
+        </div>
+        <div class="bid-item">
+            <p>Sweta Desai - April 28, 2024 - $23.99</p>
+        </div>
+    </div>
 
-        function placeBid() {
-            var bidAmount = document.getElementById('bid').value;
-            // Perform further actions (e.g., send bid to server, update bidding status)
-            alert("Your bid of US $" + bidAmount + " has been placed!");
-        }
-    </script>
+    <!-- Place this code after the main container and before the closing body tag -->
+
+    <div class="product-list-container">
+        <!-- individual product card-->
+        <div class="trending-product-card">
+            <a href="product-page.html">
+                <div class="product-title">Name</div>
+                <div class="trending-product-image"></div>
+                <div class="product-price">Price</div>
+            </a>
+        </div>
+    </div>
+
 </body>
 </html>

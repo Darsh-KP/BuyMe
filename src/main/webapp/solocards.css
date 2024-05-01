@@ -215,7 +215,7 @@ body {
 
 .subcategories-container {
     display: flex;
-    justify-content: center;
+    justify-content: right;
     margin-top: 20px;
 }
 
@@ -317,4 +317,41 @@ nav {
     border-radius: 5px;
     background-color: #430F1B; /* Maroon */
 }
+
+/* Add this CSS after the provided CSS */
+
+.history-of-bids {
+    float: center; /* Change float to right */
+    width: fit-content;
+    max-width: calc(50% - 20px); /* adjust the value as needed */
+    margin-top: -250px; /* shift the box up */
+    margin-left: 100px; /* Adjust margin-right to move it slightly to the right */
+    padding: 10px;
+    background-color: #FCA6A9;
+    border-radius: 8px;
+    color: #000; /* Black text color */
+    clear: center; /* ensure it clears the float */
+}
+
+.history-of-bids h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #000; /* Black title color */
+    margin-bottom: 10px;
+}
+
+.bid-item {
+    margin-bottom: 5px;
+    padding: 5px;
+    background-color: #f9f9f9; /* Light gray background color */
+    border-radius: 400px;
+}
+
+.bid-item p {
+    margin: 0;
+    font-size: 14px; /* Adjust to match the text size */
+    color: #000; /* Black text color */
+}
+
+
 
