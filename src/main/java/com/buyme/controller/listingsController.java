@@ -23,7 +23,7 @@ public class listingsController {
 
             // Get all listings
             Statement statement = listingsConnection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select product_id, product_name, initial_price, post_date_time, close_date_time from listing");
+            ResultSet resultSet = statement.executeQuery("select product_id, product_name, initial_price, start_date_time, close_date_time from listing");
 
             // Store the results
             ArrayList<HashMap<String, String>> listingsDisplay = new ArrayList<HashMap<String, String>>();
@@ -41,12 +41,12 @@ public class listingsController {
                 listing.put("priceDisplay", productPriceDisplay);
 
                 // Format Date
-                listing.put("dateDisplay", getProductTimeDisplay(resultSet.getTimestamp("post_date_time").toLocalDateTime(),
+                listing.put("dateDisplay", getProductTimeDisplay(resultSet.getTimestamp("start_date_time").toLocalDateTime(),
                         resultSet.getTimestamp("close_date_time").toLocalDateTime()));
 
                 // Format Status
                 listing.put("statusDisplay", "Status: " + getProductStatus((productHighestBid != null),
-                        resultSet.getTimestamp("post_date_time").toLocalDateTime(),
+                        resultSet.getTimestamp("start_date_time").toLocalDateTime(),
                         resultSet.getTimestamp("close_date_time").toLocalDateTime()));
 
                 // Add listing to arraylist

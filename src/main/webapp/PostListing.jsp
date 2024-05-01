@@ -7,6 +7,7 @@
 <%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.InputStream" %>
 
 
 <!DOCTYPE html>
@@ -22,7 +23,7 @@
     <div>
         <h1>Post Your Item!</h1>
         
-        <form action="PostListing.jsp" method="POST" onsubmit="return validatePrices()">
+        <form action="PostListingServlet" method="POST" onsubmit="return validateForm()" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="productName">Product Name:</label>
                 <input type="text" id="productName" name="productName" required>
@@ -31,6 +32,11 @@
             <div>
                 <label for="productDescription">Description:</label>
                 <textarea id="productDescription" name="productDescription" required></textarea>
+            </div>
+
+            <div>
+                <label for="productImage">Upload Images:</label>
+                <input type="file" id="productImage" name="productImage" accept="image/*" required>
             </div>
             
              <div>
@@ -62,57 +68,59 @@
                 <label for="minBidIncrement">Minimum Bid Increment: $</label>
                 <input type="number" id="minBidIncrement" name="minBidIncrement" required min="0" step="0.01">
             </div>
-            
-          <!-- IMAGE IF WE FIGURE IT OUT :DD   
-            <div class="form-group">
-                <label for="productImages">Upload Images:</label>
-                <input type="file" id="productImages" name="productImages[]" accept="image/*" multiple>
+
+            <div>
+                <label for="listingStartDateTime">Listing Start Time:</label>
+                <input type="datetime-local" id="listingStartDateTime" name="listingStartDateTime" required>
             </div>
-           -->  
            
             <div>
                 <label for="listingCloseDateTime">Listing Close Time:</label>
                 <input type="datetime-local" id="listingCloseDateTime" name="listingCloseDateTime" required>
             </div>
-            
+
             <button type="submit">Post Product</button>
         </form>
     </div>
 
     <script>
-    function validatePrices() {
-        var initialPrice = document.getElementById('initialPrice').value;
-        var minSellPrice = document.getElementById('minSellPrice').value;
-        if (parseFloat(minSellPrice) <= parseFloat(initialPrice)) {
-            alert("Minimum Sell Price must be higher than the Initial Price.");
-            return false; // Prevent form submission
+        function validateForm() {
+            if (!validatePrices()) return false;
+            if (!validateDates()) return false;
+
+            return true;
         }
-        return true; // Allow form submission
-    }
+
+        function validatePrices() {
+            var initialPrice = document.getElementById('initialPrice').value;
+            var minSellPrice = document.getElementById('minSellPrice').value;
+            if (parseFloat(minSellPrice) <= parseFloat(initialPrice)) {
+                alert("Minimum Sell Price must be higher than the Initial Price.");
+                return false; // Prevent form submission
+            }
+            return true; // Allow form submission
+        }
+
+        function validateDates() {
+            var startTime = new Date(document.getElementById("listingStartDateTime").value);
+            var closeTime = new Date(document.getElementById("listingCloseDateTime").value);
+
+            if (closeTime <= startTime) {
+                alert("Listing Close Time must be after Listing Start Time.");
+                return false;
+            }
+            return true;
+        }
     </script>
 
 <%
     // Check if the form was submitted
     if (request.getMethod().equalsIgnoreCase("POST")) {
-        // Get listing information from form
-        String productName = request.getParameter("productName").trim();
-        String productDescription = request.getParameter("productDescription").trim();
-        String subcategory = request.getParameter("subcategory").trim();
-        double initialPrice = Double.parseDouble(request.getParameter("initialPrice"));
-        double minSellPrice = Double.parseDouble(request.getParameter("minSellPrice"));
-        double minBidIncrement = Double.parseDouble(request.getParameter("minBidIncrement"));
-        String listingCloseDateTimeString = request.getParameter("listingCloseDateTime");
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        LocalDateTime listingCloseDateTime = LocalDateTime.parse(listingCloseDateTimeString, formatter);
-
-        // Get derived information
-        LocalDateTime listingPostDateTime = LocalDateTime.now();
-        String sellerUsername = session.getAttribute("user").toString();
+        // Get status of posting
+        String postStatus = request.getParameter("postStatus");
 
         // Attempt new post
-        if (!postListingController.attemptPost(productName, productDescription, subcategory, initialPrice,
-                minSellPrice, minBidIncrement, listingCloseDateTime, listingPostDateTime, sellerUsername)) {
+        if (postStatus.equals("failed")) {
             // Failed to post listing
             %>
             <script>alert("Failed to post listing.")</script>
@@ -122,9 +130,18 @@
 
         // Listing created
         %>
-        <script>alert("New Listing Posted!")</script>
+        <script>
+            // Create form in order to POST success
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "Listings.jsp")
+
+            // Submit Form
+            document.body.appendChild(form);
+            form.submit();
+        </script>
         <%
-        }
+    }
 %>
 </body>
 </html>

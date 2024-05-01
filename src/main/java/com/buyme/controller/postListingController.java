@@ -1,5 +1,7 @@
 package com.buyme.controller;
 import com.buyme.database.myDatabase;
+
+import java.io.InputStream;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -14,7 +16,8 @@ public class postListingController {
 
     public static boolean attemptPost(String productName, String productDescription, String subcategory,
                                       double initialPrice, double minSellPrice, double minBidIncrement,
-                                      LocalDateTime listingCloseDateTime, LocalDateTime listingPostDateTime, String sellerUsername) {
+                                      LocalDateTime listingCloseDateTime, LocalDateTime listingPostDateTime,
+                                      String sellerUsername, InputStream imageBinary, LocalDateTime listingStartDateTime) {
         try {
             // Create connection
             myDatabase database = new myDatabase();
@@ -23,8 +26,8 @@ public class postListingController {
             // Insert posting into database
             PreparedStatement preparedStatement = postConnection.prepareStatement(
             		"INSERT INTO listing (product_name, description, subcategory, initial_price, " +
-                            "min_sell_price, min_bid_increment, close_date_time, post_date_time, seller_username) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
+                            "min_sell_price, min_bid_increment, close_date_time, post_date_time, seller_username, image_data, start_date_time) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);");
             preparedStatement.setString(1, productName);
             preparedStatement.setString(2, productDescription);
             preparedStatement.setString(3, subcategory);
@@ -34,6 +37,8 @@ public class postListingController {
             preparedStatement.setTimestamp(7, Timestamp.valueOf(listingCloseDateTime));
             preparedStatement.setTimestamp(8, Timestamp.valueOf(listingPostDateTime));
             preparedStatement.setString(9, sellerUsername);
+            preparedStatement.setBlob(10, imageBinary);
+            preparedStatement.setTimestamp(11, Timestamp.valueOf(listingStartDateTime));
             preparedStatement.executeUpdate();
 
             // Close connections

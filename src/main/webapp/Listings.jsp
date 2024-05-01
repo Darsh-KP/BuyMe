@@ -182,5 +182,14 @@
             form.submit();
         }
     </script>
+
+<%
+    // Check if the form was submitted
+    if (request.getMethod().equalsIgnoreCase("POST")) {
+        %>
+            <script>alert("New Listing Posted!")</script>
+        <%
+    }
+%>
 </body>
 </html>
