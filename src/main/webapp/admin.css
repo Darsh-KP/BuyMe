@@ -1,0 +1,53 @@
+:root {
+    /* Your color palette */
+    --background: #F8D2C2;
+    --primary: #D66978;
+    --secondary: #430F1B;
+    --extra1: #FCA6A9;
+    --extra2: #A14258;
+}
+
+body {
+    background-color: var(--background);
+    color: var(--primary);
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: var(--secondary);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 100px); /* Adjust according to header height */
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button {
+    background-color: var(--primary);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: var(--extra1);
+}
+
