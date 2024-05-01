@@ -22,7 +22,7 @@ public class postListingController {
 
             // Insert posting into database
             PreparedStatement preparedStatement = postConnection.prepareStatement(
-            		"INSERT INTO listing (product_nanme, description, subcategory, initial_price, " +
+            		"INSERT INTO listing (product_name, description, subcategory, initial_price, " +
                             "min_sell_price, min_bid_increment, close_date_time, post_date_time, seller_username) " +
                             "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);");
             preparedStatement.setString(1, productName);
