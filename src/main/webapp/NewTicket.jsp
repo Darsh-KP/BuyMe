@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Ticket</title>
+    <link rel="stylesheet" href="NewTicket.css">
+</head>
+<body>
+    <div class="container">
+        <h1>New Ticket</h1>
+        <form action="#">
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" placeholder="Enter a description of the issue..."></textarea>
+            <div class="buttons">
+                <button type="submit" class="submit-button">Submit</button>
+                <button type="button" class="cancel-button">Cancel</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
