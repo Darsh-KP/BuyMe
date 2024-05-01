@@ -1,12 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-        pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
-<%@ page import="com.buyme.controller.*"%>
-<%@ page import="java.sql.Timestamp" %>
-<%@ page import="java.time.format.DateTimeFormatter" %>
-<%@ page import="java.time.LocalDateTime" %>
-<%@ page import="java.util.List" %>
-<%@ page import="java.util.ArrayList" %>
 
 
 <!DOCTYPE html>
@@ -15,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Listing</title>
+    <link rel="stylesheet" href="PostListing.css">
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
@@ -49,17 +41,18 @@
             
             <div>
                 <label for="initialPrice">Initial Price: $</label>
-                <input type="number" id="initialPrice" name="initialPrice" required min="0" step="0.01">
+                <input type="number" id="initialPrice" name="initialPrice" required min="0" step="1.00" required autofocus maxlength="20">
+
             </div>
             
             <div>
                 <label for="minSellPrice">Minimum Sell Price: $</label>
-                <input type="number" id="minSellPrice" name="minSellPrice" required min="0" step="0.01">
+                <input type="number" id="minSellPrice" name="minSellPrice" required min="0" step="1.00">
             </div>
             
             <div>
                 <label for="minBidIncrement">Minimum Bid Increment: $</label>
-                <input type="number" id="minBidIncrement" name="minBidIncrement" required min="0" step="0.01">
+                <input type="number" id="minBidIncrement" name="minBidIncrement" required min="0" step="1.00">
             </div>
             
           <!-- IMAGE IF WE FIGURE IT OUT :DD   
@@ -90,41 +83,6 @@
     }
     </script>
 
-<%
-    // Check if the form was submitted
-    if (request.getMethod().equalsIgnoreCase("POST")) {
-        // Get listing information from form
-        String productName = request.getParameter("productName").trim();
-        String productDescription = request.getParameter("productDescription").trim();
-        String subcategory = request.getParameter("subcategory").trim();
-        double initialPrice = Double.parseDouble(request.getParameter("initialPrice"));
-        double minSellPrice = Double.parseDouble(request.getParameter("minSellPrice"));
-        double minBidIncrement = Double.parseDouble(request.getParameter("minBidIncrement"));
-        String listingCloseDateTimeString = request.getParameter("listingCloseDateTime");
-
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
-        LocalDateTime listingCloseDateTime = LocalDateTime.parse(listingCloseDateTimeString, formatter);
-
-        // Get derived information
-        LocalDateTime listingPostDateTime = LocalDateTime.now();
-        String sellerUsername = session.getAttribute("user").toString();
-
-        // Attempt new post
-        if (!postListingController.attemptPost(productName, productDescription, subcategory, initialPrice,
-                minSellPrice, minBidIncrement, listingCloseDateTime, listingPostDateTime, sellerUsername)) {
-            // Failed to post listing
-            %>
-            <script>alert("Failed to post listing.")</script>
-            <%
-            return;
-        }
-
-        // Listing created
-        %>
-        <script>alert("New Listing Posted!")</script>
-        <%
-        }
-%>
 </body>
 </html>
   

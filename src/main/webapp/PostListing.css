@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+
+:root {
+    /* Default colors for the website */
+    --background: #F8D2C2;
+    --primary: #D66978;
+    --secondary: #430F1B;
+    --extra1: #FCA6A9;
+    --extra2: #A14258;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--background);
+    justify-content: space-evenly;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+
+.form-container {
+    width: 90%;
+    max-width: 800px;
+    margin: 0 auto; /* Centering the form container */
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 30px;
+}
+
+/* Adjusting layout for form elements */
+.form-group {
+    margin-bottom: 30px; /* Increased space between form groups */
+}
+
+.form-group label {
+    font-weight: bold;
+    margin-bottom: 15px; /* Increased space between labels */
+    color: var(--primary); /* Changing label color */
+    padding: min(1.5vw, 1.5vh);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 15px; /* Enlarging input fields */
+    border: 1px solid var(--secondary);
+    border-radius: 8px; /* Enlarging border radius */
+    font-size: 18px; /* Enlarging font size */
+    box-sizing: border-box;
+    margin-bottom: 20px;
+}
+
+.form-group select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="rgba(0, 0, 0, 0.5)" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/><path d="M0 0h24v24H0z" fill="none"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 15px center; /* Adjusted background position */
+    padding-right: 50px; /* Increased padding */
+}
+
+/* Styling the submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 15px;
+    background-color: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: var(--extra1);
+}
+
+/* Adding hover effect to form inputs */
+.form-group input:hover,
+.form-group select:hover {
+    border-color: var(--primary);
+}
+
+/* Adding focus effect to form inputs */
+.form-group input:focus,
+.form-group select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 5px var(--primary);
+    outline: none;
+}
+
+/* Styling error messages */
+.error-message {
+    color: red;
+    font-size: 14px;
+}
