@@ -15,7 +15,7 @@ String id = request.getParameter("productID");
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%out.print(cardInfo.get("productName"));%></title>
-    <link rel="stylesheet" href="solocards.css">
+    <link rel="stylesheet" href="ViewListing.css">
 
 </head>
 <body>
