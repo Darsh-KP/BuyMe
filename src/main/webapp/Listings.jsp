@@ -38,6 +38,12 @@
     <div class="content">
         <header>
             <h1>Listings</h1>
+
+            <div class="search-two">
+                <input type="text" placeholder="Search Listing...">
+                <button>Submit</button>
+            </div>
+
         </header>
 
         <div class="sidebar">

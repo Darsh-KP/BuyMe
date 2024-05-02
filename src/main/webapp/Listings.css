@@ -58,7 +58,7 @@ nav {
     background-color: #D66978; /* Light Maroon */
 }
 
-.search input {
+.search input, .search-two input {
     padding: 5px;
     border-radius: 5px;
     border: none;
@@ -69,6 +69,15 @@ nav {
     border-radius: 5px;
     border: none;
     background-color: #FCA6A9; /* Light Coral */
+    color: #fff;
+    cursor: pointer;
+}
+
+.search-two button {
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: var(--secondary); /* Light Coral */
     color: #fff;
     cursor: pointer;
 }
