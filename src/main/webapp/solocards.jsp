@@ -43,26 +43,6 @@ String id = request.getParameter("productID");
         <div class="image-container">
             <!-- Placeholder image for candle -->
             <img src="./data/RUhat.jpg" alt="Mainstays Vanilla Scented Single-Wick Large Jar Candle">
-            <div class="listing-info">
-                <div class="dates-container">
-                    <div class="listing-dates">
-                        <p>Start Date: <%out.print(cardInfo.get("postDate"));%></p>
-                        <p>Close Date: <%out.print(cardInfo.get("closeDate"));%></p>
-                    </div>
-                    <div class="status">
-                        <div class="circle green"></div>
-                        <div class="text"><%out.print(cardInfo.get("statusDisplay"));%></div>
-                    </div>
-                </div>
-                <div class="bidding-container">
-                    <div class="bid-info"> 
-                        <label for="bid">Your Bid:</label>
-                        <input type="number" id="bid" name="bid" min="20.99" step="1.00">
-                        <button onclick="placeBid()" class="button">Place Bid</button>
-                    </div>
-                    <p>Minimum Bidding Increment: US $<%out.print(cardInfo.get("min_bid_increment"));%></p>
-                </div>
-            </div>
         </div>
         <div class="product-details">
             <div class="title"><%out.print(cardInfo.get("productName"));%></div> 
@@ -71,25 +51,48 @@ String id = request.getParameter("productID");
                 <span><%out.print(cardInfo.get("seller_username"));%></span><br>
             </div>
             <div class="price"><%out.print(cardInfo.get("price"));%></div>
-            <div class="condition">Condition: New</div>
-            <div class="quantity-info">
-                <label for="quantity">Quantity:</label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" max="100">
-            </div>
-            <div class="size-info">
-                <label for="size">Size:</label>
-                <select id="size" name="size">
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-            </div>
             <div class="buttons">
-                <button onclick="addToCart()" class="button">Add to Cart</button>
                 <button class="button"><span class="heart-icon">&#9825;</span> Add to Wishlist</button>
             </div>
         </div>
     </div>
+
+
+    <div class="listing-info-container">
+        <div class="listing-info">
+            <div class="dates-container">
+                <div class="listing-dates">
+                    <p>Start Date: <%out.print(cardInfo.get("postDate"));%></p>
+                    <p>Close Date: <%out.print(cardInfo.get("closeDate"));%></p>
+                    <p>Minimum Bidding Increment: US $<%out.print(cardInfo.get("min_bid_increment"));%></p>
+                </div>
+                <div class="status">
+                    <div class="circle green"></div>
+                    <div class="text"><%out.print(cardInfo.get("statusDisplay"));%></div>
+                </div>
+            </div>
+            <div class="bidding-container">
+                <div class="bid-info"> 
+                    <label for="bid">Your Bid:</label>
+                    <input type="number" id="bid" name="bid" min="20.99" step="1.00">
+                    <button onclick="placeBid()" class="button">Place Bid</button>
+                </div>
+          
+                <div class="auto-bidding">
+                    <label for="max-bid">Max Bid:</label>
+                    <input type="number" id="max-bid" name="max-bid" min="20.99" step="1.00">
+                    <label for="bid-increment">Bid Increment:</label>
+                    <input type="number" id="bid-increment" name="bid-increment" min="1.00" step="1.00">
+                    <label for="anonymous-bid">Anonymous Bid:</label>
+                    <input type="checkbox" id="anonymous-bid" name="anonymous-bid">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
 
     <!-- History of Bids Section -->
     <div class="history-of-bids">

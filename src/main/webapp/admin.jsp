@@ -8,8 +8,6 @@
 </head>
 <body>
 
-
-
     <header>
         <h1>Admin Panel</h1>
     </header>
@@ -17,6 +15,7 @@
         <div class="container">
             <button class="create-rep-btn">Create Customer Representative</button>
             <button class="generate-report-btn">Generate Sales Report</button>
+            <button class="create-rep-btn">Upgrade Customer Representative</button>
         </div>
     </main>
 </body>

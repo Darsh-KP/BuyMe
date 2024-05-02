@@ -78,113 +78,123 @@ body {
     margin-right: 5px;
 }
 
-.image-container {
-    position: relative;
+.product-details .buttons {
+    display: flex;
+    align-items: center; /* Align buttons vertically with bidding info */
+}
+
+
+
+.listing-info-container {
+    max-width: 800px;
+    margin: 0 auto;
     text-align: center;
 }
+
 .listing-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: calc(100% - 40px); /* Adjust width based on padding */
+    position: relative;
+    width: calc(100% - 40px);
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px; /* Add some margin at the bottom */
-    padding-right: 20px; /* Adjust the padding to move the content towards the right */
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
 }
 
 .dates-container {
     display: flex;
     flex-direction: column;
-    height: auto;
-    margin-left: 8px;
-    width: 500px;
-}
-
-.listing-dates {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-left: 10px;
-    font-size: 12px; /* Adjust as needed */
-    width: 160px;
-
-}
-
-.status {
-    margin-top: 10px;
-    margin-left: 10px;
-    display: flex;
+    text-align: center;
     align-items: center;
 }
 
-.status .circle {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-    margin-right: 5px; /* Adjust as needed */
+.listing-dates p, .status {
+    margin: 5px 0;
 }
 
-.green {
-    background-color: green;
-}
-
-/* Define styles for the red circle */
-.red {
-    background-color: red;
-}
-
-.status .text {
-    font-size: 14px; /* Adjust as needed */
-}
-
-
-.listing-info div {
-    margin-right: 0px;
-}
-
-/* Bid info styling */
-.bidding-info {
+.bidding-container {
     display: flex;
     flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .bid-info {
     display: flex;
-    flex-wrap: wrap; /* Allow items to wrap */
     align-items: center;
     margin-bottom: 10px;
 }
 
 .bid-info label,
-.bid-info input[type="number"],
-.bid-info button {
+.bid-info input[type="number"] {
     margin-right: 10px;
-    margin-bottom: 5px; /* Add bottom margin */
+    margin-bottom: 5px;
 }
 
 .bid-info input[type="number"] {
-    width: 100%; /* Make input full width */
-    max-width: 150px; /* Limit maximum width */
+    flex: 1;
+    max-width: calc(100% - 110px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .bid-info button {
     padding: 8px 16px;
-    margin-right: 0; /* Remove margin-right from the button */
+    background-color: #430F1B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
 }
 
-.listing-info .bidding-info input[type="number"] {
-    width: 100%; /* Make input full width */
-    max-width: 150px; /* Limit maximum width */
-    margin-right: 10px;
+.bid-info button:hover {
+    background-color: #45a049;
 }
 
-.listing-info .bidding-info button {
-    padding: 8px 12px;
+.auto-bidding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
 }
 
-/* Seller info */
+.auto-bidding label {
+    margin-bottom: 5px;
+}
+
+.auto-bidding input[type="number"],
+.auto-bidding input[type="checkbox"] {
+    margin-bottom: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.auto-bidding input[type="checkbox"] {
+    margin-left: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .seller-info {
     background-color: rgba(67, 15, 27, 0.7); /* Semi-transparent background color */
     color: #fff; /* Text color */
@@ -192,7 +202,6 @@ body {
     border-radius: 4px; /* Add border radius for rounded corners */
     margin-bottom: 10px; /* Add some space at the bottom */
     display: inline-block; /* Display as inline-block */
-    max-width: 100%; /* Ensure it doesn't overflow */
 }
 
 /* solocards.css */
