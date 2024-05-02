@@ -54,7 +54,6 @@ HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
         </div>
     </div>
 
-
     <div class="listing-info-container">
         <div class="listing-info">
             <div class="dates-container">
@@ -69,11 +68,6 @@ HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
                 </div>
             </div>
 
-
-
-
-
-     
             <div class="bidding-container">
                 <form method = "post" action = "ViewListing.jsp" class="bid-info"> 
                     <label for="bid">Your Bid:</label>
@@ -99,35 +93,20 @@ HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
         </div>
     </div>
 
-
-
-
-
     <!-- History of Bids Section -->
     <div class="history-of-bids">
         <h2>History of Bids</h2>
-        <div class="bid-item">
-            <p>John Doe - April 28, 2024 - $21.99</p>
-        </div>
-        <div class="bid-item">
-            <p>Jane Smith - April 27, 2024 - $20.99</p>
-        </div>
-        <div class="bid-item">
-            <p>Zeel Patel - April 29, 2024 - $22.99</p>
-        </div>
-        <div class="bid-item">
-            <p>Omar Elhatab - April 30, 2024 - $10.99</p>
-        </div>
-        <div class="bid-item">
-            <p>Darsh Patel - April 27, 2024 - $20.99</p>
-        </div>
-        <div class="bid-item">
-            <p>Sweta Desai - April 28, 2024 - $23.99</p>
-        </div>
+        <%
+            List<String> bidHistoryList = viewListingController.getHistoryOfBids(Integer.parseInt(id));
+            for(String bid : bidHistoryList) {
+                out.print("<div class=\"bid-item\">\n" +
+                          "   <p>" + bid + "</p>\n" +
+                          "</div>");
+            }
+        %>
     </div>
 
     <!-- Place this code after the main container and before the closing body tag -->
-
     <div class="subcategories-section">
         <h2 class="subcategories-title">Similar Items</h2>
         <div class="subcategories-container">
