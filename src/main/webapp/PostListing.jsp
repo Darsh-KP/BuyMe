@@ -178,8 +178,8 @@
         function validatePrices() {
             var initialPrice = document.getElementById('initialPrice').value;
             var minSellPrice = document.getElementById('minSellPrice').value;
-            if (parseFloat(minSellPrice) <= parseFloat(initialPrice)) {
-                alert("Minimum Sell Price must be higher than the Initial Price.");
+            if (parseFloat(minSellPrice) < parseFloat(initialPrice)) {
+                alert("Minimum Sell Price must be higher than or equal to the Initial Price.");
                 return false; // Prevent form submission
             }
             return true; // Allow form submission
