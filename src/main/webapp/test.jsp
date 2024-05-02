@@ -6,7 +6,7 @@
 <%@ page import="com.buyme.database.myDatabase" %>
 <%
 String id = request.getParameter("productID");
-HashMap<String, String> cardInfo = soloCardController.getCardinfo(id);
+HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
 %> 
 <!DOCTYPE html>
 <html lang="en">
