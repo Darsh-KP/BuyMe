@@ -1,0 +1,96 @@
+
+.listing-info-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.listing-info {
+    position: relative;
+    width: calc(100% - 40px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.dates-container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+}
+
+.listing-dates p, .status {
+    margin: 5px 0;
+}
+
+.bidding-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.bid-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.bid-info label,
+.bid-info input[type="number"] {
+    margin-right: 10px;
+    margin-bottom: 5px;
+}
+
+.bid-info input[type="number"] {
+    flex: 1;
+    max-width: calc(100% - 110px);
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.bid-info button {
+    padding: 8px 16px;
+    background-color: #430F1B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.bid-info button:hover {
+    background-color: #45a049;
+}
+
+.auto-bidding {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.auto-bidding label {
+    margin-bottom: 5px;
+}
+
+.auto-bidding input[type="number"],
+.auto-bidding input[type="checkbox"] {
+    margin-bottom: 5px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.auto-bidding input[type="checkbox"] {
+    margin-left: 5px;
+}
+

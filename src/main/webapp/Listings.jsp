@@ -207,7 +207,7 @@
             // Create form in order to POST id
             var form = document.createElement("form");
             form.setAttribute("method", "post");
-            form.setAttribute("action", "solocards.jsp")
+            form.setAttribute("action", "ViewListing.jsp");
 
             // Attach productID
             var input = document.createElement("input");
