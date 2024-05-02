@@ -2,10 +2,12 @@ package com.buyme.controller;
 
 import com.buyme.database.myDatabase;
 
+import java.sql.Timestamp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.HashMap;
 
 public class viewListingController {
@@ -75,5 +77,38 @@ public class viewListingController {
         }
 
         return null;
+    }
+    public static void postBid(String username, String productID, String bid_amount, boolean is_anon) {
+    	int prod_id = Integer.parseInt(productID);
+    	double bid_amt = Double.parseDouble(bid_amount);
+    	
+    	try {
+    	myDatabase database = new myDatabase();
+        Connection bidConnection = database.newConnection();
+        PreparedStatement statement = bidConnection.prepareStatement(
+        		"INSERT INTO bid (username, product_id, bid_amount, bid_date_time, is_anonymous) VALUES (?, ?, ?, ?, ?);");
+        		statement.setString(1, username);
+        		statement.setInt(2, prod_id);
+        		statement.setDouble(3, bid_amt);
+        		statement.setTimestamp(4, Timestamp.valueOf(LocalDateTime.now()));
+        		statement.setBoolean(5, is_anon);
+        		statement.executeUpdate();
+        statement.close();
+        bidConnection.close();
+        		
+        		
+    	} catch (SQLException e) {
+    		
+            if (myDatabase.debug) {
+                System.out.println("Error bidding...");
+                e.printStackTrace();
+            }
+    	}
+    	
+        		
+        	
+    	
+    	
+    	
     }
 }

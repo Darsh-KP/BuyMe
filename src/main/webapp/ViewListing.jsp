@@ -6,7 +6,7 @@
 <%@ page import="com.buyme.database.myDatabase" %>
 <%
 String id = request.getParameter("productID");
- HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
+HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
  %> 
 <!DOCTYPE html>
 <html lang="en">
@@ -75,13 +75,15 @@ String id = request.getParameter("productID");
 
      
             <div class="bidding-container">
-                <div class="bid-info"> 
+                <form method = "post" action = "ViewListing.jsp" class="bid-info"> 
                     <label for="bid">Your Bid:</label>
-                    <input type="number" id="bid" name="bid" min="20.99" step="1.00">
+                    <input type="number" id="bid" name="bid" step="0.01">
                     <label for="anonymous-bid">Anonymous Bid:</label>
-                    <input type="checkbox" id="anonymous-bid" name="anonymous-bid">
-                    <button onclick="placeBid()" class="button">Place Bid</button>
-                </div>
+                    <input type="checkbox" id="normal_anonymous_bid" name="normal_anonymous_bid">
+                    <input type ="submit" value = "Place Bid" name = "manual_bid_button">
+                    <input type = "hidden" name = "productID" value = <% out.print(id);%> >
+                </form>
+                
           
                 
                 <div class="auto-bidding">
@@ -90,7 +92,7 @@ String id = request.getParameter("productID");
                     <label for="bid-increment">Bid Increment:</label>
                     <input type="number" id="bid-increment" name="bid-increment" min="1.00" step="1.00">
                     <label for="anonymous-bid">Anonymous Bid:</label>
-                    <input type="checkbox" id="anonymous-bid" name="anonymous-bid">
+                    <input type="checkbox" id="auto_anonymous-bid" name="anonymous-bid">
                     <button onclick="autoBid()" class="button">Auto Bid</button>
                 </div>
             </div>
@@ -156,6 +158,24 @@ String id = request.getParameter("productID");
             </a>
         </div>
     </div>
+    
+<%
+    // Check if the form was submitted
+    if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("manual_bid_button")!=null)) {
+        // Get username, password, and other details
+        String username = (String) session.getAttribute("user");
+        String product_id = id;
+        String bid_amount = request.getParameter("bid");
+        boolean checkbox = request.getParameter("normal_anonymous_bid") != null;
+        System.out.print(bid_amount);
+        
+       viewListingController.postBid(username, product_id, bid_amount, checkbox);
+        
+        
+        // User created, redirect to log in
+        
+    }
+%>
 
 </body>
 </html>
