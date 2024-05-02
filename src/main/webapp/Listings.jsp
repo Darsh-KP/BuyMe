@@ -25,13 +25,10 @@
             <a href="">Listings</a>
             <a href="">Wishlist</a>
         </div>
-        <div class="search">
-            <input type="text" placeholder="Search...">
-            <button>Search</button>
-        </div>
         <div class="profile">
             <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
-            <a href="#">View Your Profile</a>
+            <a href="#">Notifications</a>
+            <a href="#" class="logout-button">Log Out</a>
         </div>
     </nav>
 

@@ -129,20 +129,6 @@ nav {
     background-color: #D66978; /* Light Maroon */
 }
 
-.search input {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-}
-
-.search button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #FCA6A9; /* Light Coral */
-    color: #fff;
-    cursor: pointer;
-}
 
 .profile {
     display: flex;

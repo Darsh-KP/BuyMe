@@ -7,6 +7,28 @@
     <link rel="stylesheet" href="Wishlist.css">
 </head>
 <body>
+
+     <!-- Nav Bar -->
+
+     <nav>
+        <div class="logo">
+            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
+        </div>
+        <div class="nav-links">
+            <a href="">Home</a>
+            <a href="">Tickets</a>
+            <a href="Listings.jsp">Listings</a>
+            <a href="">Wishlist</a>
+        </div>
+        <div class="profile">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <a href="#">Notifications</a>
+            <a href="#" class="logout-button">Log Out</a>
+        </div>
+    </nav>
+
+
+
     <header>
         <h1>My Wishlist</h1>
     </header>

@@ -7,6 +7,10 @@
     <link rel="stylesheet" href="adminedit.css">
 </head>
 <body>
+
+
+
+
     <div class="container">
         <h1 class="title">Admin Panel</h1>
         <div class="input-container">

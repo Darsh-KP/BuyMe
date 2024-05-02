@@ -7,6 +7,26 @@
     <link rel="stylesheet" href="CustRepPanel.css">
 </head>
 
+     <!-- Nav Bar -->
+
+     <nav>
+        <div class="logo">
+            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
+        </div>
+        <div class="nav-links">
+            <a href="">Home</a>
+            <a href="">Tickets</a>
+            <a href="Listings.jsp">Listings</a>
+            <a href="">Wishlist</a>
+        </div>
+        <div class="profile">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <a href="#">Notifications</a>
+            <a href="#" class="logout-button">Log Out</a>
+        </div>
+    </nav>
+
+
 <body>
     <div class="container">
         <h2>Customer Representative Panel</h2>
