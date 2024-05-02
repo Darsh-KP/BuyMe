@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
@@ -38,6 +39,7 @@ public class PostListingServlet extends HttpServlet {
             String listingStartDateTimeString = request.getParameter("listingStartDateTime");
             String listingCloseDateTimeString = request.getParameter("listingCloseDateTime");
 
+            // Convert dates to java LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
             LocalDateTime listingStartDateTime = LocalDateTime.parse(listingStartDateTimeString, formatter);
             LocalDateTime listingCloseDateTime = LocalDateTime.parse(listingCloseDateTimeString, formatter);
@@ -47,6 +49,15 @@ public class PostListingServlet extends HttpServlet {
             HttpSession session = request.getSession();
             String sellerUsername = session.getAttribute("user").toString();
 
+            // Get Attributes
+            String[] attributeKeys = request.getParameterValues("attributeKey");
+            String[] attributeValues = request.getParameterValues("attributeValue");
+            HashMap<String, String> listingAttributes = new HashMap<String, String>();
+            for (int i = 0; i < attributeKeys.length; i++) {
+                listingAttributes.put(attributeKeys[i], attributeValues[i]);
+                System.out.println(attributeKeys[i] + ": " + attributeValues[i]);
+            }
+
             // Create a html form to send the return status
             StringBuilder htmlForm = new StringBuilder();
             htmlForm.append("<html><body>");
@@ -54,7 +65,8 @@ public class PostListingServlet extends HttpServlet {
 
             // Attempt new post
             if (!postListingController.attemptPost(productName, productDescription, subcategory, initialPrice,
-                    minSellPrice, minBidIncrement, listingCloseDateTime, listingPostDateTime, sellerUsername, imageBinary, listingStartDateTime)) {
+                    minSellPrice, minBidIncrement, listingCloseDateTime, listingPostDateTime, sellerUsername,
+                    imageBinary, listingStartDateTime, listingAttributes)) {
                 // Failed to post listing
                 htmlForm.append("<input type=\"hidden\" name=\"postStatus\" value=\"" + "failed" + "\">");
             } else {
