@@ -40,47 +40,86 @@
             <h1>Listings</h1>
         </header>
 
-        <!-- Side Filter Panel -->
         <div class="sidebar">
             <h2>Filter Options</h2>
+            
+            <!-- Sort Dropdown -->
             <div class="filter-option">
-                <div class="filter-title">
-                    <label for="category">Category: Clothes</label>
-                </div>
-                
-                <div>
-                    <input type="checkbox" id="category1" name="category1">
-                    <label for="category1">Shirts</label><br>
-                    <input type="checkbox" id="category2" name="category2">
-                    <label for="category2">Pants</label><br>
-                    <input type="checkbox" id="category3" name="category3">
-                    <label for="category3">Hats</label>
+                <label for="sort">Sort By:</label>
+                <select id="sort">
+                    <option value="price_asc">Price (Low to High)</option>
+                    <option value="price_desc">Price (High to Low)</option>
+                    <option value="name_asc">Name (A-Z)</option>
+                    <option value="name_desc">Name (Z-A)</option>
+                    <option value="earliest_close">Earliest Close Date</option>
+                    <option value="nearest_start">Nearest Start Date</option>
+                </select>
+            </div>
+            
+            <!-- Size Filter -->
+            <div class="filter-option">
+                <label>Size:</label>
+                <div class="dropdown">
+                    <button class="dropbtn">&#9660;</button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="size" value="S"> Small</label>
+                        <label><input type="checkbox" name="size" value="M"> Medium</label>
+                        <label><input type="checkbox" name="size" value="L"> Large</label>
+                    </div>
                 </div>
             </div>
+            
+            <!-- Color Filter -->
             <div class="filter-option">
-                <label for="price">Price:</label>
-                <select id="price">
-                    <option value="asc">Low to High</option>
-                    <option value="desc">High to Low</option>
-                </select>
+                <label>Color:</label>
+                <div class="dropdown">
+                    <button class="dropbtn">&#9660;</button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="color" value="red"> Red</label>
+                        <label><input type="checkbox" name="color" value="blue"> Blue</label>
+                        <label><input type="checkbox" name="color" value="black"> Black</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Category Filter -->
+            <div class="filter-option">
+                <label>Category:</label>
+                <div class="dropdown">
+                    <button class="dropbtn">&#9660;</button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="category" value="shirt"> Shirt</label>
+                        <label><input type="checkbox" name="category" value="pant"> Pant</label>
+                        <label><input type="checkbox" name="category" value="hat"> Hat</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Material Filter -->
+            <div class="filter-option">
+                <label>Material:</label>
+                <div class="dropdown">
+                    <button class="dropbtn">&#9660;</button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="material" value="cotton"> Cotton</label>
+                        <label><input type="checkbox" name="material" value="synthetic"> Synthetic</label>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Status Filter -->
+            <div class="filter-option">
+                <label>Status:</label>
+                <div class="dropdown">
+                    <button class="dropbtn">&#9660;</button>
+                    <div class="dropdown-content">
+                        <label><input type="checkbox" name="status" value="available"> Available</label>
+                        <label><input type="checkbox" name="status" value="in_progress"> In Progress</label>
+                        <label><input type="checkbox" name="status" value="closed"> Closed</label>
+                    </div>
+                </div>
+            </div>
 
-                <div class="price-inputs">
-                    <span class="currency">$</span>
-                    <input type="text" id="minPrice" name="minPrice" placeholder="Min">
-                    <span class="dash">-</span>
-                    <span class="currency">$</span>
-                    <input type="text" id="maxPrice" name="maxPrice" placeholder="Max">
-                </div>
-            </div>
-            <div class="filter-option">
-                <label for="status">Status:</label>
-                <select id="status">
-                    <option value="all">All</option>
-                    <option value="available">In Progress</option>
-                    <option value="sold">Sold</option>
-                    <!-- Add more status options here -->
-                </select>
-            </div>
 
             <div class="filter-buttons">
                 <button type="button" id="resetButton" class="reset-button">Reset</button>
