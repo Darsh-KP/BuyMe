@@ -148,11 +148,26 @@ HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
         boolean checkbox = request.getParameter("normal_anonymous_bid") != null;
         System.out.print(bid_amount);
         
-       viewListingController.postBid(username, product_id, bid_amount, checkbox);
-        
-        
-        // User created, redirect to log in
-        
+        viewListingController.postBid(username, product_id, bid_amount, checkbox);
+
+        // Refresh the page
+        out.print("<script>\n" +
+                "    // Create form in order to POST id\n" +
+                "    var form = document.createElement(\"form\");\n" +
+                "    form.setAttribute(\"method\", \"post\");\n" +
+                "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
+                "\n" +
+                "    // Attach productID\n" +
+                "    var input = document.createElement(\"input\");\n" +
+                "    input.setAttribute(\"type\", \"hidden\");\n" +
+                "    input.setAttribute(\"name\", \"productID\");\n" +
+                "    input.setAttribute(\"value\", " + id + ");\n" +
+                "\n" +
+                "    // Submit Form\n" +
+                "    form.appendChild(input);\n" +
+                "    document.body.appendChild(form);\n" +
+                "    form.submit();\n" +
+                "</script>");
     }
 %>
 
