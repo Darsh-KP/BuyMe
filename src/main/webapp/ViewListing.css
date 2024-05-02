@@ -83,11 +83,12 @@ body {
     align-items: center; /* Align buttons vertically with bidding info */
 }
 
+/*-------------------------*/
 
-
+/* Listing Info Container Styles */
 .listing-info-container {
     max-width: 800px;
-    margin: 0 auto;
+    margin: 50px auto; /* Increased margin for spacing */
     text-align: center;
 }
 
@@ -104,6 +105,7 @@ body {
     border-radius: 8px;
 }
 
+/* Dates Container Styles */
 .dates-container {
     display: flex;
     flex-direction: column;
@@ -115,6 +117,7 @@ body {
     margin: 5px 0;
 }
 
+/* Bidding Container Styles */
 .bidding-container {
     display: flex;
     flex-direction: column;
@@ -150,18 +153,22 @@ body {
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
 }
 
 .bid-info button:hover {
     background-color: #45a049;
+    transform: scale(1.05); /* Scale effect on hover */
 }
 
+/* Auto Bidding Styles */
+/* Auto Bidding Styles */
 .auto-bidding {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    justify-content: center; /* Align content vertically */
+    text-align: center;
 }
 
 .auto-bidding label {
@@ -170,18 +177,51 @@ body {
 
 .auto-bidding input[type="number"],
 .auto-bidding input[type="checkbox"] {
-    margin-bottom: 5px;
+    margin-bottom: 10px; /* Increased margin bottom for better spacing */
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
+/* Adjust spacing between label and input elements */
+.auto-bidding label, 
+.auto-bidding input[type="number"],
 .auto-bidding input[type="checkbox"] {
-    margin-left: 5px;
+    margin-right: 10px; /* Add margin right for spacing */
+}
+
+/* Button Styles */
+.auto-bidding button {
+    padding: 8px 16px;
+    background-color: #430F1B;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s; /* Smooth transition */
+}
+
+.auto-bidding button:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Scale effect on hover */
+}
+
+/* Responsive Layout Adjustments */
+@media only screen and (max-width: 600px) {
+    .bid-info {
+        flex-direction: column; /* Stack elements vertically on small screens */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .auto-bidding input[type="checkbox"] {
+        margin-left: 0; /* Reset margin for checkboxes on small screens */
+        margin-top: 5px; /* Add margin top to space out checkboxes */
+    }
 }
 
 
 
+/*-------------------------*/
 
 
 

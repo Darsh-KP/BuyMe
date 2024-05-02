@@ -71,13 +71,22 @@ String id = request.getParameter("productID");
                     <div class="text"><%out.print(cardInfo.get("statusDisplay"));%></div>
                 </div>
             </div>
+
+
+
+
+
+     
             <div class="bidding-container">
                 <div class="bid-info"> 
                     <label for="bid">Your Bid:</label>
                     <input type="number" id="bid" name="bid" min="20.99" step="1.00">
+                    <label for="anonymous-bid">Anonymous Bid:</label>
+                    <input type="checkbox" id="anonymous-bid" name="anonymous-bid">
                     <button onclick="placeBid()" class="button">Place Bid</button>
                 </div>
           
+                
                 <div class="auto-bidding">
                     <label for="max-bid">Max Bid:</label>
                     <input type="number" id="max-bid" name="max-bid" min="20.99" step="1.00">
@@ -85,6 +94,7 @@ String id = request.getParameter("productID");
                     <input type="number" id="bid-increment" name="bid-increment" min="1.00" step="1.00">
                     <label for="anonymous-bid">Anonymous Bid:</label>
                     <input type="checkbox" id="anonymous-bid" name="anonymous-bid">
+                    <button onclick="autoBid()" class="button">Auto Bid</button>
                 </div>
             </div>
         </div>

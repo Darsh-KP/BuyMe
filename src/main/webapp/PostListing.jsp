@@ -105,7 +105,7 @@
 
                             // Otherwise create a dropdown with the values
                             out.print("<select type=\"text\" name=\"attributeValue\" required>");
-                            out.print("<option value=\"\">--Please choose an option--</option>");
+                            out.print("<option value=\"\">--Choose an option--</option>");
 
                             // Autofill the dropdown options
                             for (String attributeValue : defaultAttributes.get(attributeKey)) {
