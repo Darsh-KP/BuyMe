@@ -2,13 +2,12 @@ package com.buyme.controller;
 
 import com.buyme.database.myDatabase;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.nio.charset.StandardCharsets;
+import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
@@ -23,7 +22,8 @@ public class listingsController {
 
             // Get all listings
             Statement statement = listingsConnection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select product_id, product_name, initial_price, start_date_time, close_date_time from listing");
+            ResultSet resultSet = statement.executeQuery("select product_id, product_name, initial_price, " +
+                    "start_date_time, close_date_time, image_data, image_mime from listing");
 
             // Store the results
             ArrayList<HashMap<String, String>> listingsDisplay = new ArrayList<HashMap<String, String>>();
@@ -32,6 +32,15 @@ public class listingsController {
                 HashMap<String, String> listing = new HashMap<String, String>();
                 listing.put("productId", String.valueOf(resultSet.getInt("product_id")));
                 listing.put("productName", resultSet.getString("product_name"));
+
+                // Get image to display
+                Blob imageData = resultSet.getBlob("image_data");
+                byte[] byteArray = imageData.getBytes(1, (int) imageData.length());
+                String imageDataString = Base64.getEncoder().encodeToString(byteArray);
+                listing.put("imageDataString", imageDataString);
+
+                // Attach image MIME data
+                listing.put("imageMime", resultSet.getString("image_mime"));
 
                 // Format Pricing
                 String productHighestBid = getProductHighestBid(resultSet.getInt("product_id"));

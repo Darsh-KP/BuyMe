@@ -188,7 +188,9 @@
                         for (HashMap<String, String> productDisplay : allProductDisplays) {
                             out.print("<div class=\"product-card\" data-product-id=\"" + productDisplay.get("productId") + "\" onclick=\"productCardClicked(this)\">\n" +
                                     "   <div class=\"product-title\">" + productDisplay.get("productName") + "</div>\n" +
-                                    "   <div class=\"product-image\"></div>\n" +
+                                    "   <div class=\"product-image\">\n" +
+                                    "       <img src=\"data:" + productDisplay.get("imageMime") + ";base64," + productDisplay.get("imageDataString") + "\">\n" +
+                                    "   </div>\n" +
                                     "   <div class=\"product-price\">" + productDisplay.get("priceDisplay") + "</div>\n" +
                                     "   <div class=\"product-endtime\">" + productDisplay.get("dateDisplay") + "</div>\n" +
                                     "   <div class=\"product-status\">" + productDisplay.get("statusDisplay") + "</div>\n" +

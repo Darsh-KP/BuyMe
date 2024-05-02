@@ -8,6 +8,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 
+import com.buyme.database.myDatabase;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -31,13 +32,17 @@ public class PostListingServlet extends HttpServlet {
             // Get listing information from form
             String productName = request.getParameter("productName").trim();
             String productDescription = request.getParameter("productDescription").trim();
-            InputStream imageBinary = request.getPart("productImage").getInputStream();
             String subcategory = request.getParameter("subcategory").trim();
             double initialPrice = Double.parseDouble(request.getParameter("initialPrice"));
             double minSellPrice = Double.parseDouble(request.getParameter("minSellPrice"));
             double minBidIncrement = Double.parseDouble(request.getParameter("minBidIncrement"));
-            String listingStartDateTimeString = request.getParameter("listingStartDateTime");
-            String listingCloseDateTimeString = request.getParameter("listingCloseDateTime");
+            String listingStartDateTimeString = request.getParameter("listingStartDateTime").trim();
+            String listingCloseDateTimeString = request.getParameter("listingCloseDateTime").trim();
+
+            // Process Image
+            Part imagePart = request.getPart("productImage");
+            InputStream imageBinary = imagePart.getInputStream();
+            String imageMime = imagePart.getContentType();
 
             // Convert dates to java LocalDateTime
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
@@ -54,8 +59,8 @@ public class PostListingServlet extends HttpServlet {
             String[] attributeValues = request.getParameterValues("attributeValue");
             HashMap<String, String> listingAttributes = new HashMap<String, String>();
             for (int i = 0; i < attributeKeys.length; i++) {
-                listingAttributes.put(attributeKeys[i], attributeValues[i]);
-                System.out.println(attributeKeys[i] + ": " + attributeValues[i]);
+                listingAttributes.put(attributeKeys[i].trim(), attributeValues[i].trim());
+                if (myDatabase.debug) System.out.println(attributeKeys[i] + ": " + attributeValues[i]);
             }
 
             // Create a html form to send the return status
@@ -66,7 +71,7 @@ public class PostListingServlet extends HttpServlet {
             // Attempt new post
             if (!postListingController.attemptPost(productName, productDescription, subcategory, initialPrice,
                     minSellPrice, minBidIncrement, listingCloseDateTime, listingPostDateTime, sellerUsername,
-                    imageBinary, listingStartDateTime, listingAttributes)) {
+                    imageBinary, listingStartDateTime, listingAttributes, imageMime)) {
                 // Failed to post listing
                 htmlForm.append("<input type=\"hidden\" name=\"postStatus\" value=\"" + "failed" + "\">");
             } else {

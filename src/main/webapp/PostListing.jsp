@@ -41,7 +41,7 @@
 
             <div>
                 <label for="productImage">Upload Images:</label>
-                <input type="file" id="productImage" name="productImage" accept="image/*" required>
+                <input type="file" id="productImage" name="productImage" accept="image/png, image/jpeg, image/jpg" required>
             </div>
             
              <div>

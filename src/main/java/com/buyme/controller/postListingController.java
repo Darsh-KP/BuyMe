@@ -20,7 +20,7 @@ public class postListingController {
                                       double initialPrice, double minSellPrice, double minBidIncrement,
                                       LocalDateTime listingCloseDateTime, LocalDateTime listingPostDateTime,
                                       String sellerUsername, InputStream imageBinary, LocalDateTime listingStartDateTime,
-                                      HashMap<String, String> listingAttributes) {
+                                      HashMap<String, String> listingAttributes, String imageMime) {
         try {
             // Create connection
             myDatabase database = new myDatabase();
@@ -29,8 +29,9 @@ public class postListingController {
             // Insert posting into database
             PreparedStatement preparedStatement = postConnection.prepareStatement(
             		"INSERT INTO listing (product_name, description, subcategory, initial_price, " +
-                            "min_sell_price, min_bid_increment, close_date_time, post_date_time, seller_username, image_data, start_date_time) " +
-                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
+                            "min_sell_price, min_bid_increment, close_date_time, post_date_time, seller_username, " +
+                            "image_data, start_date_time, image_mime) " +
+                            "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);", Statement.RETURN_GENERATED_KEYS);
             preparedStatement.setString(1, productName);
             preparedStatement.setString(2, productDescription);
             preparedStatement.setString(3, subcategory);
@@ -42,6 +43,7 @@ public class postListingController {
             preparedStatement.setString(9, sellerUsername);
             preparedStatement.setBlob(10, imageBinary);
             preparedStatement.setTimestamp(11, Timestamp.valueOf(listingStartDateTime));
+            preparedStatement.setString(12, imageMime);
             preparedStatement.executeUpdate();
 
             // Retrieve the auto-generated ID
