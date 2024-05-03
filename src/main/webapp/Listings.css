@@ -126,12 +126,12 @@ nav {
     margin-bottom: 10px;
 }
 
-.product-image {
+.product-image img {
     width: 100%;
     height: 150px;
-    background-color: #f2f2f2;
     border-radius: 5px;
     margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .product-price {
@@ -167,16 +167,12 @@ nav {
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.trending-product-image {
+.trending-product-image img {
     width: 100%;
     height: 70%;
     border-radius: 8px;
     margin-bottom: 10px;
-    background-image: url('path_to_your_image.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background: white;
+    object-fit: cover;
 }
 
 .trending-product-title {
@@ -208,7 +204,6 @@ nav {
     background-color:antiquewhite;
     margin-bottom: 20px;
     float: left;
-    height: 100vh;
     overflow-y: auto;
 }
 

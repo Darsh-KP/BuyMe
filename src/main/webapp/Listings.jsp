@@ -145,7 +145,9 @@
                     <div class="trending-product-card">
                         <a href="product-page.html">
                             <div class="product-title">Name</div>
-                            <div class="trending-product-image"></div>
+                            <div class="trending-product-image">
+                                <img src="./data/RUhat.jpg" alt="hat">
+                            </div>
                             <div class="product-price">Price</div>
                         </a>
                     </div>
@@ -154,7 +156,9 @@
                     <div class="trending-product-card">
                         <a href="product-page.html">
                             <div class="product-title">Name</div>
-                            <div class="trending-product-image"></div>
+                            <div class="trending-product-image">
+                                <img src="./data/RUhat.jpg" alt="hat">
+                            </div>
                             <div class="product-price">Price</div>
                         </a>
                     </div>
