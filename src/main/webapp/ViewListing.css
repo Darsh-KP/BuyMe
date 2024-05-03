@@ -20,10 +20,13 @@ body {
 }
 
 .image-container img {
-    max-width: 90%;
-    height: auto;
+    max-width: 80%;
+    height: 85%;
+    overflow: hidden;
+    border-radius: 8px;
+    object-fit: cover;
     display: block;
-    margin: auto;
+    padding: 20px 2px 2px 20px;
 }
 
 .product-details {
