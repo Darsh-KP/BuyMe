@@ -4,6 +4,8 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.buyme.controller.*" %>
 <%@ page import="com.buyme.database.myDatabase" %>
+<%@ page import="java.util.Map" %>
+<%@ page import="java.util.ArrayList" %>
 <%
 String id = request.getParameter("productID");
 HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
@@ -50,8 +52,14 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
                 <span><%out.print(cardInfo.get("seller_username"));%></span><br>
             </div>
             <div class="price"><%out.print(cardInfo.get("price"));%></div>
-            <div class="buttons">
-                <button class="button"><span class="heart-icon">&#9825;</span> Add to Wishlist</button>
+            <div>
+                Attributes:
+                <%
+                    List<HashMap<String, String>> productAttributes = viewListingController.getProductAttributes(id);
+                    for (HashMap<String, String> attribute : productAttributes) {
+                        out.print("<br>" + attribute.get("attributeKey") + ": " + attribute.get("attributeValue"));
+                    }
+                %>
             </div>
         </div>
     </div>
@@ -117,23 +125,53 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
     <div class="subcategories-section">
         <h2 class="subcategories-title">Similar Items</h2>
         <div class="subcategories-container">
-            <div class="subcategory-card shirt">
-                <img src="./data/RUshirt.jpg" alt="Shirts">
-                <div class="subcategory-details">
-                    <div class="subcategory-title">Men's Shirts</div>
-                    <div class="subcategory-price">$29.99</div>
-                </div>
-            </div>
-            <div class="subcategory-card pant">
-                <img src="./data/RUpants.jpg" alt="Pants">
-                <div class="subcategory-details">
-                    <div class="subcategory-title">Men's Pants</div>
-                    <div class="subcategory-price">$39.99</div>
-                </div>
-            </div>
+            <%
+                // Get all attribute values
+                List<String> attributeValues = new ArrayList<String>();
+                for (HashMap<String, String> attribute : productAttributes) {
+                    attributeValues.add(attribute.get("attributeValue"));
+                }
+
+                // Get similar items
+                List<HashMap<String, String>> similarListings = viewListingController.getSimilarListings(id, cardInfo.get("subcategory"), attributeValues);
+
+                // Display similar products
+                for (HashMap<String, String> similarProduct : similarListings) {
+                    out.print("<div class=\"subcategory-card shirt\" data-product-id=\"" + similarProduct.get("productId") + "\" onclick=\"productCardClicked(this)\">\n" +
+                            "   <img src=\"data:" + similarProduct.get("imageMime") + ";base64," + similarProduct.get("imageDataString") + "\">\n" +
+                            "   <div class=\"subcategory-details\">\n" +
+                            "       <div class=\"subcategory-title\">" + similarProduct.get("productName") + "</div>\n" +
+                            "       <div class=\"subcategory-price\">" + similarProduct.get("priceDisplay") + "</div>\n" +
+                            "   </div>\n" +
+                            "</div>");
+                }
+            %>
         </div>
     </div>
-    
+
+    <script>
+        function productCardClicked(element) {
+            // Get productID from the card that was clicked
+            var productID = element.getAttribute('data-product-id');
+
+            // Create form in order to POST id
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "ViewListing.jsp");
+
+            // Attach productID
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "productID");
+            input.setAttribute("value", productID);
+
+            // Submit Form
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+
 <%
     // Check if the form was submitted
     if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("manual_bid_button")!=null)) {

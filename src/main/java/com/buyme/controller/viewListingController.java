@@ -78,6 +78,48 @@ public class viewListingController {
 
         return null;
     }
+
+    public static List<HashMap<String, String>> getProductAttributes(String productID) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection attributesConnection = database.newConnection();
+
+            // Get all listings
+            PreparedStatement statement = attributesConnection.prepareStatement(
+                    "SELECT attribute_key, attribute_value FROM product_attribute WHERE product_id = ?");
+            statement.setInt(1, Integer.parseInt(productID));
+            ResultSet resultSet = statement.executeQuery();
+
+            // Store the results
+            List<HashMap<String, String>> allAttributes = new ArrayList<HashMap<String, String>>();
+            while (resultSet.next()) {
+                HashMap<String, String> attribute = new HashMap<String, String>();
+                // Get each attributes
+                attribute.put("attributeKey", String.valueOf(resultSet.getString("attribute_key")));
+                attribute.put("attributeValue", String.valueOf(resultSet.getString("attribute_value")));
+
+                // Add to list
+                allAttributes.add(attribute);
+            }
+
+            //Close connection
+            resultSet.close();
+            statement.close();
+            attributesConnection.close();
+
+            // Return the strings to display
+            return allAttributes;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting all listings...");
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
     public static void postBid(String username, String productID, String bid_amount, boolean is_anon) {
         int prod_id = Integer.parseInt(productID);
         double bid_amt = Double.parseDouble(bid_amount);
@@ -160,5 +202,79 @@ public class viewListingController {
         char lastChar = username.charAt(username.length() - 1);
 
         return firstChar + "***" + lastChar;
+    }
+
+    public static List<HashMap<String, String>> getSimilarListings(String productID, String subCategory, List<String> attributeValues) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection similarItemsConnection = database.newConnection();
+
+            // Create temporary table to get rank similar items
+            StringBuilder tempTableQuery = new StringBuilder("create temporary table ranked_similar\n" +
+                    "select * from listing join product_attribute using (product_id) \n" +
+                    "order by case when subcategory = \"" + subCategory + "\" then 0 else 1 end");
+            for (String attributeValue: attributeValues) {
+                tempTableQuery.append(",\ncase when attribute_value = \"").append(attributeValue).append("\" then 0 else 1 end");
+            }
+            tempTableQuery.append(";");
+            Statement tempTableStatement = similarItemsConnection.createStatement();
+            tempTableStatement.execute(tempTableQuery.toString());
+
+            // Get top 5 similar items
+            PreparedStatement topFiveStatement = similarItemsConnection.prepareStatement(
+                    "select distinct product_id, product_name, initial_price, image_data, image_mime from ranked_similar where product_id <> ? limit 5;");
+            topFiveStatement.setString(1, productID);
+            ResultSet resultSet = topFiveStatement.executeQuery();
+
+            // Store the results
+            ArrayList<HashMap<String, String>> similarListingsDisplay = new ArrayList<HashMap<String, String>>();
+            while (resultSet.next()) {
+                // Get each listing
+                HashMap<String, String> listing = new HashMap<String, String>();
+                listing.put("productId", String.valueOf(resultSet.getInt("product_id")));
+                listing.put("productName", resultSet.getString("product_name"));
+
+                // Get image to display
+                Blob imageData = resultSet.getBlob("image_data");
+                byte[] byteArray = imageData.getBytes(1, (int) imageData.length());
+                String imageDataString = Base64.getEncoder().encodeToString(byteArray);
+                listing.put("imageDataString", imageDataString);
+
+                // Attach image MIME data
+                listing.put("imageMime", resultSet.getString("image_mime"));
+
+                // Format Pricing
+                String productHighestBid = listingsController.getProductHighestBid(resultSet.getInt("product_id"));
+                String productPriceDisplay = (productHighestBid == null) ?
+                        "Initial Price: $" + resultSet.getDouble("initial_price") :
+                        "Current Bid: $" + productHighestBid;
+                listing.put("priceDisplay", productPriceDisplay);
+
+                // Add listing to arraylist
+                similarListingsDisplay.add(listing);
+            }
+
+            // Drop the temporary table
+            Statement dropStatement = similarItemsConnection.createStatement();
+            dropStatement.execute("drop table ranked_similar;");
+
+            //Close connection
+            resultSet.close();
+            tempTableStatement.close();
+            topFiveStatement.close();
+            dropStatement.close();
+            similarItemsConnection.close();
+
+            // Return the strings to display
+            return similarListingsDisplay;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting similar items...");
+                e.printStackTrace();
+            }
+        }
+
+        return null;
     }
 }
