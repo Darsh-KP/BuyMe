@@ -2,22 +2,18 @@ package com.buyme.controller;
 
 import com.buyme.database.myDatabase;
 
-import java.sql.Timestamp;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.time.LocalDateTime;
 import java.sql.*;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.HashMap;
 import java.util.List;
 
 public class viewListingController {
     private viewListingController() {}
 
-    public static HashMap<String, String> getCardinfo(String productID) {
+    public static HashMap<String, String> getCardInfo(String productID) {
         try {
         	int prod_id = Integer.parseInt(productID);
             // Create connection
@@ -25,7 +21,7 @@ public class viewListingController {
             Connection cardConnection = database.newConnection();
             
             PreparedStatement statement = cardConnection.prepareStatement(
-            		"SELECT product_id, product_name, initial_price, subcategory, description, post_date_time, close_date_time, min_sell_price, min_bid_increment, seller_username FROM listing WHERE product_id = ?");
+            		"SELECT product_id, product_name, initial_price, subcategory, description, post_date_time, close_date_time, min_sell_price, min_bid_increment, seller_username, image_data, image_mime FROM listing WHERE product_id = ?");
             		statement.setInt(1, prod_id);
             ResultSet resultSet = statement.executeQuery();
 
@@ -33,7 +29,6 @@ public class viewListingController {
             
             while (resultSet.next()) {
                 // Get each listing
-                HashMap<String, String> listing = new HashMap<String, String>();
                 cardInfo.put("productId", String.valueOf(resultSet.getInt("product_id")));
                 cardInfo.put("productName", resultSet.getString("product_name"));
                 cardInfo.put("subcategory", resultSet.getString("subcategory"));
@@ -56,6 +51,15 @@ public class viewListingController {
                 cardInfo.put("min_sell_price", resultSet.getString("min_sell_price"));
                 cardInfo.put("min_bid_increment", resultSet.getString("min_bid_increment"));
                 cardInfo.put("seller_username", resultSet.getString("seller_username"));
+
+                // Get image to display
+                Blob imageData = resultSet.getBlob("image_data");
+                byte[] byteArray = imageData.getBytes(1, (int) imageData.length());
+                String imageDataString = Base64.getEncoder().encodeToString(byteArray);
+                cardInfo.put("imageDataString", imageDataString);
+
+                // Attach image MIME data
+                cardInfo.put("imageMime", resultSet.getString("image_mime"));
             }
 
             //Close connection

@@ -6,7 +6,7 @@
 <%@ page import="com.buyme.database.myDatabase" %>
 <%
 String id = request.getParameter("productID");
-HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
+HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
  %> 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +39,9 @@ HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
     <div class="container">
         <div class="image-container">
             <!-- Placeholder image for candle -->
-            <img src="./data/RUhat.jpg" alt="Mainstays Vanilla Scented Single-Wick Large Jar Candle">
+            <%
+                out.print("<img src=\"data:" + cardInfo.get("imageMime") + ";base64," + cardInfo.get("imageDataString") + "\">");
+            %>
         </div>
         <div class="product-details">
             <div class="title"><%out.print(cardInfo.get("productName"));%></div> 
@@ -124,17 +126,6 @@ HashMap<String, String> cardInfo = viewListingController.getCardinfo(id);
                     <div class="subcategory-price">$39.99</div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="product-list-container">
-        <!-- individual product card-->
-        <div class="trending-product-card">
-            <a href="product-page.html">
-                <div class="product-title">Name</div>
-                <div class="trending-product-image"></div>
-                <div class="product-price">Price</div>
-            </a>
         </div>
     </div>
     
