@@ -64,7 +64,7 @@ public class bidController {
             myDatabase database = new myDatabase();
             Connection autobidConnection = database.newConnection();
             PreparedStatement statement = autobidConnection.prepareStatement(
-                    "INSERT INTO autoBid (username, product_id, max_bid, bid_increment, is_anonymous) "
+                    "INSERT INTO auto_bidder (username, product_id, max_bid, bid_increment, is_anonymous) "
                     + "VALUES (?, ?, ?, ?, ?)"
                     + "ON DUPLICATE KEY UPDATE \n"
                     + "    max_bid = VALUES(max_bid), \n"

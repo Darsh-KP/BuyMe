@@ -193,7 +193,7 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
         
         if(!bidController.postBid(username, product_id, bid_amount, checkbox)) {
             %>
-            <script>alert("Bidding not started yet!")</script>
+            <script>alert("Invalid Bid! Check start and end times.")</script>
             <%
         }
 
@@ -228,7 +228,7 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
 
         if(!bidController.autoBid(username, product_id, max_bid_amount, bid_increment, checkbox)) {
             %>
-            <script>alert("Bidding not started yet!")</script>
+            <script>alert("Invalid Bid! Check start and end times.")</script>
             <%
         }
 
