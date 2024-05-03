@@ -223,7 +223,8 @@ public class viewListingController {
 
             // Get top 5 similar items
             PreparedStatement topFiveStatement = similarItemsConnection.prepareStatement(
-                    "select distinct product_id, product_name, initial_price, image_data, image_mime from ranked_similar where product_id <> ? limit 5;");
+                    "select distinct product_id, product_name, initial_price, image_data, image_mime from ranked_similar " +
+                            "where product_id <> ? and close_date_time >= NOW() limit 5;");
             topFiveStatement.setString(1, productID);
             ResultSet resultSet = topFiveStatement.executeQuery();
 
