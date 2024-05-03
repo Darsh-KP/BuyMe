@@ -99,11 +99,12 @@ nav {
 
 .notification, .alert {
     margin-bottom: 15px;
-    padding: 10px;
+    padding: 20px;
     border-radius: 5px;
     background-color: var(--extra1);
     color: white;
     transition: background-color 0.3s ease;
+    position: relative; /* added */
 }
 
 .alert {
@@ -120,4 +121,29 @@ nav {
 
 .notification p, .alert p {
     margin: 0;
+}
+
+.datetime {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    left: 10px;
+    font-size: 12px;
+    color: black;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    font-size: 16px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+    outline: none;
+}
+
+.close-btn:hover {
+    color: black;
 }

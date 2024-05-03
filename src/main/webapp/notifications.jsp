@@ -9,8 +9,7 @@
 <body>
 
  <!-- Nav Bar -->
-
- <nav>
+<nav>
     <div class="logo">
         <img src="./data/LogoFinal.png" alt="BuyMe Logo">
     </div>
@@ -31,29 +30,23 @@
   <div class="table notifications">
     <h2>Notifications</h2>
     <div class="notification">
+      <span class="datetime">May 3, 2024 12:30 PM</span>
+      <button class="close-btn">&times;</button>
       <p>An item you are interested in is now available.</p>
     </div>
     <div class="notification alternate">
+      <span class="datetime">May 2, 2024 09:45 AM</span>
+      <button class="close-btn">&times;</button>
       <p>The price of an item you are watching has dropped.</p>
     </div>
     <div class="notification">
+      <span class="datetime">May 1, 2024 04:20 PM</span>
+      <button class="close-btn">&times;</button>
       <p>Your bid on an item has been accepted.</p>
     </div>
     <!-- You can add more notifications dynamically -->
   </div>
-  <div class="table alerts">
-    <h2>Alerts</h2>
-    <div class="alert">
-      <p>A higher bid has been placed on an item you are interested in.</p>
-    </div>
-    <div class="alert alternate">
-      <p>An item you are watching is about to end soon.</p>
-    </div>
-    <div class="alert">
-      <p>You have been outbid on an item you are bidding on.</p>
-    </div>
-    <!-- You can add more alerts dynamically -->
-  </div>
 </div>
+
 </body>
 </html>
