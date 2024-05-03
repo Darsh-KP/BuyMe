@@ -80,10 +80,37 @@ public class listingsController {
     }
 
     public static String getProductHighestBid (int productId) {
-        // Check if the product has been bid on
-        // Query the bids table to find this info
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection highestBidConnection = database.newConnection();
 
-        // If not, return null for no bids
+            // Query the bids table to find the highest bid on this product
+            PreparedStatement statement = highestBidConnection.prepareStatement(
+                    "select bid_amount from bid where product_id = ? order by bid_amount desc limit 1");
+            statement.setInt(1, productId);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Check if the product has been bid on
+            String productHighestBid = null;
+            if (resultSet.next()) {
+                productHighestBid = String.valueOf(resultSet.getDouble("bid_amount"));
+            }
+
+            //Close connection
+            resultSet.close();
+            statement.close();
+            highestBidConnection.close();
+
+            // If not, return null for no bids
+            return productHighestBid;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting all listings...");
+                e.printStackTrace();
+            }
+        }
+
         return null;
     }
 

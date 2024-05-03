@@ -21,6 +21,11 @@ public class loginController {
             ResultSet resultSet = preparedStatement.executeQuery();
 
             if (!resultSet.next()) {
+                //Close connection
+                resultSet.close();
+                preparedStatement.close();
+                loginConnection.close();
+
                 // No results, incorrect credentials
                 return false;
             }
