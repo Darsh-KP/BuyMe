@@ -21,7 +21,7 @@ public class viewListingController {
             Connection cardConnection = database.newConnection();
             
             PreparedStatement statement = cardConnection.prepareStatement(
-            		"SELECT product_id, product_name, initial_price, subcategory, description, post_date_time, close_date_time, min_sell_price, min_bid_increment, seller_username, image_data, image_mime FROM listing WHERE product_id = ?");
+            		"SELECT product_id, product_name, initial_price, subcategory, description, start_date_time, close_date_time, min_sell_price, min_bid_increment, seller_username, image_data, image_mime FROM listing WHERE product_id = ?");
             		statement.setInt(1, prod_id);
             ResultSet resultSet = statement.executeQuery();
 
@@ -41,11 +41,13 @@ public class viewListingController {
                 cardInfo.put("price", productPriceDisplay);
 
                 // Format Date
-                cardInfo.put("postDate", String.valueOf(resultSet.getDate("post_date_time")));
-                cardInfo.put("closeDate", String.valueOf(resultSet.getTimestamp("close_date_time")));
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' HH:mm:ss");
+                cardInfo.put("startDate", resultSet.getTimestamp("start_date_time").toLocalDateTime().format(formatter));
+                cardInfo.put("closeDate", resultSet.getTimestamp("close_date_time").toLocalDateTime().format(formatter));
+
                 // Format Status
                 cardInfo.put("statusDisplay", "Status: " + listingsController.getProductStatus((productHighestBid != null),
-                        resultSet.getTimestamp("post_date_time").toLocalDateTime(),
+                        resultSet.getTimestamp("start_date_time").toLocalDateTime(),
                         resultSet.getTimestamp("close_date_time").toLocalDateTime()));
                 
                 cardInfo.put("min_sell_price", resultSet.getString("min_sell_price"));

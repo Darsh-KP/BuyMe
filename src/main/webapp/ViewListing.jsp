@@ -68,8 +68,8 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
         <div class="listing-info">
             <div class="dates-container">
                 <div class="listing-dates">
-                    <p>Start Date: <%out.print(cardInfo.get("postDate"));%></p>
-                    <p>Close Date: <%out.print(cardInfo.get("closeDate"));%></p>
+                    <p>Start: <%out.print(cardInfo.get("startDate"));%></p>
+                    <p>Close: <%out.print(cardInfo.get("closeDate"));%></p>
                     <p>Minimum Bidding Increment: US $<%out.print(cardInfo.get("min_bid_increment"));%></p>
                 </div>
                 <div class="status">
