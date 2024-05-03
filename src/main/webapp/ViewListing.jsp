@@ -39,7 +39,9 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
     <div class="container">
         <div class="image-container">
             <!-- Placeholder image for candle -->
-            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <%
+                out.print("<img src=\"data:" + cardInfo.get("imageMime") + ";base64," + cardInfo.get("imageDataString") + "\">");
+            %>
         </div>
         <div class="product-details">
             <div class="title"><%out.print(cardInfo.get("productName"));%></div> 
