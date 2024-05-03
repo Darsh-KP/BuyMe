@@ -58,7 +58,94 @@
                     <input type="text" name="color" placeholder="Color">
                 </div>
             </div>
-            <button type="button" id="addAttribute">Add Attribute</button>
+          
+            <div>
+                <label>Attributes:</label>
+                <button onclick="addAttribute()">Add New</button><br>
+
+                <div id="attributeInputs">
+                    <%
+                        // Get default attributes
+                        HashMap<String, ArrayList<String>> defaultAttributes = postListingController.getDefaultAttributes();
+
+                        for (String attributeKey : defaultAttributes.keySet()) {
+                            // Print an input box for attribute key which is disabled
+                            out.print("<input type=\"text\" name=\"attributeKey\" value=\"" + attributeKey + "\" disabled>");
+
+                            // If there are no values for this key, have an input box
+                            if (defaultAttributes.get(attributeKey) == null) {
+                                out.print("<input type=\"text\" name=\"attributeValue\" placeholder=\"Value\" required maxlength=\"100\">");
+                                continue;
+                            }
+
+                            // Otherwise create a dropdown with the values
+                            out.print("<select type=\"text\" name=\"attributeValue\" required>");
+                            out.print("<option value=\"\">--Choose an option--</option>");
+
+                            // Autofill the dropdown options
+                            for (String attributeValue : defaultAttributes.get(attributeKey)) {
+                                out.print("<option value=\"" + attributeValue + "\">" + attributeValue + "</option>");
+                            }
+
+                            out.print("</select>");
+                        }
+                    %>
+                </div>
+
+                <script>
+                    function addAttribute() {
+                        const attributeInputs = document.getElementById('attributeInputs');
+
+                        // Create container div for new attribute input
+                        const inputContainer = document.createElement('div');
+
+                        // Create input for attribute key
+                        const keyInput = document.createElement('input');
+                        keyInput.type = 'text';
+                        keyInput.name = "attributeKey";
+                        keyInput.placeholder = 'Attribute Key';
+                        keyInput.required = true;
+                        keyInput.maxLength = 100;
+
+                        // Create input for attribute value
+                        const valueInput = document.createElement('input');
+                        valueInput.type = 'text';
+                        valueInput.name = "attributeValue";
+                        valueInput.placeholder = 'Attribute Value';
+                        valueInput.required = true;
+                        keyInput.maxLength = 100;
+
+                        // Create button to remove this input
+                        const removeButton = document.createElement('button');
+                        removeButton.textContent = 'Remove';
+                        removeButton.onclick = function() {
+                            removeAttribute(removeButton);
+                        };
+
+                        // Append inputs and remove button to container div
+                        inputContainer.appendChild(keyInput);
+                        inputContainer.appendChild(valueInput);
+                        inputContainer.appendChild(removeButton);
+
+                        // Append container div to main container
+                        attributeInputs.appendChild(inputContainer);
+                    }
+
+                    function removeAttribute(button) {
+                        const inputContainer = button.parentElement;
+                        inputContainer.remove();
+                    }
+                </script>
+            </div>
+
+
+
+
+
+
+
+
+
             <button type="submit">Post to Wishlist</button>
         </form>
     </div>
