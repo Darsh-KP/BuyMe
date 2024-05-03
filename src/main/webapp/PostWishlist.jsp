@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="PostWishlist.css">
 </head>
 <body>
+
+
     <div class="container">
         <h1>New Wishlist</h1>
         <form action="#">
