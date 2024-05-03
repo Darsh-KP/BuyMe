@@ -6,13 +6,16 @@ body {
     color: #430F1B; /* Dark Maroon */
 }
 
+/* NavBar CSS */
 nav {
     background-color: #430F1B; /* Maroon */
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 5px 20px; /* Padding adjusted */
+    width: 100%;
+    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .logo img {
@@ -28,52 +31,60 @@ nav {
     background-color: #D66978; /* Light Maroon */
 }
 
-.search input {
-    padding: 5px;
-    border-radius: 5px;
-    border: none;
-}
-
-.search button {
-    padding: 5px 10px;
-    border-radius: 5px;
-    border: none;
-    background-color: #FCA6A9; /* Light Coral */
-    color: #fff;
-    cursor: pointer;
-}
-
 .profile {
     display: flex;
     align-items: center;
+    position: relative; /* Set position to relative */
 }
 
-.profile img {
+.profile-img {
     height: 30px;
     border-radius: 50%;
     margin-right: 10px;
+    cursor: pointer;
 }
 
-.profile a {
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #FCA6A9; /* Maroon */
+    min-width: 160px;
+    z-index: 1;
     border-radius: 5px;
-    background-color: #430F1B; /* Maroon */
+    padding: 5px 0;
+    right: 20px; /* Adjusted position */
+    top: calc(100% + 5px); /* Adjusted position */
+}
+
+.dropdown-content a {
+    color: #040404;
+    padding: 5px 10px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #A14258; /* Dark Maroon */
+}
+
+.profile:hover .dropdown-content {
+    display: block; /* Display dropdown when profile is hovered */
 }
 
 .logout-button {
     padding: 10px 20px;
-    background-color: #A14258;
-    color: #fff;
+    background-color: #FCA6A9;
+    color: #0a0909;
     border: none;
     border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
 }
+
 .logout-button:hover {
     background-color: #A14258;
 }
+
 
 header {
     background-color: #A14258; /* Light Maroon */

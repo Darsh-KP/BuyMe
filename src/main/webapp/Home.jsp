@@ -12,10 +12,11 @@
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
-    <nav>
-        <div class="logo">
-            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
-        </div>
+ <!-- Nav Bar -->
+<nav>
+    <div class="logo">
+        <img src="./data/LogoFinal.png" alt="BuyMe Logo">
+    </div>
         <div class="nav-links">
             <a href="Home.jsp">Home</a>
             <a href="TicketDashboard.jsp">Tickets</a>
@@ -23,11 +24,17 @@
             <a href="Wishlist.jsp">Wishlist</a>
         </div>
         <div class="profile">
-            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
-            <a href="#">Notifications</a>
-            <a href="#" class="logout-button">Log Out</a>
+        <div class="dropdown">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
+            <div class="dropdown-content">
+                <a href="#">Notifications</a>
+                <a href="#">My History</a>
+                <a href="#" class="logout-button">Log Out</a>
+            </div>
         </div>
     </nav>
+    </div>
+</nav>
 
     <header>
         <h1>Welcome to BuyMe!</h1>
