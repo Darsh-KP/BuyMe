@@ -75,4 +75,42 @@ public class bidController {
             }
         }
     }
+
+    public static boolean biddingAllowed(int productID) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection biddingAllowedConnection = database.newConnection();
+
+            // Get the product
+            PreparedStatement statement = biddingAllowedConnection.prepareStatement(
+                    "select product_id, start_date_time, close_date_time from listing where product_id = ?;");
+            statement.setInt(1, productID);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Get the dates to compare
+            resultSet.next();
+            LocalDateTime startDateTime = LocalDateTime.parse(resultSet.getString("start_date_time"));
+            LocalDateTime closeDateTime = LocalDateTime.parse(resultSet.getString("close_date_time"));
+            LocalDateTime now = LocalDateTime.now();
+
+            // Check the dates
+            boolean biddingAllowed = (startDateTime.isBefore(now)) && (closeDateTime.isAfter(now));
+
+            //Close connection
+            resultSet.close();
+            statement.close();
+            biddingAllowedConnection.close();
+
+            // Return the strings to display
+            return biddingAllowed;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting all listings...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 }
