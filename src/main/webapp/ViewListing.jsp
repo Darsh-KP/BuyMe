@@ -191,7 +191,11 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
         boolean checkbox = request.getParameter("normal_anonymous_bid") != null;
         System.out.print(bid_amount);
         
-        bidController.postBid(username, product_id, bid_amount, checkbox);
+        if(!bidController.postBid(username, product_id, bid_amount, checkbox)) {
+            %>
+            <script>alert("Bidding not started yet!")</script>
+            <%
+        }
 
         // Refresh the page
         out.print("<script>\n" +
@@ -214,35 +218,39 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
     } 
 	//Auto Bidder
     else if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("auto_bid_button")!=null)) {
-    // Get username, password, and other details
-    String username = (String) session.getAttribute("user");
-    String product_id = id;
-    String max_bid_amount = request.getParameter("auto-bid");
-    String bid_increment = request.getParameter("auto-bid-increment");
-    boolean checkbox = request.getParameter("auto_anonymous_bid") != null;
-    System.out.print(max_bid_amount);
-    
-    bidController.autoBid(username, product_id, max_bid_amount, bid_increment, checkbox);
+        // Get username, password, and other details
+        String username = (String) session.getAttribute("user");
+        String product_id = id;
+        String max_bid_amount = request.getParameter("auto-bid");
+        String bid_increment = request.getParameter("auto-bid-increment");
+        boolean checkbox = request.getParameter("auto_anonymous_bid") != null;
+        System.out.print(max_bid_amount);
 
-    // Refresh the page
-    out.print("<script>\n" +
-            "    // Create form in order to POST id\n" +
-            "    var form = document.createElement(\"form\");\n" +
-            "    form.setAttribute(\"method\", \"post\");\n" +
-            "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
-            "\n" +
-            "    // Attach productID\n" +
-            "    var input = document.createElement(\"input\");\n" +
-            "    input.setAttribute(\"type\", \"hidden\");\n" +
-            "    input.setAttribute(\"name\", \"productID\");\n" +
-            "    input.setAttribute(\"value\", " + id + ");\n" +
-            "\n" +
-            "    // Submit Form\n" +
-            "    form.appendChild(input);\n" +
-            "    document.body.appendChild(form);\n" +
-            "    form.submit();\n" +
-            "</script>");
-}
+        if(!bidController.autoBid(username, product_id, max_bid_amount, bid_increment, checkbox)) {
+            %>
+            <script>alert("Bidding not started yet!")</script>
+            <%
+        }
+
+        // Refresh the page
+        out.print("<script>\n" +
+                "    // Create form in order to POST id\n" +
+                "    var form = document.createElement(\"form\");\n" +
+                "    form.setAttribute(\"method\", \"post\");\n" +
+                "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
+                "\n" +
+                "    // Attach productID\n" +
+                "    var input = document.createElement(\"input\");\n" +
+                "    input.setAttribute(\"type\", \"hidden\");\n" +
+                "    input.setAttribute(\"name\", \"productID\");\n" +
+                "    input.setAttribute(\"value\", " + id + ");\n" +
+                "\n" +
+                "    // Submit Form\n" +
+                "    form.appendChild(input);\n" +
+                "    document.body.appendChild(form);\n" +
+                "    form.submit();\n" +
+                "</script>");
+    }
 %>
 
 </body>

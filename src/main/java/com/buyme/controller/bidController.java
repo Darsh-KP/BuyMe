@@ -105,8 +105,8 @@ public class bidController {
 
             // Get the dates to compare
             resultSet.next();
-            LocalDateTime startDateTime = LocalDateTime.parse(resultSet.getString("start_date_time"));
-            LocalDateTime closeDateTime = LocalDateTime.parse(resultSet.getString("close_date_time"));
+            LocalDateTime startDateTime = resultSet.getTimestamp("start_date_time").toLocalDateTime();
+            LocalDateTime closeDateTime = resultSet.getTimestamp("close_date_time").toLocalDateTime();
             LocalDateTime now = LocalDateTime.now();
 
             // Check the dates
