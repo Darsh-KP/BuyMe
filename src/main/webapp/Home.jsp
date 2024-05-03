@@ -17,7 +17,7 @@
             <img src="./data/LogoFinal.png" alt="BuyMe Logo">
         </div>
         <div class="nav-links">
-            <a href="">Home</a>
+            <a href="Home.jsp">Home</a>
             <a href="TicketDashboard.jsp">Tickets</a>
             <a href="Listings.jsp">Listings</a>
             <a href="Wishlist.jsp">Wishlist</a>

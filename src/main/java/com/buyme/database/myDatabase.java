@@ -28,7 +28,7 @@ public class myDatabase {
 
 			// Make the connection
 			connection = DriverManager.getConnection(
-					mySQLCredentials.getProperty("url"),
+					mySQLCredentials.getProperty("url") + "?useSSL=false",
 					mySQLCredentials.getProperty("username"),
 					mySQLCredentials.getProperty("password")
 					);
