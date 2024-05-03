@@ -14,10 +14,16 @@ import java.util.List;
 public class bidController {
     private bidController() {}
 
-    public static void postBid(String username, String productID, String bid_amount, boolean is_anon) {
+    public static boolean postBid(String username, String productID, String bid_amount, boolean is_anon) {
         int prod_id = Integer.parseInt(productID);
         double bid_amt = Double.parseDouble(bid_amount);
-
+        
+        boolean bidAllowed = biddingAllowed(prod_id);
+        
+        if(!bidAllowed) {
+        	return false;
+        }
+        
         try {
             myDatabase database = new myDatabase();
             Connection bidConnection = database.newConnection();
@@ -31,6 +37,7 @@ public class bidController {
             statement.executeUpdate();
             statement.close();
             bidConnection.close();
+            return true;
 
 
         } catch (SQLException e) {
@@ -40,13 +47,19 @@ public class bidController {
                 e.printStackTrace();
             }
         }
+        return false;
     }
     
-    public static void autoBid(String username, String productID, String max_bid_amount, String bid_increment, boolean is_anon) {
+    public static boolean autoBid(String username, String productID, String max_bid_amount, String bid_increment, boolean is_anon) {
         int prod_id = Integer.parseInt(productID);
         double max_bid = Double.parseDouble(max_bid_amount);
         double bid_inc = Double.parseDouble(bid_increment);
-
+        
+        boolean bidAllowed = biddingAllowed(prod_id);
+        
+        if(!bidAllowed) {
+        	return false;
+        }
         try {
             myDatabase database = new myDatabase();
             Connection autobidConnection = database.newConnection();
@@ -65,6 +78,7 @@ public class bidController {
             statement.executeUpdate();
             statement.close();
             autobidConnection.close();
+            return true;
 
 
         } catch (SQLException e) {
@@ -74,6 +88,7 @@ public class bidController {
                 e.printStackTrace();
             }
         }
+        return false;
     }
 
     public static boolean biddingAllowed(int productID) {
