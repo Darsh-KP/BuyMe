@@ -149,6 +149,39 @@ public class viewListingController {
             }
         }
     }
+    public static void autoBid(String username, String productID, String max_bid_amount, String bid_increment, boolean is_anon) {
+        int prod_id = Integer.parseInt(productID);
+        double max_bid = Double.parseDouble(max_bid_amount);
+        double bid_inc = Double.parseDouble(bid_increment);
+
+        try {
+            myDatabase database = new myDatabase();
+            Connection autobidConnection = database.newConnection();
+            PreparedStatement statement = autobidConnection.prepareStatement(
+                    "INSERT INTO autoBid (username, product_id, max_bid, bid_increment, is_anonymous) "
+                    + "VALUES (?, ?, ?, ?, ?)"
+                    + "ON DUPLICATE KEY UPDATE \n"
+                    + "    max_bid = VALUES(max_bid), \n"
+                    + "    bid_increment = VALUES(bid_increment), \n"
+                    + "    is_anonymous = VALUES(is_anonymous);");
+            statement.setString(1, username);
+            statement.setInt(2, prod_id);
+            statement.setDouble(3, max_bid);
+            statement.setDouble(4, bid_inc);
+            statement.setBoolean(5, is_anon);
+            statement.executeUpdate();
+            statement.close();
+            autobidConnection.close();
+
+
+        } catch (SQLException e) {
+
+            if (myDatabase.debug) {
+                System.out.println("Error auto bidding...");
+                e.printStackTrace();
+            }
+        }
+    }
 
     public static List<String> getHistoryOfBids(int productID) {
         try {

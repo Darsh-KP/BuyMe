@@ -86,24 +86,33 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
 					double highestBid = Double.parseDouble(cardInfo.get("price").substring(dollarIndex + 1).trim());
 					highestBid +=  Double.parseDouble(cardInfo.get("min_bid_increment"));
 					out.print(highestBid);
-					%>>
+					%> required>
                     <label for="anonymous-bid">Anonymous Bid:</label>
                     <input type="checkbox" id="normal_anonymous_bid" name="normal_anonymous_bid">
-                    <input type ="submit" value = "Place Bid" name = "manual_bid_button">
+                    <input type ="submit" value = "Place Bid" name = "manual_bid_button" class = "button">
                     <input type = "hidden" name = "productID" value = <% out.print(id);%> >
                 </form>
                 
           
                 
-                <div class="auto-bidding">
+                <form method = "post" action = "ViewListing.jsp" class="auto-bidding">
                     <label for="max-bid">Max Bid:</label>
-                    <input type="number" id="max-bid" name="max-bid" min="20.99" step="1.00">
+                    <input type="number" id="auto-bid" name="auto-bid" step="0.01" min = <%
+                    int autoDollarIndex = cardInfo.get("price").indexOf("$");
+					double autoHighestBid = Double.parseDouble(cardInfo.get("price").substring(autoDollarIndex + 1).trim());
+					autoHighestBid +=  Double.parseDouble(cardInfo.get("min_bid_increment"));
+					out.print(autoHighestBid);
+					%> required>
                     <label for="bid-increment">Bid Increment:</label>
-                    <input type="number" id="bid-increment" name="bid-increment" min="1.00" step="1.00">
+                    <input type="number" id="auto-bid-increment" name="auto-bid-increment" step="0.01" min = <%
+					double autoIncrementBid = Double.parseDouble(cardInfo.get("min_bid_increment"));
+					out.print(autoIncrementBid);
+					%> required>
                     <label for="anonymous-bid">Anonymous Bid:</label>
-                    <input type="checkbox" id="auto_anonymous-bid" name="anonymous-bid">
-                    <button onclick="autoBid()" class="button">Auto Bid</button>
-                </div>
+                    <input type="checkbox" id="auto_anonymous_bid" name="auto_anonymous_bid">
+                    <input type ="submit" value = "Auto Bid" name = "auto_bid_button" class = "button">
+                    <input type = "hidden" name = "productID" value = <% out.print(id);%> >
+                </form>
             </div>
         </div>
     </div>
@@ -173,7 +182,7 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
     </script>
 
 <%
-    // Check if the form was submitted
+	//Manual Bidder
     if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("manual_bid_button")!=null)) {
         // Get username, password, and other details
         String username = (String) session.getAttribute("user");
@@ -202,7 +211,38 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
                 "    document.body.appendChild(form);\n" +
                 "    form.submit();\n" +
                 "</script>");
-    }
+    } 
+	//Auto Bidder
+    else if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("auto_bid_button")!=null)) {
+    // Get username, password, and other details
+    String username = (String) session.getAttribute("user");
+    String product_id = id;
+    String max_bid_amount = request.getParameter("auto-bid");
+    String bid_increment = request.getParameter("auto-bid-increment");
+    boolean checkbox = request.getParameter("auto_anonymous_bid") != null;
+    System.out.print(max_bid_amount);
+    
+    viewListingController.autoBid(username, product_id, max_bid_amount, bid_increment, checkbox);
+
+    // Refresh the page
+    out.print("<script>\n" +
+            "    // Create form in order to POST id\n" +
+            "    var form = document.createElement(\"form\");\n" +
+            "    form.setAttribute(\"method\", \"post\");\n" +
+            "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
+            "\n" +
+            "    // Attach productID\n" +
+            "    var input = document.createElement(\"input\");\n" +
+            "    input.setAttribute(\"type\", \"hidden\");\n" +
+            "    input.setAttribute(\"name\", \"productID\");\n" +
+            "    input.setAttribute(\"value\", " + id + ");\n" +
+            "\n" +
+            "    // Submit Form\n" +
+            "    form.appendChild(input);\n" +
+            "    document.body.appendChild(form);\n" +
+            "    form.submit();\n" +
+            "</script>");
+}
 %>
 
 </body>
