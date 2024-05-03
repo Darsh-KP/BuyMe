@@ -73,7 +73,12 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
             <div class="bidding-container">
                 <form method = "post" action = "ViewListing.jsp" class="bid-info"> 
                     <label for="bid">Your Bid:</label>
-                    <input type="number" id="bid" name="bid" step="0.01">
+                    <input type="number" id="bid" name="bid" step="0.01" min = <%
+                    int dollarIndex = cardInfo.get("price").indexOf("$");
+					double highestBid = Double.parseDouble(cardInfo.get("price").substring(dollarIndex + 1).trim());
+					highestBid +=  Double.parseDouble(cardInfo.get("min_bid_increment"));
+					out.print(highestBid);
+					%>>
                     <label for="anonymous-bid">Anonymous Bid:</label>
                     <input type="checkbox" id="normal_anonymous_bid" name="normal_anonymous_bid">
                     <input type ="submit" value = "Place Bid" name = "manual_bid_button">
