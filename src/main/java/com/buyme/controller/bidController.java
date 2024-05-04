@@ -171,7 +171,6 @@ public class bidController {
             while (resultSet.next()) {
                 // Check if the auto-bidder bid is less than max bid allowed
                 double bidAmount = price + resultSet.getDouble("bid_increment");
-                System.out.println(bidAmount);
                 if (!(bidAmount <= resultSet.getDouble("max_bid"))) continue;
 
                 // Try to auto-bid
