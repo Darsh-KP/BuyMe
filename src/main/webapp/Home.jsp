@@ -12,41 +12,28 @@
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
-
-<!-- Nav Bar -->
-<nav>
-    <div class="logo">
-        <img src="./data/LogoFinal.png" alt="BuyMe Logo">
-    </div>
-    <div class="nav-links">
-        <a href="Home.jsp">Home</a>
-        <a href="TicketDashboard.jsp">Tickets</a>
-        <a href="Listings.jsp">Listings</a>
-        <a href="Wishlist.jsp">Wishlist</a>
-    </div>
-    <div class="dropdown">
-        <button class="dropbtn">
-            <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
-        </button>
-        <div class="dropdown-content">
-            <label><a href="Alerts.jsp">Notifications</a></label>
-            <label><a href="ParticipationHistory.jsp">My History</a></label>
-            <label><a href="#">Log Out</a></label>
+    <!-- Nav Bar -->
+    <nav>
+        <div class="logo">
+            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
         </div>
-    </div>
-</nav>
-
-
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        var profileButton = document.querySelector(".profile-btn");
-        var dropdown = document.querySelector(".dropdown-content");
-    
-        profileButton.addEventListener("click", function() {
-            dropdown.classList.toggle("dropdown-open");
-        });
-    });
-    </script>
+        <div class="nav-links">
+            <a href="Home.jsp">Home</a>
+            <a href="TicketDashboard.jsp">Tickets</a>
+            <a href="Listings.jsp">Listings</a>
+            <a href="Wishlist.jsp">Wishlist</a>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn">
+                <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
+            </button>
+            <div class="dropdown-content">
+                <label><a href="Alerts.jsp">Notifications</a></label>
+                <label><a href="ParticipationHistory.jsp">My History</a></label>
+                <label><a href="#">Log Out</a></label>
+            </div>
+        </div>
+    </nav>
 
     <header>
         <h1>Welcome to BuyMe!</h1>
