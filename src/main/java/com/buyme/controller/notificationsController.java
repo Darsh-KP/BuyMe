@@ -5,9 +5,56 @@ import com.buyme.database.passwordSecurity;
 
 import java.sql.*;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 public class notificationsController {
     private notificationsController () {}
+
+    public static List<HashMap<String, String>> getUserNotifications (String username) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection userNotificationsConnection = database.newConnection();
+
+            // Get the notifications
+            PreparedStatement userNotificationsStatement = userNotificationsConnection.prepareStatement(
+                    "select created_at, message from notification where username = ? order by created_at desc;");
+            userNotificationsStatement.setString(1, username);
+            ResultSet resultSet = userNotificationsStatement.executeQuery();
+
+            // Put all the notifications in the list
+            ArrayList<HashMap<String, String>> notificationsList = new ArrayList<HashMap<String, String>>();
+            while (resultSet.next()) {
+                // Date formatter
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' HH:mm:ss");
+
+                // Get each notification
+                HashMap<String, String> notification = new HashMap<String, String>();
+                notification.put("dateTime", resultSet.getTimestamp("created_at").toLocalDateTime().format(formatter));
+                notification.put("message", resultSet.getString("message"));
+
+                // Add to the list
+                notificationsList.add(notification);
+            }
+
+            // Close connections
+            resultSet.close();
+            userNotificationsStatement.close();
+            userNotificationsConnection.close();
+
+            return notificationsList;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting user notifications...");
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
 
     public static void postAlert (String username, LocalDateTime createdAt, String message) {
         try {
