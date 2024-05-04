@@ -81,9 +81,10 @@ public class bidController {
             statement.executeUpdate();
             statement.close();
             autobidConnection.close();
+
+            checkAutoBidEvent(Integer.parseInt(productID));
+
             return true;
-
-
         } catch (SQLException e) {
 
             if (myDatabase.debug) {
