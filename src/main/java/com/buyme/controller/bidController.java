@@ -40,6 +40,7 @@ public class bidController {
             statement.close();
             bidConnection.close();
 
+            notificationsController.checkForBidAlerts(Integer.parseInt(productID));
             checkAutoBidEvent(Integer.parseInt(productID));
 
             return true;

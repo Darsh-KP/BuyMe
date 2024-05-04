@@ -130,8 +130,8 @@ public class viewListingController {
 
             // Get all bids for the product
             PreparedStatement statement = connection.prepareStatement(
-                    "select username, bid_amount, bid.is_anonymous, bid.bid_date_time from bid " +
-                            "where product_id = ? order by bid_date_time desc");
+                    "select username, bid_amount, is_anonymous, bid_date_time from bid " +
+                            "where product_id = ? order by bid_amount desc");
             statement.setInt(1, productID);
             ResultSet resultSet = statement.executeQuery();
 

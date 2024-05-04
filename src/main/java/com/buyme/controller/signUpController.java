@@ -41,7 +41,7 @@ public class signUpController {
 
             // Insert data into database
             PreparedStatement preparedStatement = SignUpConnection.prepareStatement(
-                    "INSERT INTO User (username, password_hash, password_salt, first_name, last_name, email, address) \n"
+                    "INSERT INTO user (username, password_hash, password_salt, first_name, last_name, email, address) \n"
                     + "VALUES (?, ?, ?, ?, ?, ?, ?);\n"
                     + "");
             	
