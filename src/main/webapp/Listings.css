@@ -114,8 +114,6 @@ nav {
 .product-card a {
     text-decoration: none; 
     color: inherit; 
-    cursor: default; 
-    pointer-events: none;
 }
 
 a {
