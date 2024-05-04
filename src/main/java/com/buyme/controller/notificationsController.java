@@ -176,7 +176,7 @@ public class notificationsController {
                 int productID = checkWinnersResultSet.getInt("product_id");
 
                 // Check if listing was bid on
-                if (listingsController.getProductHighestBid(productID) != null) {
+                if (listingsController.getProductHighestBid(productID) == null) {
                     // No winner
                     postWinner(productID, "N/A");
                     continue;

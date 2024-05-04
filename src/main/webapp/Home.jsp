@@ -27,12 +27,11 @@
         <div class="dropdown">
             <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
             <div class="dropdown-content">
-                <a href="#">Notifications</a>
-                <a href="#">My History</a>
+                <a href="Alerts.jsp">Notifications</a>
+                <a href="ParticipationHistory.jsp">My History</a>
                 <a href="#" class="logout-button">Log Out</a>
             </div>
         </div>
-    </nav>
     </div>
 </nav>
 
