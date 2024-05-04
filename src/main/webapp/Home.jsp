@@ -30,7 +30,7 @@
             <div class="dropdown-content">
                 <label><a href="Alerts.jsp">Notifications</a></label>
                 <label><a href="ParticipationHistory.jsp">My History</a></label>
-                <label><a href="#">Log Out</a></label>
+                <label><a href="Logout.jsp">Log Out</a></label>
             </div>
         </div>
     </nav>
