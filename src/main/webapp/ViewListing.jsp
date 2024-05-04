@@ -8,6 +8,13 @@
 <%@ page import="java.util.ArrayList" %>
 
 <%
+    HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
+    if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
+        response.sendRedirect("Login.jsp");
+    }
+%>
+
+<%
     notificationsController.checkListingWinners();
     String id = request.getParameter("productID");
     HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
