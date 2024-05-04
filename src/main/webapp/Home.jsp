@@ -24,13 +24,13 @@
         <a href="Wishlist.jsp">Wishlist</a>
     </div>
     <div class="profile">
-        <div class="dropdown">
+        <button class="profile-btn">
             <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
-            <div class="dropdown-content">
-                <a href="Alerts.jsp">Notifications</a>
-                <a href="ParticipationHistory.jsp">My History</a>
-                <a href="#" class="logout-button">Log Out</a>
-            </div>
+        </button>
+        <div class="dropdown-content">
+            <a href="Alerts.jsp">Notifications</a>
+            <a href="ParticipationHistory.jsp">My History</a>
+            <a href="#" class="logout-button">Log Out</a>
         </div>
     </div>
 </nav>
