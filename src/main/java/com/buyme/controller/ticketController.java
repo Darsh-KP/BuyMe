@@ -38,7 +38,8 @@ public class ticketController {
                 HashMap<String, String> ticket = new HashMap<String, String>();
                 //ticket ID
                 int ticketID = resultSet.getInt("ticket_id");
-                ticket.put("ticketID", String.valueOf("ticket_id"));
+                ticket.put("ticketID", String.valueOf(ticketID));
+                
                 
                 //created_by 
                 ticket.put("created_by", resultSet.getString("created_by"));
@@ -108,6 +109,8 @@ public class ticketController {
     	return true;
     	
     }
+    
+    
     
 
 }
