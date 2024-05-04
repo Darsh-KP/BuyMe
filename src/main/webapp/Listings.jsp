@@ -185,22 +185,22 @@
                         List<HashMap<String, String>> allProductDisplays = listingsController.getAllListingsDisplayStrings();
 
                         // If none are returned, nothing to display
-                        if (allProductDisplays == null) return;
+                        if (allProductDisplays != null) {
+                            // Debug
+                            if (myDatabase.debug) System.out.println("Loading product cards...");
 
-                        // Debug
-                        if (myDatabase.debug) System.out.println("Loading product cards...");
-
-                        // Display each product
-                        for (HashMap<String, String> productDisplay : allProductDisplays) {
-                            out.print("<div class=\"product-card\" data-product-id=\"" + productDisplay.get("productId") + "\" onclick=\"productCardClicked(this)\">\n" +
-                                    "   <div class=\"product-title\">" + productDisplay.get("productName") + "</div>\n" +
-                                    "   <div class=\"product-image\">\n" +
-                                    "       <img src=\"data:" + productDisplay.get("imageMime") + ";base64," + productDisplay.get("imageDataString") + "\">\n" +
-                                    "   </div>\n" +
-                                    "   <div class=\"product-price\">" + productDisplay.get("priceDisplay") + "</div>\n" +
-                                    "   <div class=\"product-endtime\">" + productDisplay.get("dateDisplay") + "</div>\n" +
-                                    "   <div class=\"product-status\">" + productDisplay.get("statusDisplay") + "</div>\n" +
-                                    "</div>");
+                            // Display each product
+                            for (HashMap<String, String> productDisplay : allProductDisplays) {
+                                out.print("<a class=\"product-card\" href=\"ViewListing.jsp?productID=" + productDisplay.get("productId") + "\">\n" +
+                                        "   <div class=\"product-title\">" + productDisplay.get("productName") + "</div>\n" +
+                                        "   <div class=\"product-image\">\n" +
+                                        "       <img src=\"data:" + productDisplay.get("imageMime") + ";base64," + productDisplay.get("imageDataString") + "\">\n" +
+                                        "   </div>\n" +
+                                        "   <div class=\"product-price\">" + productDisplay.get("priceDisplay") + "</div>\n" +
+                                        "   <div class=\"product-endtime\">" + productDisplay.get("dateDisplay") + "</div>\n" +
+                                        "   <div class=\"product-status\">" + productDisplay.get("statusDisplay") + "</div>\n" +
+                                        "</a>");
+                            }
                         }
                     %>
 
@@ -213,32 +213,9 @@
         </div>
     </div>
 
-    <script>
-        function productCardClicked(element) {
-            // Get productID from the card that was clicked
-            var productID = element.getAttribute('data-product-id');
-
-            // Create form in order to POST id
-            var form = document.createElement("form");
-            form.setAttribute("method", "post");
-            form.setAttribute("action", "ViewListing.jsp");
-
-            // Attach productID
-            var input = document.createElement("input");
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", "productID");
-            input.setAttribute("value", productID);
-
-            // Submit Form
-            form.appendChild(input);
-            document.body.appendChild(form);
-            form.submit();
-        }
-    </script>
-
 <%
     // Check if the form was submitted
-    if (request.getMethod().equalsIgnoreCase("POST")) {
+    if ((request.getMethod().equalsIgnoreCase("POST")) && (request.getParameter("post_list_button") != null)) {
         %>
             <script>alert("New Listing Posted!")</script>
         <%

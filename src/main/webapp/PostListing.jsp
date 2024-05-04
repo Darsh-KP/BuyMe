@@ -163,7 +163,7 @@
                 </script>
             </div>
 
-            <button type="submit">Post Product</button>
+            <button type="submit" name="post_list_button">Post Product</button>
         </form>
     </div>
     <script>
