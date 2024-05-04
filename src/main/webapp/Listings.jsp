@@ -5,6 +5,10 @@
 <%@ page import="com.buyme.controller.*" %>
 <%@ page import="com.buyme.database.myDatabase" %>
 
+<%
+    notificationsController.checkListingWinners();
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +19,7 @@
     <link rel="icon" type="image/x-icon" href="./data/Favicon.png">
 </head>
 <body>
+
     <nav>
         <div class="logo">
             <img src="./data/LogoFinal.png" alt="Marketplace Central Logo">

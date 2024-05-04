@@ -157,4 +157,87 @@ public class notificationsController {
 
         return null;
     }
+
+    public static void checkListingWinners () {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection checkWinnersConnection = database.newConnection();
+
+            // Get the listings that are expired and has no winner declared yet
+            PreparedStatement checkWinnersStatement = checkWinnersConnection.prepareStatement(
+                    "select product_id from listing where close_date_time < ? and winner is null;");
+            checkWinnersStatement.setTimestamp(1, Timestamp.valueOf(LocalDateTime.now()));
+            ResultSet checkWinnersResultSet = checkWinnersStatement.executeQuery();
+
+            // Go through each listing
+            while (checkWinnersResultSet.next()) {
+                // Get productID
+                int productID = checkWinnersResultSet.getInt("product_id");
+
+                // Check if listing was bid on
+                if (listingsController.getProductHighestBid(productID) != null) {
+                    // No winner
+                    postWinner(productID, "N/A");
+                    continue;
+                }
+
+                // Get the last bidder who beat the min sell price
+                PreparedStatement getWinnerStatement = checkWinnersConnection.prepareStatement(
+                        "select username, close_date_time from listing join bid using (product_id) " +
+                                "where product_id = ? and bid_amount > min_sell_price order by bid_amount desc limit 1;");
+                getWinnerStatement.setInt(1, productID);
+                ResultSet getWinnerResultSet = getWinnerStatement.executeQuery();
+
+                // There is a winner!
+                if (getWinnerResultSet.next()) {
+                    String winner = getWinnerResultSet.getString("username");
+                    postWinner(productID, winner);
+                    postAlert(winner, getWinnerResultSet.getTimestamp("close_date_time").toLocalDateTime(),
+                            "Congratulations! You have won the bid on Product #" + productID + ", \"" + getProductName(productID) + "\".");
+                } else {
+                    // No winner
+                    postWinner(productID, "N/A");
+                }
+
+                // Close temp connections
+                getWinnerResultSet.close();
+                getWinnerStatement.close();
+            }
+
+            // Close connections
+            checkWinnersResultSet.close();
+            checkWinnersStatement.close();
+            checkWinnersConnection.close();
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error checking for winners...");
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void postWinner (int Product, String winner) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection postWinnersConnection = database.newConnection();
+
+            // Post the winner to the listing
+            PreparedStatement postWinnersStatement = postWinnersConnection.prepareStatement(
+                    "update listing set winner = ? where product_id = ?;");
+            postWinnersStatement.setString(1, winner);
+            postWinnersStatement.setInt(2, Product);
+            postWinnersStatement.executeUpdate();
+
+            // Close connection
+            postWinnersStatement.close();
+            postWinnersConnection.close();
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error posting winner...");
+                e.printStackTrace();
+            }
+        }
+    }
 }

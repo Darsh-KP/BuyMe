@@ -6,10 +6,13 @@
 <%@ page import="com.buyme.database.myDatabase" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="java.util.ArrayList" %>
+
 <%
-String id = request.getParameter("productID");
-HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
+    notificationsController.checkListingWinners();
+    String id = request.getParameter("productID");
+    HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
  %> 
+
 <!DOCTYPE html>
 <html lang="en">
 
