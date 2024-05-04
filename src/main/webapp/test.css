@@ -7,7 +7,6 @@ nav {
     align-items: center;
     padding: 5px 20px; /* Padding adjusted */
     width: 100%;
-    box-sizing: border-box; /* Include padding in width calculation */
 }
 
 .logo img {
@@ -32,47 +31,68 @@ nav {
 .profile-img {
     height: 30px;
     border-radius: 50%;
-    margin-right: 10px;
+    margin-right: 30px;
     cursor: pointer;
 }
+/* Dropdown */
+/* Dropdown */
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
 
-/* Dropdown content is hidden by default */
+.dropbtn {
+    background-color: transparent; /* Remove background color */
+    color: var(--extra2);
+    padding: 5px;
+    border: none; /* Remove border */
+    cursor: pointer;
+    margin-left: 2px;
+}
+
+.dropbtn img {
+    height: 30px;
+    border-radius: 50%;
+}
+
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #FCA6A9; /* Maroon */
+    background-color: #D66978;
     min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    border-radius: 5px;
-    padding: 5px 0;
-    right: 20px; /* Adjusted position */
-    top: calc(100% + 5px); /* Adjusted position */
+    padding: 0; /* Adjusted padding */
+    right: 0; /* Align to the right */
+    color: #000; /* Black text color */
+    border: 1px solid #000; /* Add border */
 }
 
-/* Style for profile button */
-.profile-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.profile-img {
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-/* Apply styles when dropdown is open */
-.dropdown-open .dropdown-content {
+.dropdown-content a {
     display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: inherit; /* Inherit text color */
+}
+
+.dropdown-content a:hover {
+    background-color: #FCA6A9;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.dropdown:hover .dropbtn {
+    background-color: #430F1B;
 }
 
 
 
 .logout-button {
     padding: 10px 20px;
-    background-color: #FCA6A9;
-    color: #0a0909;
+    background-color: #A14258;
+    color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;

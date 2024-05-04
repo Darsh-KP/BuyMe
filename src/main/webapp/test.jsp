@@ -19,17 +19,18 @@
         <a href="Listings.jsp">Listings</a>
         <a href="Wishlist.jsp">Wishlist</a>
     </div>
-    <div class="profile">
-        <button class="profile-btn">
+    <div class="dropdown">
+        <button class="dropbtn">
             <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
         </button>
         <div class="dropdown-content">
-            <a href="Alerts.jsp">Notifications</a>
-            <a href="ParticipationHistory.jsp">My History</a>
-            <a href="#" class="logout-button">Log Out</a>
+            <label><a href="Alerts.jsp">Notifications</a></label>
+            <label><a href="ParticipationHistory.jsp">My History</a></label>
+            <label><a href="#">Log Out</a></label>
         </div>
     </div>
 </nav>
+
 
 
 </body>
