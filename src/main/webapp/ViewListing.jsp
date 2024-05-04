@@ -189,7 +189,6 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
         String product_id = id;
         String bid_amount = request.getParameter("bid");
         boolean checkbox = request.getParameter("normal_anonymous_bid") != null;
-        System.out.print(bid_amount);
         
         if(!bidController.postBid(username, product_id, bid_amount, checkbox)) {
             %>
@@ -224,7 +223,6 @@ HashMap<String, String> cardInfo = viewListingController.getCardInfo(id);
         String max_bid_amount = request.getParameter("auto-bid");
         String bid_increment = request.getParameter("auto-bid-increment");
         boolean checkbox = request.getParameter("auto_anonymous_bid") != null;
-        System.out.print(max_bid_amount);
 
         if(!bidController.autoBid(username, product_id, max_bid_amount, bid_increment, checkbox)) {
             %>
