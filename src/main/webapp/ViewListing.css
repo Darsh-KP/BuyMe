@@ -386,6 +386,11 @@ nav {
     color: #000; /* Black text color */
 }
 
+a {
+    text-decoration: none; 
+    color: inherit; 
+}
+
 /* Media Queries for Responsive Layout */
 
 /* Adjustments for Subcategories Section on Small Screens */
