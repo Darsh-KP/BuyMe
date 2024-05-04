@@ -1,3 +1,11 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.buyme.controller.*" %>
+<%@ page import="com.buyme.database.myDatabase" %>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,26 +50,54 @@
                 </div>
 
         <div class="ticket-cards">
-            <a href="#" class="ticket-card">
-                <p class="ticket-number">#1234</p>
-                <p class="ticket-date">Date Created: April 30, 2024</p>
-                <p class="ticket-description">Short Description: Lorem ipsum dolor sit amet</p>
-                <p class="ticket-status">Status: Open</p>
-            </a>
-            <a href="#" class="ticket-card">
-                <p class="ticket-number">#5678</p>
-                <p class="ticket-date">Date Created: April 29, 2024</p>
-                <p class="ticket-description">Short Description: Consectetur adipiscing elit</p>
-                <p class="ticket-status">Status: In Progress</p>
-            </a>
-            <a href="#" class="ticket-card">
-                <p class="ticket-number">#91011</p>
-                <p class="ticket-date">Date Created: April 28, 2024</p>
-                <p class="ticket-description">Short Description: Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua</p>
-                <p class="ticket-status">Status: Closed</p>
-            </a>
+         	<%
+       				String username = (String) session.getAttribute("user");
+
+                  // Get all products to display
+                  List<HashMap<String, String>> allTicketDisplay = ticketController.getAllListingsTicketsDisplayStrings(username);
+
+
+                  // Display each product
+                  for (HashMap<String, String> ticketDisplay : allTicketDisplay) {
+                	  out.print("<div onclick=\"ticketClicked(this)\" class=\"ticket-card\" data-ticket-id = \"\">\n" +
+                              "   <p class=\"ticket-number\">#" + ticketDisplay.get("ticketID") + "</p>\n" +
+                              "   <p class=\"ticket-date\">Date Created: " + ticketDisplay.get("creation") + "</p>\n" +
+                              "   <p class=\"ticket-description\">" + ticketDisplay.get("comment") + "</p>\n" +
+                              "</div>");
+                  }
+              %>
+        	
+        
+        
+        
         </div>
+        <a href="NewTicket.jsp">
         <button class="create-ticket-button">+ Create a new ticket</button>
+        </a>
     </div>
+    
+        <script>
+        function ticketClicked(element){
+            // Get productID from the card that was clicked
+            var ticketID = element.getAttribute('data-ticket-id');
+
+            // Create form in order to POST id
+            var form = document.createElement("form");
+            form.setAttribute("method", "post");
+            form.setAttribute("action", "SampleTicket.jsp");
+
+            // Attach productID
+            var input = document.createElement("input");
+            input.setAttribute("type", "hidden");
+            input.setAttribute("name", "ticketID");
+            input.setAttribute("value", ticketID);
+
+            // Submit Form
+            form.appendChild(input);
+            document.body.appendChild(form);
+            form.submit();
+        }
+    </script>
+    
 </body>
 </html>
