@@ -44,7 +44,7 @@
 
     <div class="container">
         <h1>New Ticket</h1>
-        <form action="NewTicket.jsp">
+        <form action="NewTicket.jsp" method = "post">
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="4" placeholder="Enter a description of the issue..."></textarea>
             <div class="buttons">
