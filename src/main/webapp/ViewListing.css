@@ -283,7 +283,8 @@ body {
 
 .subcategory-card img {
     width: 100%;
-    height: auto;
+    height: 200px;
+    object-fit: cover;
     border-bottom: 1px solid #F8D2C2;
 }
 
