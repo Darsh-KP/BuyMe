@@ -35,6 +35,16 @@
     </div>
 </nav>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var profileButton = document.querySelector(".profile-btn");
+        var dropdown = document.querySelector(".dropdown-content");
+    
+        profileButton.addEventListener("click", function() {
+            dropdown.classList.toggle("dropdown-open");
+        });
+    });
+    </script>
 
     <header>
         <h1>Welcome to BuyMe!</h1>
