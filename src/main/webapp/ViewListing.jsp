@@ -193,31 +193,38 @@
         String bid_amount = request.getParameter("bid");
         boolean checkbox = request.getParameter("normal_anonymous_bid") != null;
         
-        if(!bidController.postBid(username, product_id, bid_amount, checkbox)) {
-            %>
-            <script>alert("Invalid Bid! Check start and end times.")</script>
-            <%
-        }
-
-        // Refresh the page
-        out.print("<script>\n" +
-                "    // Create form in order to POST id\n" +
-                "    var form = document.createElement(\"form\");\n" +
-                "    form.setAttribute(\"method\", \"post\");\n" +
-                "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
-                "\n" +
-                "    // Attach productID\n" +
-                "    var input = document.createElement(\"input\");\n" +
-                "    input.setAttribute(\"type\", \"hidden\");\n" +
-                "    input.setAttribute(\"name\", \"productID\");\n" +
-                "    input.setAttribute(\"value\", " + id + ");\n" +
-                "\n" +
-                "    // Submit Form\n" +
-                "    form.appendChild(input);\n" +
-                "    document.body.appendChild(form);\n" +
-                "    form.submit();\n" +
-                "</script>");
-    } 
+        if(username.equals(cardInfo.get("seller_username"))){
+        	 %>
+             <script>alert("Invalid Bid! Cannot Bid on your own Product.")</script>
+             <%
+        } else{
+	        
+	        if(!bidController.postBid(username, product_id, bid_amount, checkbox)) {
+	            %>
+	            <script>alert("Invalid Bid! Check start and end times.")</script>
+	            <%
+	        }
+	
+	        // Refresh the page
+	        out.print("<script>\n" +
+	                "    // Create form in order to POST id\n" +
+	                "    var form = document.createElement(\"form\");\n" +
+	                "    form.setAttribute(\"method\", \"post\");\n" +
+	                "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
+	                "\n" +
+	                "    // Attach productID\n" +
+	                "    var input = document.createElement(\"input\");\n" +
+	                "    input.setAttribute(\"type\", \"hidden\");\n" +
+	                "    input.setAttribute(\"name\", \"productID\");\n" +
+	                "    input.setAttribute(\"value\", " + id + ");\n" +
+	                "\n" +
+	                "    // Submit Form\n" +
+	                "    form.appendChild(input);\n" +
+	                "    document.body.appendChild(form);\n" +
+	                "    form.submit();\n" +
+	                "</script>");
+    	} 
+ 	}
 	//Auto Bidder
     else if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("auto_bid_button")!=null)) {
         // Get username, password, and other details
@@ -226,7 +233,15 @@
         String max_bid_amount = request.getParameter("auto-bid");
         String bid_increment = request.getParameter("auto-bid-increment");
         boolean checkbox = request.getParameter("auto_anonymous_bid") != null;
-
+        
+        
+       if(username.equals(cardInfo.get("seller_username"))){
+       	 %>
+            <script>alert("Invalid Bid! Cannot Bid on your own Product.")</script>
+            <%
+       } else{
+    	   
+       
         if(!bidController.autoBid(username, product_id, max_bid_amount, bid_increment, checkbox)) {
             %>
             <script>alert("Invalid Bid! Check start and end times.")</script>
@@ -251,6 +266,7 @@
                 "    document.body.appendChild(form);\n" +
                 "    form.submit();\n" +
                 "</script>");
+       }
     }
 %>
 
