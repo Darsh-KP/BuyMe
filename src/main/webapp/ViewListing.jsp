@@ -149,42 +149,19 @@
 
                 // Display similar products
                 for (HashMap<String, String> similarProduct : similarListings) {
-                    out.print("<div class=\"subcategory-card shirt\" data-product-id=\"" + similarProduct.get("productId") + "\" onclick=\"productCardClicked(this)\">\n" +
+                    out.print("<a class=\"subcategory-card shirt\" href=\"ViewListing.jsp?productID=" + similarProduct.get("productId") + "\">\n" +
                             "   <img src=\"data:" + similarProduct.get("imageMime") + ";base64," + similarProduct.get("imageDataString") + "\">\n" +
                             "   <div class=\"subcategory-details\">\n" +
                             "       <div class=\"subcategory-title\">" + similarProduct.get("productName") + "</div>\n" +
                             "       <div class=\"subcategory-price\">" + similarProduct.get("priceDisplay") + "</div>\n" +
                             "   </div>\n" +
-                            "</div>");
+                            "</a>");
                 }
             %>
         </div>
     </div>
 
-    <script>
-        function productCardClicked(element) {
-            // Get productID from the card that was clicked
-            var productID = element.getAttribute('data-product-id');
-
-            // Create form in order to POST id
-            var form = document.createElement("form");
-            form.setAttribute("method", "post");
-            form.setAttribute("action", "ViewListing.jsp");
-
-            // Attach productID
-            var input = document.createElement("input");
-            input.setAttribute("type", "hidden");
-            input.setAttribute("name", "productID");
-            input.setAttribute("value", productID);
-
-            // Submit Form
-            form.appendChild(input);
-            document.body.appendChild(form);
-            form.submit();
-        }
-    </script>
-
-<%
+    <%
 	//Manual Bidder
     if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("manual_bid_button")!=null)) {
         // Get username, password, and other details
@@ -204,25 +181,15 @@
 	            <script>alert("Invalid Bid! Check start and end times.")</script>
 	            <%
 	        }
-	
+
 	        // Refresh the page
 	        out.print("<script>\n" +
-	                "    // Create form in order to POST id\n" +
-	                "    var form = document.createElement(\"form\");\n" +
-	                "    form.setAttribute(\"method\", \"post\");\n" +
-	                "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
-	                "\n" +
-	                "    // Attach productID\n" +
-	                "    var input = document.createElement(\"input\");\n" +
-	                "    input.setAttribute(\"type\", \"hidden\");\n" +
-	                "    input.setAttribute(\"name\", \"productID\");\n" +
-	                "    input.setAttribute(\"value\", " + id + ");\n" +
-	                "\n" +
-	                "    // Submit Form\n" +
-	                "    form.appendChild(input);\n" +
-	                "    document.body.appendChild(form);\n" +
-	                "    form.submit();\n" +
-	                "</script>");
+                    "   // Create link to be clicked\n" +
+                    "   var link = document.createElement('a');\n" +
+                    "   link.href = \"ViewListing.jsp?productID=" + product_id + "\";\n" +
+                    "   document.body.appendChild(link)\n" +
+                    "   link.click()\n" +
+                    "</script>");
     	} 
  	}
 	//Auto Bidder
@@ -250,21 +217,11 @@
 
         // Refresh the page
         out.print("<script>\n" +
-                "    // Create form in order to POST id\n" +
-                "    var form = document.createElement(\"form\");\n" +
-                "    form.setAttribute(\"method\", \"post\");\n" +
-                "    form.setAttribute(\"action\", \"ViewListing.jsp\");\n" +
-                "\n" +
-                "    // Attach productID\n" +
-                "    var input = document.createElement(\"input\");\n" +
-                "    input.setAttribute(\"type\", \"hidden\");\n" +
-                "    input.setAttribute(\"name\", \"productID\");\n" +
-                "    input.setAttribute(\"value\", " + id + ");\n" +
-                "\n" +
-                "    // Submit Form\n" +
-                "    form.appendChild(input);\n" +
-                "    document.body.appendChild(form);\n" +
-                "    form.submit();\n" +
+                "   // Create link to be clicked\n" +
+                "   var link = document.createElement('a');\n" +
+                "   link.href = \"ViewListing.jsp?productID=" + product_id + "\";\n" +
+                "   document.body.appendChild(link)\n" +
+                "   link.click()\n" +
                 "</script>");
        }
     }
