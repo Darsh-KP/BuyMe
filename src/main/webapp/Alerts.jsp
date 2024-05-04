@@ -11,8 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Notifications and Alerts</title>
-<link rel="stylesheet" href="Notifications.css">
+<title>Notifications</title>
+<link rel="stylesheet" href="Alerts.css">
 </head>
 <body>
 

@@ -48,7 +48,8 @@ public class viewListingController {
                 // Format Status
                 cardInfo.put("statusDisplay", "Status: " + listingsController.getProductStatus((productHighestBid != null),
                         resultSet.getTimestamp("start_date_time").toLocalDateTime(),
-                        resultSet.getTimestamp("close_date_time").toLocalDateTime()));
+                        resultSet.getTimestamp("close_date_time").toLocalDateTime(),
+                        listingsController.productHasWinner(prod_id)));
                 
                 cardInfo.put("min_sell_price", resultSet.getString("min_sell_price"));
                 cardInfo.put("min_bid_increment", resultSet.getString("min_bid_increment"));

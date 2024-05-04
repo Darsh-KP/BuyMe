@@ -30,7 +30,8 @@ public class listingsController {
             while (resultSet.next()) {
                 // Get each listing
                 HashMap<String, String> listing = new HashMap<String, String>();
-                listing.put("productId", String.valueOf(resultSet.getInt("product_id")));
+                int productID = resultSet.getInt("product_id");
+                listing.put("productId", String.valueOf(productID));
                 listing.put("productName", resultSet.getString("product_name"));
 
                 // Get image to display
@@ -56,7 +57,8 @@ public class listingsController {
                 // Format Status
                 listing.put("statusDisplay", "Status: " + getProductStatus((productHighestBid != null),
                         resultSet.getTimestamp("start_date_time").toLocalDateTime(),
-                        resultSet.getTimestamp("close_date_time").toLocalDateTime()));
+                        resultSet.getTimestamp("close_date_time").toLocalDateTime(),
+                        productHasWinner(productID)));
 
                 // Add listing to arraylist
                 listingsDisplay.add(listing);
@@ -131,7 +133,7 @@ public class listingsController {
         return "Ends on: " + productEndDateTime.format(formatter);
     }
 
-    public static String getProductStatus (boolean isBiddedOn, LocalDateTime productStartDateTime, LocalDateTime productEndDateTime) {
+    public static String getProductStatus (boolean isBiddedOn, LocalDateTime productStartDateTime, LocalDateTime productEndDateTime, boolean hasWinner) {
         // Get current DateTime
         LocalDateTime currentDateTime = LocalDateTime.now();
 
@@ -144,12 +146,48 @@ public class listingsController {
         // If product has bids placed and end date has not yet been passed, status = open
         if (isBiddedOn && currentDateTime.isBefore(productEndDateTime)) return "Bidded On";
 
-        // If product has passed end date and no bids, status = expired
-        if (!isBiddedOn && currentDateTime.isAfter(productStartDateTime)) return "Expired";
+        // If product has passed end date with a winner, status = sold
+        if (hasWinner && currentDateTime.isAfter(productEndDateTime)) return "Sold";
 
-        // If product has passed end date with bids, status = sold
-        if (isBiddedOn && currentDateTime.isAfter(productEndDateTime)) return "Sold";
+        // If product has passed end date and no bids, status = expired
+        if (currentDateTime.isAfter(productStartDateTime)) return "Expired";
 
         return null;
+    }
+
+    public static boolean productHasWinner (int productId) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection checkWinnerConnection = database.newConnection();
+
+            // Get the winner of the product
+            PreparedStatement checkWinnerStatement = checkWinnerConnection.prepareStatement(
+                    "select winner from listing where product_id = ?");
+            checkWinnerStatement.setInt(1, productId);
+            ResultSet resultSet = checkWinnerStatement.executeQuery();
+
+            // Get the name of winner
+            String winner = null;
+            if (resultSet.next()) {
+                winner = resultSet.getString("winner");
+            }
+
+            // Close connection
+            resultSet.close();
+            checkWinnerStatement.close();
+            checkWinnerConnection.close();
+
+            // Check if winner is not null or "N/A"
+            if (winner == null) return false;
+            return !winner.equals("N/A");
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting product winner boolean...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
     }
 }
