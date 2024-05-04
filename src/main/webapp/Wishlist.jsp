@@ -27,47 +27,31 @@
         </div>
     </nav>
 
-
-
     <header>
         <h1>My Wishlist</h1>
     </header>
-    <div class="wishlist">
+    
+    <div class="wishlist-container">
 
-        <!-- individual product cards -->
-        <div class=product-card>
-            <a href=product-page.html>
-                <div class=product-title>Name</div>
-                <div class=product-image></div>
-                <div class=product-price>Price</div>
-                <div class=product-endtime>Time</div>
-                <div class=product-status>Status</div>
-            </a>
-            <button class="close-icon">X</button>
+        <div class="wishlist-item">
+            <h3>Wish #1</h3>
+            <p>Category: Hats</p>
+            <p>Max Threshold: $50</p>
+            <p>Size: Medium</p>
+            <p>Color: Blue</p>
+            <button class="remove-btn">Remove</button>
         </div>
 
-        <div class=product-card>
-            <a href=product-page.html>
-                <div class=product-title>Name</div>
-                <div class=product-image></div>
-                <div class=product-price>Price</div>
-                <div class=product-endtime>Time</div>
-                <div class=product-status>Status</div>
-            </a>
-            <button class="close-icon">X</button>
+        <div class="wishlist-item">
+            <h3>Wish #2</h3>
+            <p>Category: Pants</p>
+            <p>Max Threshold: $200</p>
+            <p>Size: N/A</p>
+            <p>Color: Black</p>
+            <button class="remove-btn">Remove</button>
         </div>
-
-        <div class=product-card>
-            <a href=product-page.html>
-                <div class=product-title>Name</div>
-                <div class=product-image></div>
-                <div class=product-price>Price</div>
-                <div class=product-endtime>Time</div>
-                <div class=product-status>Status</div>
-            </a>
-            <button class="close-icon">X</button>
-        </div>
-
+        
     </div>
+
 </body>
 </html>
