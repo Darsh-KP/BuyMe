@@ -105,7 +105,7 @@ nav {
     background-color: var(--extra1);
     color: white;
     transition: background-color 0.3s ease;
-    position: relative; /* added */
+    position: relative; 
 }
 
 .alert {

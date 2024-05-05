@@ -1,7 +1,7 @@
 @import "default.css";
 
 body {
-    /* Display elements in the middle, no scrollbar */
+    /* no scrollbar */
     display: flex;
     justify-content: space-evenly;
     align-items: center;
