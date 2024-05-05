@@ -85,6 +85,64 @@ public class listingsController {
         return null;
     }
 
+    public static List<HashMap<String, String>> getTrendingListingsDisplayStrings () {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection listingsConnection = database.newConnection();
+
+            // Get all listings
+            PreparedStatement statement = listingsConnection.prepareStatement(
+                    "select count(*) as trending_rank, product_id, product_name, image_data, image_mime, initial_price " +
+                            "from listing join bid using (product_id) group by (product_id) order by trending_rank desc limit 10;");
+            ResultSet resultSet = statement.executeQuery();
+
+            // Store the results
+            ArrayList<HashMap<String, String>> listingsDisplay = new ArrayList<HashMap<String, String>>();
+            while (resultSet.next()) {
+                // Get each listing
+                HashMap<String, String> listing = new HashMap<String, String>();
+                int productID = resultSet.getInt("product_id");
+                listing.put("productId", String.valueOf(productID));
+                listing.put("productName", resultSet.getString("product_name"));
+
+                // Get image to display
+                Blob imageData = resultSet.getBlob("image_data");
+                byte[] byteArray = imageData.getBytes(1, (int) imageData.length());
+                String imageDataString = Base64.getEncoder().encodeToString(byteArray);
+                listing.put("imageDataString", imageDataString);
+
+                // Attach image MIME data
+                listing.put("imageMime", resultSet.getString("image_mime"));
+
+                // Format Pricing
+                String productHighestBid = getProductHighestBid(resultSet.getInt("product_id"));
+                String productPriceDisplay = (productHighestBid == null) ?
+                        "Initial Price: $" + resultSet.getDouble("initial_price") :
+                        "Current Bid: $" + productHighestBid;
+                listing.put("priceDisplay", productPriceDisplay);
+
+                // Add listing to arraylist
+                listingsDisplay.add(listing);
+            }
+
+            //Close connection
+            resultSet.close();
+            statement.close();
+            listingsConnection.close();
+
+            // Return the strings to display
+            return listingsDisplay;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting trending listings...");
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
+
     public static String getProductHighestBid (int productId) {
         try {
             // Create connection

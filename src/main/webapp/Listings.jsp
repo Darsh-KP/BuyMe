@@ -137,26 +137,29 @@
 
                 <div class="product-list-container">
                     <!-- individual product card-->
-                    <div class="trending-product-card">
-                        <a href="product-page.html">
-                            <div class="product-title">Name</div>
-                            <div class="trending-product-image">
-                                <img src="./data/RUhat.jpg" alt="hat">
-                            </div>
-                            <div class="product-price">Price</div>
-                        </a>
-                    </div>
+                    <%
+                        // Get all products to display
+                        List<HashMap<String, String>> trendingProductDisplays = listingsController.getTrendingListingsDisplayStrings();
 
-                    <!-- individual product card-->
-                    <div class="trending-product-card">
-                        <a href="product-page.html">
-                            <div class="product-title">Name</div>
-                            <div class="trending-product-image">
-                                <img src="./data/RUhat.jpg" alt="hat">
-                            </div>
-                            <div class="product-price">Price</div>
-                        </a>
-                    </div>
+                        // If none are returned, nothing to display
+                        if (trendingProductDisplays != null) {
+                            // Debug
+                            if (myDatabase.debug) System.out.println("Loading trending cards...");
+
+                            // Display each product
+                            for (HashMap<String, String> productDisplay : trendingProductDisplays) {
+                                out.print("<div class=\"trending-product-card\">\n" +
+                                        "   <a href=\"ViewListing.jsp?productID=" + productDisplay.get("productId") + "\">\n" +
+                                        "       <div class=\"product-title\">" + productDisplay.get("productName") + "</div>\n" +
+                                        "       <div class=\"trending-product-image\">\n" +
+                                        "           <img src=\"data:" + productDisplay.get("imageMime") + ";base64," + productDisplay.get("imageDataString") + "\">\n" +
+                                        "       </div>\n" +
+                                        "       <div class=\"product-price\">" + productDisplay.get("priceDisplay") + "</div>\n" +
+                                        "   </a>\n" +
+                                        "</div>");
+                            }
+                        }
+                    %>
                 </div>
             </section>
 
