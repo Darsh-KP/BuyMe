@@ -59,11 +59,6 @@
     <div class="container">
         <h1>Customer Representative Ticketing Center</h1>
 
-                <!-- Search Bar -->
-                <div class="search-bar">
-                    <input type="text" id="ticket-search" placeholder="Enter Ticket Number">
-                    <button onclick="searchTicket()">Search</button>
-                </div>
 
         <div class="ticket-cards">
          	<%

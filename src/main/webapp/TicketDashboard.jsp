@@ -60,17 +60,24 @@
         <h1>Welcome to our Ticketing Center</h1>
 
                 <!-- Search Bar -->
-                <div class="search-bar">
-                    <input type="text" id="ticket-search" placeholder="Enter Ticket Number">
-                    <button onclick="searchTicket()">Search</button>
-                </div>
+                <form class="search-bar" method = "get" action = "TicketDashboard.jsp">
+                    <input type="text" id="ticket-search" placeholder="Search Keyword" name = "search_keyword">
+                    <input type = "submit" name = "search_submit_button" value = "Search" class="search-button">
+                </form>
 
         <div class="ticket-cards">
          	<%
        				String username = (String) session.getAttribute("user");
+         			String criteria = "";
+         			
+         			if ((request.getMethod().equalsIgnoreCase("GET")) && (request.getParameter("search_submit_button") != null)) {
+                        if (request.getParameter("search_keyword") != null) {
+                            criteria = "and comment like \"%" + request.getParameter("search_keyword") + "%\" ";
+                        }
+                    }
 
                   // Get all products to display
-                  List<HashMap<String, String>> allTicketDisplay = ticketController.getAllListingsTicketsDisplayStrings(username);
+                  List<HashMap<String, String>> allTicketDisplay = ticketController.getAllListingsTicketsDisplayStrings(username, criteria);
 
 
                   // Display each product
