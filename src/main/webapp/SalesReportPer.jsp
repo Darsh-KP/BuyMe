@@ -37,7 +37,8 @@
 </head>
 <body>
     <div class="container">
-        <h1>Earnings Per <%out.print(criteria);%></h1>
+        <button class="back-btn" onclick="window.location.href='SalesReport.jsp';">Go Back</button>
+        <h1 class="title">Earnings Per <%out.print(criteria);%></h1>
         <table>
             <thead class="tableHeader">
                 <tr>

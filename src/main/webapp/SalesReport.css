@@ -27,7 +27,7 @@ header {
 main {
     padding: 20px;
 }
-
+/* Adjusted styles for the buttons */
 .report-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -38,7 +38,7 @@ main {
 .report {
     background-color: var(--extra1);
     padding: 20px;
-    border-radius: 0px;
+    border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -66,3 +66,25 @@ main {
     transition: transform 0.3s ease;
 }
 
+/* Styles for the buttons to resemble report cards */
+.report a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.report a:hover {
+    text-decoration: none;
+}
+
+.report a.report-button {
+    display: block;
+    background-color: var(--extra1);
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.report a.report-button:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}

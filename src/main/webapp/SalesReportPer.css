@@ -6,12 +6,16 @@ body {
 }
 
 .container {
-    max-width: 800px;
-    margin: 50px auto;
+    max-width: 600px;
+    margin: 100px auto;
     padding: 20px;
-    background-color: #fff;
+    border: 1px solid #D66978; /* Use your color palette */
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    background-color: #ffffff; /* Use your color palette */
+
+}
+.title {
     text-align: center;
 }
 
@@ -42,3 +46,17 @@ tbody tr:nth-child(even) {
 tbody tr:hover {
     background-color: #ddd;
 }
+.back-btn {
+    background-color: #A14258; /* Change color as needed */
+    color: #f8f3f3; /* Change color as needed */
+    padding: 10px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.back-btn:hover {
+    background-color: #c87979;
+}
+
