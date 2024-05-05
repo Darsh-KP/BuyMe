@@ -207,4 +207,45 @@ public class bidController {
 
         return;
     }
+    
+    public static boolean removeBid(String prodID, String username) {
+    	int productID = Integer.parseInt(prodID);
+    	try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection removeBidConnection = database.newConnection();
+
+            // Query the bids table to find the highest bid on this product
+            PreparedStatement statement = removeBidConnection.prepareStatement(
+            		"DELETE FROM bid\n"
+            		+ "WHERE product_id = ? \n"
+            		+ "  AND username = ?\n"
+            		+ "  AND bid_amount = (\n"
+            		+ "    SELECT max_bid FROM (\n"
+            		+ "        SELECT MAX(bid_amount) AS max_bid\n"
+            		+ "        FROM bid \n"
+            		+ "        WHERE product_id = ?\n"
+            		+ "    ) AS subquery\n"
+            		+ "  );");
+            
+            statement.setInt(1, productID);
+            statement.setString(2, username);
+            statement.setInt(3, productID);
+            statement.executeUpdate();
+            
+            
+            statement.close();
+            removeBidConnection.close();
+            
+            return true;
+    	}catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error removing bid...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    	
+    }
 }
