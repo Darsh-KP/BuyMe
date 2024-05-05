@@ -21,8 +21,31 @@ header {
     background-color: var(--secondary);
     color: white;
     padding: 20px;
-    text-align: center;
+    display: flex;
+    align-items: center; /* Align items vertically */
 }
+
+.title {
+    text-align: center;
+    flex-grow: 1; /* This will make the title take up the remaining space */
+    margin: 0; /* Reset margin to avoid any unexpected spacing */
+}
+
+.back-btn {
+    background-color: #A14258; /* Change color as needed */
+    color: #f8f3f3; /* Change color as needed */
+    padding: 10px 20px; /* Adjust padding as needed */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.back-btn:hover {
+    background-color: #c87979;
+}
+
+
 
 main {
     padding: 20px;
