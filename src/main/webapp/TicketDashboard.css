@@ -1,3 +1,5 @@
+@import "navbar.css";
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -36,6 +38,9 @@ h1 {
     text-decoration: none;
     color: #430F1B;
     transition: background-color 0.3s ease;
+    border: 2px solid #000; /* Add a black border */
+    box-sizing: border-box; /* Include padding and border in the box's total width */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add box shadow to cards */
 }
 
 
@@ -103,62 +108,4 @@ h1 {
 
 .search-bar button:hover {
     background-color: #FCA6A9; /* Primary color - lighter shade */
-}
-
-
-/* NavBar CSS */ 
-
-nav {
-    background-color: #430F1B; /* Maroon */
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-}
-
-.logo img {
-    height: 40px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #D66978; /* Light Maroon */
-}
-
-
-.profile {
-    display: flex;
-    align-items: center;
-}
-
-.profile img {
-    height: 30px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
-.profile a {
-    text-decoration: none;
-    color: #fff;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background-color: #430F1B; /* Maroon */
-}
-
-.logout-button {
-    padding: 10px 20px;
-    background-color: #A14258;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-}
-.logout-button:hover {
-    background-color: #A14258;
 }
