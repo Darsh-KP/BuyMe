@@ -62,26 +62,24 @@
         <header>
             <h1>Listings</h1>
 
-            <div class="search-two">
-                <input type="text" placeholder="Search Listing...">
-                <button>Submit</button>
-            </div>
+            <form class="search-two" method="get" action="Listings.jsp">
+                <input type="text" placeholder="Search Keyword..." name="search_keyword">
+                <input type="submit" value="Search" name="search_submit_button">
+            </form>
 
         </header>
 
-        <div class="sidebar">
+        <form class="sidebar" method="get" action="Listings.jsp">
             <h2>Filter Options</h2>
             
             <!-- Sort Dropdown -->
             <div class="filter-option">
                 <label for="sort">Sort By:</label>
-                <select id="sort">
-                    <option value="price_asc">Price (Low to High)</option>
-                    <option value="price_desc">Price (High to Low)</option>
+                <select id="sort" name="sort">
                     <option value="name_asc">Name (A-Z)</option>
                     <option value="name_desc">Name (Z-A)</option>
-                    <option value="earliest_close">Earliest Close Date</option>
-                    <option value="nearest_start">Nearest Start Date</option>
+                    <option value="price_asc">Initial Price (Low-High)</option>
+                    <option value="price_desc">Initial Price (High-Low)</option>
                 </select>
             </div>
             
@@ -135,27 +133,13 @@
                     </div>
                 </div>
             </div>
-            
-            <!-- Status Filter -->
-            <div class="filter-option">
-                <label>Status:</label>
-                <div class="dropdown-fltr">
-                    <button class="dropbtn-fltr">&#9660;</button>
-                    <div class="dropdown-content-fltr">
-                        <label><input type="checkbox" name="status" value="available"> Available</label>
-                        <label><input type="checkbox" name="status" value="in_progress"> In Progress</label>
-                        <label><input type="checkbox" name="status" value="closed"> Closed</label>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="filter-buttons">
-                <button type="button" id="resetButton" class="reset-button">Reset</button>
-                <button type="submit" id="submitButton" class="submit-button">Submit ></button>
+                <button type="button" id="resetButton" class="reset-button" onclick="window.location.href='Listings.jsp';">Reset</button>
+                <input type="submit" id="submitButton" class="submit-button" value="Submit" name="filter_submit_button">
             </div>
 
-        </div>
+        </form>
 
         <!-- main sections  -->
         <div class="main-content">
@@ -202,8 +186,43 @@
                 <div class="product-list-container">
                     <!-- Populate all listings from the database-->
                     <%
+                        // String to store filter, if applicable
+                        String criteria = "";
+
+                        // Check is a keyword is searched
+                        if ((request.getMethod().equalsIgnoreCase("GET")) && (request.getParameter("search_submit_button") != null)) {
+                            if (request.getParameter("search_keyword") != null) {
+                                criteria = "where product_name like \"%" + request.getParameter("search_keyword") + "%\" ";
+                            }
+                        }
+                        // Check if criteria was passed
+                        else if ((request.getMethod().equalsIgnoreCase("GET")) && (request.getParameter("filter_submit_button") != null)) {
+                            // Check for and add each filter option
+
+
+                            // Check if there is any sorting that is required
+                            if (request.getParameter("sort") != null) {
+                                switch (request.getParameter("sort")) {
+                                    case ("name_asc"):
+                                        criteria += "order by product_name asc";
+                                        break;
+                                    case ("name_desc"):
+                                        criteria += "order by product_name desc";
+                                        break;
+                                    case ("price_asc"):
+                                        criteria += "order by initial_price asc";
+                                        break;
+                                    case ("price_desc"):
+                                        criteria += "order by initial_price desc";
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        }
+
                         // Get all products to display
-                        List<HashMap<String, String>> allProductDisplays = listingsController.getAllListingsDisplayStrings();
+                        List<HashMap<String, String>> allProductDisplays = listingsController.getAllListingsDisplayStrings(criteria);
 
                         // If none are returned, nothing to display
                         if (allProductDisplays != null) {

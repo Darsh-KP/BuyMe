@@ -14,16 +14,19 @@ import java.util.List;
 public class listingsController {
     private listingsController () {}
 
-    public static List<HashMap<String, String>> getAllListingsDisplayStrings () {
+    public static List<HashMap<String, String>> getAllListingsDisplayStrings (String criteria) {
         try {
             // Create connection
             myDatabase database = new myDatabase();
             Connection listingsConnection = database.newConnection();
 
             // Get all listings
-            Statement statement = listingsConnection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select product_id, product_name, initial_price, " +
-                    "start_date_time, close_date_time, image_data, image_mime from listing");
+            String baseQuery = "select distinct product_id, product_name, initial_price, start_date_time, " +
+                    "close_date_time, image_data, image_mime from listing join product_attribute using (product_id) ";
+            String endQuery = " ;";
+            String fullQuery = baseQuery + criteria + endQuery;
+            PreparedStatement statement = listingsConnection.prepareStatement(fullQuery);
+            ResultSet resultSet = statement.executeQuery();
 
             // Store the results
             ArrayList<HashMap<String, String>> listingsDisplay = new ArrayList<HashMap<String, String>>();
