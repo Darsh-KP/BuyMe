@@ -2,7 +2,6 @@ package com.buyme.controller;
 
 import com.buyme.database.myDatabase;
 
-import java.nio.charset.StandardCharsets;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -22,7 +21,8 @@ public class listingsController {
 
             // Get all listings
             String baseQuery = "select distinct product_id, product_name, initial_price, start_date_time, " +
-                    "close_date_time, image_data, image_mime from listing join product_attribute using (product_id) ";
+                    "close_date_time, image_data, image_mime from listing join product_attribute using (product_id) " +
+                    "where true ";
             String endQuery = " ;";
             String fullQuery = baseQuery + criteria + endQuery;
             PreparedStatement statement = listingsConnection.prepareStatement(fullQuery);
@@ -226,5 +226,4 @@ public class listingsController {
     	return true;
     	
     }
-    
 }

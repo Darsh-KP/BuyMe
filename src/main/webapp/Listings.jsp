@@ -4,6 +4,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.buyme.controller.*" %>
 <%@ page import="com.buyme.database.myDatabase" %>
+<%@ page import="java.util.ArrayList" %>
 
 <%
     HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
@@ -82,6 +83,22 @@
                     <option value="price_desc">Initial Price (High-Low)</option>
                 </select>
             </div>
+
+            <!-- Category Filter -->
+            <div class="filter-option">
+                <label>Category:</label>
+                <div class="dropdown-fltr">
+                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropdown-content-fltr">
+                        <%
+                            List<String> allSubCategories = postListingController.getAllSubCategories();
+                            for (String subCategory : allSubCategories) {
+                                out.print("<label><input type=\"radio\" name=\"category\" value=\"" + subCategory + "\">" + subCategory + "</label>");
+                            }
+                        %>
+                    </div>
+                </div>
+            </div>
             
             <!-- Size Filter -->
             <div class="filter-option">
@@ -92,44 +109,6 @@
                         <label><input type="checkbox" name="size" value="S"> Small</label>
                         <label><input type="checkbox" name="size" value="M"> Medium</label>
                         <label><input type="checkbox" name="size" value="L"> Large</label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Color Filter -->
-            <div class="filter-option">
-                <label>Color:</label>
-                <div class="dropdown-fltr">
-                    <button class="dropbtn-fltr">&#9660;</button>
-                    <div class="dropdown-content-fltr">
-                        <label><input type="checkbox" name="color" value="red"> Red</label>
-                        <label><input type="checkbox" name="color" value="blue"> Blue</label>
-                        <label><input type="checkbox" name="color" value="black"> Black</label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Category Filter -->
-            <div class="filter-option">
-                <label>Category:</label>
-                <div class="dropdown-fltr">
-                    <button class="dropbtn-fltr">&#9660;</button>
-                    <div class="dropdown-content-fltr">
-                        <label><input type="checkbox" name="category" value="shirt"> Shirt</label>
-                        <label><input type="checkbox" name="category" value="pant"> Pant</label>
-                        <label><input type="checkbox" name="category" value="hat"> Hat</label>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Material Filter -->
-            <div class="filter-option">
-                <label>Material:</label>
-                <div class="dropdown-fltr">
-                    <button class="dropbtn-fltr">&#9660;</button>
-                    <div class="dropdown-content-fltr">
-                        <label><input type="checkbox" name="material" value="cotton"> Cotton</label>
-                        <label><input type="checkbox" name="material" value="synthetic"> Synthetic</label>
                     </div>
                 </div>
             </div>
@@ -197,6 +176,15 @@
                         }
                         // Check if criteria was passed
                         else if ((request.getMethod().equalsIgnoreCase("GET")) && (request.getParameter("filter_submit_button") != null)) {
+                            // Check and add category filter
+                            if (request.getParameterValues("category") != null) {
+                                // Get all the selected categories
+                                String[] selectedCategories = request.getParameterValues("category");
+                                for (String selectedCategory : selectedCategories) {
+                                    criteria += "and subcategory = \"" + selectedCategory + "\"";
+                                }
+                            }
+
                             // Check for and add each filter option
 
 
@@ -204,16 +192,16 @@
                             if (request.getParameter("sort") != null) {
                                 switch (request.getParameter("sort")) {
                                     case ("name_asc"):
-                                        criteria += "order by product_name asc";
+                                        criteria += " order by product_name asc ";
                                         break;
                                     case ("name_desc"):
-                                        criteria += "order by product_name desc";
+                                        criteria += " order by product_name desc ";
                                         break;
                                     case ("price_asc"):
-                                        criteria += "order by initial_price asc";
+                                        criteria += " order by initial_price asc ";
                                         break;
                                     case ("price_desc"):
-                                        criteria += "order by initial_price desc";
+                                        criteria += " order by initial_price desc ";
                                         break;
                                     default:
                                         break;
