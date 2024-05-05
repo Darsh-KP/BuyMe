@@ -80,7 +80,7 @@
         
         <div class="center">
             <div class="form-group">
-                <a href="CustRepTickets.html"><button>View Tickets</button></a>
+                <button onclick="window.location.href='CRTicketDashboard.jsp';" type="button" class="cancel-button">View Tickets</button>
             </div>
         </div>
     </div>
