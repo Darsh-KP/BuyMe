@@ -126,7 +126,7 @@
 		String listingID = request.getParameter("listingID");
 		
 		
-		if(!bidController.removeBid(listingID,username)) {
+		if(!bidController.removeBid(listingID, username)) {
             %>
             <script>alert("Invalid bid removal.")</script>
             <%
