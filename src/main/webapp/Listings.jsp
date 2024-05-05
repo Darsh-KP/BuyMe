@@ -87,9 +87,9 @@
             <!-- Size Filter -->
             <div class="filter-option">
                 <label>Size:</label>
-                <div class="dropdown">
-                    <button class="dropbtn">&#9660;</button>
-                    <div class="dropdown-content">
+                <div class="dropdown-fltr">
+                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropdown-content-fltr">
                         <label><input type="checkbox" name="size" value="S"> Small</label>
                         <label><input type="checkbox" name="size" value="M"> Medium</label>
                         <label><input type="checkbox" name="size" value="L"> Large</label>
@@ -100,9 +100,9 @@
             <!-- Color Filter -->
             <div class="filter-option">
                 <label>Color:</label>
-                <div class="dropdown">
-                    <button class="dropbtn">&#9660;</button>
-                    <div class="dropdown-content">
+                <div class="dropdown-fltr">
+                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropdown-content-fltr">
                         <label><input type="checkbox" name="color" value="red"> Red</label>
                         <label><input type="checkbox" name="color" value="blue"> Blue</label>
                         <label><input type="checkbox" name="color" value="black"> Black</label>
@@ -113,9 +113,9 @@
             <!-- Category Filter -->
             <div class="filter-option">
                 <label>Category:</label>
-                <div class="dropdown">
-                    <button class="dropbtn">&#9660;</button>
-                    <div class="dropdown-content">
+                <div class="dropdown-fltr">
+                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropdown-content-fltr">
                         <label><input type="checkbox" name="category" value="shirt"> Shirt</label>
                         <label><input type="checkbox" name="category" value="pant"> Pant</label>
                         <label><input type="checkbox" name="category" value="hat"> Hat</label>
@@ -126,9 +126,9 @@
             <!-- Material Filter -->
             <div class="filter-option">
                 <label>Material:</label>
-                <div class="dropdown">
-                    <button class="dropbtn">&#9660;</button>
-                    <div class="dropdown-content">
+                <div class="dropdown-fltr">
+                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropdown-content-fltr">
                         <label><input type="checkbox" name="material" value="cotton"> Cotton</label>
                         <label><input type="checkbox" name="material" value="synthetic"> Synthetic</label>
                     </div>
@@ -138,9 +138,9 @@
             <!-- Status Filter -->
             <div class="filter-option">
                 <label>Status:</label>
-                <div class="dropdown">
-                    <button class="dropbtn">&#9660;</button>
-                    <div class="dropdown-content">
+                <div class="dropdown-fltr">
+                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropdown-content-fltr">
                         <label><input type="checkbox" name="status" value="available"> Available</label>
                         <label><input type="checkbox" name="status" value="in_progress"> In Progress</label>
                         <label><input type="checkbox" name="status" value="closed"> Closed</label>
