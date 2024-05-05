@@ -190,4 +190,38 @@ public class listingsController {
 
         return false;
     }
+    
+    public static boolean removeListing(int productId) {
+    	//DELETE FROM listing WHERE product_id = 33;
+    	
+    	try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection removeListing = database.newConnection();
+
+            // Get the winner of the product
+            PreparedStatement statement = removeListing.prepareStatement(
+                    "DELETE FROM listing WHERE product_id = ?;");
+            statement.setInt(1, productId);
+            statement.executeUpdate();
+
+            // Get the name of winner
+            // Close connection
+            statement.close();
+            removeListing.close();
+
+
+
+	    } catch (SQLException e) {
+	        if (myDatabase.debug) {
+	            System.out.println("Error removing Listing...");
+	            e.printStackTrace();
+	            return false;
+	        }
+	    }
+    	
+    	return true;
+    	
+    }
+    
 }

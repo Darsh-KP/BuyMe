@@ -1,3 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="com.buyme.controller.*"%>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="java.util.HashMap" %>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,9 +43,13 @@
     <div class="container">
         <h2>Customer Representative Panel</h2>
         <div class="form-group">
-            <label for="searchUser">Search User:</label>
+        <form method = "post" action = "CustRepPanel.jsp" class="bid-info"> 
+            <label for="searchListing">Search User:</label>
             <input type="text" id="searchUser" name="searchUser">
-            <button>Delete User</button>
+           <input type ="submit" value = "Remove Listing" name = "remove_listing" class = "button">
+        </form>
+            
+            
             <a href="EditUser.html"><button>Edit User</button></a>
         </div>
         <div class="form-group">
@@ -41,11 +57,14 @@
             <input type="text" id="searchBidId" name="searchBidId">
             <button>Remove Bid</button>
         </div>
-        <div class="form-group">
+        
+        <!-- Remove Listing -->
+        <form method = "post" action = "CustRepPanel.jsp" class="bid-info"> 
             <label for="searchListing">Search Listing:</label>
             <input type="text" id="searchListing" name="searchListing">
-            <button>Remove Listing</button>
-        </div>
+           <input type ="submit" value = "Remove Listing" name = "remove_listing" class = "button">
+        </form>
+        
         <div class="center">
             <div class="form-group">
                 <a href="CustRepTickets.html"><button>View Tickets</button></a>
@@ -53,5 +72,22 @@
         </div>
     </div>
 
+	<%
+	
+	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("remove_listing")!=null)) {
+		String productID = request.getParameter("searchListing");
+		int product_id = Integer.parseInt(productID);
+		
+		if(!listingsController.removeListing(product_id)) {
+            %>
+            <script>alert("Listing could not be removed.")</script>
+            <%
+            return;
+        }
+		response.sendRedirect("CustRepPanel.jsp");
+		
+	}
+	
+	%>
 </body>
 </html>
