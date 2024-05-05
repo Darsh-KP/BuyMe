@@ -4,7 +4,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F8D2C2; /* Light Coral */
+    background-color: #F8D2C2; 
 }
 
 .container {
@@ -18,7 +18,7 @@ body {
 }
 
 h1 {
-    color: #430F1B; /* Maroon */
+    color: #430F1B;
 }
 
 .ticket-cards {
@@ -29,23 +29,23 @@ h1 {
 }
 
 .ticket-card {
-    flex: 0 1 calc(30% - 20px); /* Adjusted width to accommodate margin */
-    margin-bottom: 20px; /* Added margin between ticket blocks */
+    flex: 0 1 calc(30% - 20px); 
+    margin-bottom: 20px; 
     padding: 20px;
-    background-color: #FCA6A9; /* Light Coral */
+    background-color: #FCA6A9; 
     border-radius: 10px;
     text-align: left;
     text-decoration: none;
     color: #430F1B;
     transition: background-color 0.3s ease;
-    border: 2px solid #000; /* Add a black border */
-    box-sizing: border-box; /* Include padding and border in the box's total width */
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add box shadow to cards */
+    border: 2px solid #000; 
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); 
 }
 
 
 .ticket-card:hover {
-    background-color: #D66978; /* Light Maroon */
+    background-color: #D66978; 
 }
 
 .ticket-card p {
@@ -57,7 +57,7 @@ h1 {
     display: block;
     margin-top: 30px;
     padding: 15px 30px;
-    background-color: #D66978; /* Light Maroon */
+    background-color: #D66978; 
     border: none;
     border-radius: 5px;
     color: #fff;
@@ -67,7 +67,7 @@ h1 {
 }
 
 .create-ticket-button:hover {
-    background-color: #FCA6A9; /* Light Coral */
+    background-color: #FCA6A9; 
 }
 
 /* TicketPage.css */
@@ -81,7 +81,7 @@ h1 {
 
 h1 {
     text-align: center;
-    color: #333; /* Main text color */
+    color: #333; 
 }
 
 .search-bar {
@@ -93,19 +93,19 @@ h1 {
     padding: 8px;
     width: 200px;
     border-radius: 5px;
-    border: 1px solid #ccc; /* Gray border */
+    border: 1px solid #ccc; 
     margin-right: 10px;
 }
 
 .search-bar button {
     padding: 8px 16px;
-    background-color: #D66978; /* Primary color */
-    color: #fff; /* Text color */
+    background-color: #D66978; 
+    color: #fff; 
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
 
 .search-bar button:hover {
-    background-color: #FCA6A9; /* Primary color - lighter shade */
+    background-color: #FCA6A9; 
 }

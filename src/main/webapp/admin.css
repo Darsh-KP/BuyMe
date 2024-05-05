@@ -1,5 +1,4 @@
 :root {
-    /* Your color palette */
     --background: #F8D2C2;
     --primary: #D66978;
     --secondary: #430F1B;
@@ -26,7 +25,7 @@ main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: calc(100vh - 100px); /* Adjust according to header height */
+    height: calc(100vh - 100px); 
 }
 
 .container {

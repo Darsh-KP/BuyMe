@@ -9,10 +9,10 @@ body {
     max-width: 600px;
     margin: 100px auto;
     padding: 20px;
-    border: 1px solid #D66978; /* Use your color palette */
+    border: 1px solid #D66978; 
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff; /* Use your color palette */
+    background-color: #ffffff;
 
 }
 .title {
@@ -26,7 +26,7 @@ h1 {
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 2px solid #020202; /* Border around the table */
+    border: 2px solid #020202; 
 }
 
 th, td {
@@ -47,8 +47,8 @@ tbody tr:hover {
     background-color: #ddd;
 }
 .back-btn {
-    background-color: #A14258; /* Change color as needed */
-    color: #f8f3f3; /* Change color as needed */
+    background-color: #A14258; 
+    color: #f8f3f3; 
     padding: 10px 10px;
     border: none;
     border-radius: 10px;
