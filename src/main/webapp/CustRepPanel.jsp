@@ -52,18 +52,23 @@
     <div class="container">
         <h2>Customer Representative Panel</h2>
         <div class="form-group">
+        <!-- Edit User -->
         <form method = "post" action = "CustRepPanel.jsp" class="bid-info"> 
-            <label for="searchListing">Search User:</label>
+            <label for="searchUser">Search User:</label>
             <input type="text" id="searchUser" name="searchUser">
            <input type ="submit" value = "Edit User" name = "edit_user" class = "button">
         </form>
             
             
         </div>
+        <!-- Remove Bid -->
         <div class="form-group">
-            <label for="searchBidId">Search BidID:</label>
-            <input type="text" id="searchBidId" name="searchBidId">
-            <button>Remove Bid</button>
+        <form method = "post" action = "CustRepPanel.jsp" class="bid-info"> 
+            <label for="searchBidId">Remove Bid:</label>
+            <input type="text" id="bidUser" name="bidUser" placeholder="Enter username">
+            <input type="text" id="listingID" name="listingID" placeholder="Enter ListingID">
+           <input type ="submit" value = "Remove Bid" name = "removeBid" class = "button">
+       	</form>
         </div>
         
         <!-- Remove Listing -->
@@ -75,7 +80,7 @@
         
         <div class="center">
             <div class="form-group">
-                <a href="CustRepTickets.html"><button>View Tickets</button></a>
+                <button onclick="window.location.href='CRTicketDashboard.jsp';" type="button" class="cancel-button">View Tickets</button>
             </div>
         </div>
     </div>
@@ -114,6 +119,21 @@
                 "   link.click()\n" +
                 "</script>");
 		
+	}
+	
+	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("removeBid")!=null)) {
+		String username = request.getParameter("bidUser");
+		String listingID = request.getParameter("listingID");
+		
+		
+		if(!bidController.removeBid(listingID, username)) {
+            %>
+            <script>alert("Invalid bid removal.")</script>
+            <%
+            return;
+        }
+		
+		response.sendRedirect("CustRepPanel.jsp");
 	}
 	
 	%>
