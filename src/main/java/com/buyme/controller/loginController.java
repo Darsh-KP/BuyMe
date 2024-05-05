@@ -57,4 +57,38 @@ public class loginController {
 
         return false;
     }
+
+    public static boolean checkIfCustomerRep (String username) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection customerRepConnection = database.newConnection();
+
+            // Get user
+            PreparedStatement preparedStatement = customerRepConnection.prepareStatement(
+                    "select is_customer_rep from user where username = ?;");
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Check if the user is customer rep
+            boolean isCustomerRep = false;
+            if (resultSet.next()) {
+                isCustomerRep = resultSet.getBoolean("is_customer_rep");
+            }
+
+            //Close connection
+            resultSet.close();
+            preparedStatement.close();
+            customerRepConnection.close();
+
+            return isCustomerRep;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error checking if customer rep...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 }
