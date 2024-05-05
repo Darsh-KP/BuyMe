@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="com.buyme.controller.*" %>
+
+<%
+    HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
+    if (sessionChecker == null || sessionChecker.getAttribute("adminLoggedIn") == null) {
+        response.sendRedirect("Login.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,43 +23,44 @@
     </header>
     <main>
         <section class="report-section">
-            <button class="report total-earnings">
+            <div class="report total-earnings">
                 <h2>Total Earnings</h2>
                 <p>$100,000</p>
-            </button>
+            </div>
             <button class="report earnings-per-item">
                 <h2>Earnings per Item</h2>
                 <p>Item 1: $10,000</p>
                 <p>Item 2: $20,000</p>
                 <p>Item 3: $15,000</p>
             </button>
-            <button class="report earnings-per-item-type">
+            <div class="report earnings-per-item-type">
                 <h2>Earnings per Item Type</h2>
                 <p>Type 1: $30,000</p>
                 <p>Type 2: $25,000</p>
-            </button>
+                <p>Type 3: $24,000</p>
+            </div>
             <button class="report earnings-per-end-user">
                 <h2>Earnings per End-user</h2>
                 <p>User 1: $20,000</p>
                 <p>User 2: $25,000</p>
                 <p>User 3: $15,000</p>
             </button>
-            <button class="report best-selling-items">
+            <div class="report best-selling-items">
                 <h2>Best-selling Items</h2>
                 <ol>
                     <li>Item A</li>
                     <li>Item B</li>
                     <li>Item C</li>
                 </ol>
-            </button>
-            <button class="report best-buyers">
+            </div>
+            <div class="report best-buyers">
                 <h2>Best Buyers</h2>
                 <ol>
                     <li>Buyer X</li>
                     <li>Buyer Y</li>
                     <li>Buyer Z</li>
                 </ol>
-            </button>
+            </div>
         </section>
     </main>
 </body>

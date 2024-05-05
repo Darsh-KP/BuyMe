@@ -24,7 +24,7 @@ public class ticketController {
 
     	    // Prepare the SQL statement for execution
     	    PreparedStatement statement = ticketConnection.prepareStatement(
-    	        "SELECT ticket_ID, created_by, resolved_by, comment, created_at FROM tickets WHERE created_by = ?");
+    	        "SELECT ticket_ID, created_by, comment, created_at FROM tickets WHERE created_by = ?");
     	    statement.setString(1, username);
     	    
     	    // Execute the query
@@ -43,8 +43,6 @@ public class ticketController {
                 
                 //created_by 
                 ticket.put("created_by", resultSet.getString("created_by"));
-                ticket.put("resolved_by", resultSet.getString("resolved_by"));
-                
 
                 // Comment
                 String comment = resultSet.getString("comment");

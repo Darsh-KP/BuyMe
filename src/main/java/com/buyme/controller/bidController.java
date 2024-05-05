@@ -3,6 +3,7 @@ package com.buyme.controller;
 import com.buyme.database.myDatabase;
 
 import java.sql.*;
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -17,6 +18,9 @@ public class bidController {
     public static boolean postBid (String username, String productID, String bid_amount, boolean is_anon) {
         int prod_id = Integer.parseInt(productID);
         double bid_amt = Double.parseDouble(bid_amount);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        bid_amt = Double.parseDouble(df.format(bid_amt));
         
         boolean bidAllowed = biddingAllowed(prod_id);
         
@@ -58,6 +62,10 @@ public class bidController {
         int prod_id = Integer.parseInt(productID);
         double max_bid = Double.parseDouble(max_bid_amount);
         double bid_inc = Double.parseDouble(bid_increment);
+
+        DecimalFormat df = new DecimalFormat("#.##");
+        bid_inc = Double.parseDouble(df.format(bid_inc));
+        max_bid = Double.parseDouble(df.format(max_bid));
         
         boolean bidAllowed = biddingAllowed(prod_id);
         
@@ -172,6 +180,8 @@ public class bidController {
             while (resultSet.next()) {
                 // Check if the auto-bidder bid is less than max bid allowed
                 double bidAmount = price + resultSet.getDouble("bid_increment");
+                DecimalFormat df = new DecimalFormat("#.##");
+                bidAmount = Double.parseDouble(df.format(bidAmount));
                 if (!(bidAmount <= resultSet.getDouble("max_bid"))) continue;
 
                 // Try to auto-bid
