@@ -53,12 +53,18 @@
         <h2>Customer Representative Panel</h2>
         <div class="form-group">
         <!-- Edit User -->
-        <form method = "post" action = "CustRepPanel.jsp" class="bid-info"> 
+        <form method = "post" action = "CustRepPanel.jsp" class="user-info"> 
             <label for="searchUser">Search User:</label>
             <input type="text" id="searchUser" name="searchUser">
            <input type ="submit" value = "Edit User" name = "edit_user" class = "button">
         </form>
-            
+        
+        <form method = "post" action = "CustRepPanel.jsp" class="user-info"> 
+            <label for="searchBidId">Change User's Password:</label>
+            <input type="text" id="change_user" name="change_user" placeholder="Enter username">
+            <input type="text" id="new_pass" name="new_pass" placeholder="Enter New Password">
+           <input type ="submit" value = "Change password" name = "passChange" class = "button">
+       	</form>
             
         </div>
         <!-- Remove Bid -->
@@ -78,6 +84,7 @@
            <input type ="submit" value = "Remove Listing" name = "remove_listing" class = "button">
         </form>
         
+        
         <div class="center">
             <div class="form-group">
                 <button onclick="window.location.href='CRTicketDashboard.jsp';" type="button" class="cancel-button">View Tickets</button>
@@ -88,7 +95,7 @@
 	<%
 	
 	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("remove_listing")!=null)) {
-		String productID = request.getParameter("searchListing");
+		String productID = request.getParameter("searchListing").trim();
 		int product_id = Integer.parseInt(productID);
 		
 		if(!listingsController.removeListing(product_id)) {
@@ -102,7 +109,7 @@
 	}
 	
 	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("edit_user")!=null)) {
-		String username = request.getParameter("searchUser");
+		String username = request.getParameter("searchUser").trim();
 		
 		
 		if(!loginController.userExists(username)) {
@@ -122,13 +129,29 @@
 	}
 	
 	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("removeBid")!=null)) {
-		String username = request.getParameter("bidUser");
-		String listingID = request.getParameter("listingID");
+		String username = request.getParameter("bidUser").trim();
+		String listingID = request.getParameter("listingID").trim();
 		
 		
 		if(!bidController.removeBid(listingID, username)) {
             %>
             <script>alert("Invalid bid removal.")</script>
+            <%
+            return;
+        }
+		
+		response.sendRedirect("CustRepPanel.jsp");
+	}
+	
+	
+	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("passChange")!=null)) {
+		String username = request.getParameter("change_user").trim();
+		String newPassword = request.getParameter("new_pass").trim();
+		
+		
+		if(!signUpController.changePassword(username, newPassword)) {
+            %>
+            <script>alert("Invalid password change.")</script>
             <%
             return;
         }

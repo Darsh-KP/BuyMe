@@ -109,3 +109,13 @@ main {
     transform: scale(1.05);
     transition: transform 0.3s ease;
 }
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.report.earnings-per-item:hover p,
+.report.earnings-per-end-user:hover p {
+    color: var(--secondary); /* Or any other text color you prefer */
+}
