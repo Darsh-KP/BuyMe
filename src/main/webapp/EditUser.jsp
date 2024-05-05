@@ -24,32 +24,22 @@
 </head>
 <body>
 
-    <!-- Nav Bar -->
-    <nav>
+     <!-- Nav Bar -->
+
+     <nav>
         <div class="logo">
             <img src="./data/LogoFinal.png" alt="BuyMe Logo">
         </div>
         <div class="nav-links">
-            <a href="Home.jsp">Home</a>
-            <a href="TicketDashboard.jsp">Tickets</a>
+            <a href="">Home</a>
+            <a href="">Tickets</a>
             <a href="Listings.jsp">Listings</a>
-            <a href="Wishlist.jsp">Wishlist</a>
+            <a href="">Wishlist</a>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn">
-                <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
-            </button>
-            <div class="dropdown-content">
-                <label><a href="Alerts.jsp">Notifications</a></label>
-                <label><a href="ParticipationHistory.jsp">My History</a></label>
-                <%
-                    String usernameChecker = (String) session.getAttribute("user");
-                    if (loginController.checkIfCustomerRep(usernameChecker)) {
-                        out.print("<label><a href=\"CustRepPanel.jsp\">Customer Rep</a></label>");
-                    }
-                %>
-                <label><a href="Logout.jsp">Log Out</a></label>
-            </div>
+        <div class="profile">
+            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
+            <a href="#">Notifications</a>
+            <a href="#" class="logout-button">Log Out</a>
         </div>
     </nav>
 
@@ -61,7 +51,7 @@
 
 
 <div class="container">
-    <h2>Edit User <%out.print(userInfo.get("username")); %></h2>
+    <h2>Edit User: <%out.print(userInfo.get("username")); %></h2>
     <form action="#" method="post">
         <label for="First Name">First Name:</label>
         <input type="text" id="firstName" name="firstName" value="<%out.print(userInfo.get("fName")); %>" required>
@@ -77,6 +67,31 @@
         <input type="submit" value="Save Changes">
     </form>
 </div>
+
+<%
+//Check if the form was submitted
+if (request.getMethod().equalsIgnoreCase("POST")) {
+    // Get username, password, and other details
+    String username = userSearch;
+    String fname = request.getParameter("firstName").trim();
+    String lname = request.getParameter("lastName").trim();
+    String address = request.getParameter("address").trim();
+    String email = request.getParameter("email").trim();
+
+    // Attempt sign up
+    if (!loginController.editUser(username, fname, lname, address, email)) {
+        // Username taken, try again
+        %>
+        <script>alert("Could not update user.")</script>
+        <%
+        return;
+    }
+
+    // User created, redirect to log in
+    response.sendRedirect("CustRepPanel.jsp");
+}
+
+%>
 
 
 

@@ -59,7 +59,6 @@
         </form>
             
             
-            <a href="EditUser.html"><button>Edit User</button></a>
         </div>
         <div class="form-group">
             <label for="searchBidId">Search BidID:</label>
