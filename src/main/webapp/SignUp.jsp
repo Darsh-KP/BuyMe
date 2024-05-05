@@ -3,6 +3,10 @@
 <%@ page import="javax.servlet.http.*,javax.servlet.*"%>
 <%@ page import="com.buyme.controller.*"%>
 
+<%
+    if (session.getAttribute("user") != null) response.sendRedirect("Home.jsp");
+%>
+
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
