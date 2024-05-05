@@ -74,7 +74,9 @@ public class loginController {
             // Check if the user is customer rep
             boolean isCustomerRep = false;
             if (resultSet.next()) {
-                isCustomerRep = resultSet.getBoolean("is_customer_rep");
+                if (resultSet.getBoolean("is_customer_rep")) {
+                    isCustomerRep = true;
+                }
             }
 
             //Close connection
