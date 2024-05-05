@@ -67,6 +67,7 @@ public class postListingController {
             preparedStatement.close();
             preparedStatementAttributes.close();
             postConnection.close();
+            generatedKeys.close();
 
             // Success
             if (myDatabase.debug) System.out.println("Posted a Listing...");
