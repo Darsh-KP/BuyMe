@@ -187,11 +187,50 @@ public class loginController {
 
         } catch (SQLException e) {
             if (myDatabase.debug) {
-                System.out.println("Error checking if user exists...");
+                System.out.println("Error getting user info...");
                 e.printStackTrace();
             }
         }
 
         return userInfo;
     }
+    
+    public static boolean editUser(String username, String fName, String lName, String email, String address){
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection customerRepConnection = database.newConnection();
+
+            // Get user
+            PreparedStatement preparedStatement = customerRepConnection.prepareStatement(
+                    "UPDATE user " +
+                    "SET first_name = ?, " +
+                    "last_name = ?, " +
+                    "email = ?, " +
+                    "address = ? " +
+                    "WHERE username = ?;");
+                preparedStatement.setString(1, fName);
+                preparedStatement.setString(2, lName);
+                preparedStatement.setString(3, email);
+                preparedStatement.setString(4, address);
+                preparedStatement.setString(5, username);
+            preparedStatement.executeUpdate();
+            
+
+            //Close connection
+            preparedStatement.close();
+            customerRepConnection.close();
+
+            return true;
+            
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error editing user info...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+    
 }
