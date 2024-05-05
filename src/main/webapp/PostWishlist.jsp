@@ -62,7 +62,7 @@
 
     <div class="container">
         <h1>New Wishlist</h1>
-        <form action="PostWishlist.jsp" method= "post">
+        <form action="PostWishlist.jsp" method= "post" onclick="return enableKeyInputs()">
             <div class="form-group">
                 <label for="subcategory">Category:</label>
                 <select id="subcategory" name="subcategory">
@@ -157,12 +157,17 @@
                         const inputContainer = button.parentElement;
                         inputContainer.remove();
                     }
+
+                    function enableKeyInputs () {
+                        var keyInputs = document.getElementsByName("attributeKey");
+                        for (var i = 0; i < keyInputs.length; i++) {
+                            keyInputs[i].disabled = false;
+                        }
+                    }
                 </script>
             <input type="submit" class="cancel-button" value ="Add to Wishlist">
             </div>
-            
-            </div>
-            
+
         </form>
     </div>
     <script src="script.js"></script>
@@ -192,8 +197,7 @@
             return;
         }
 
-        // User created, redirect to log in
-        response.sendRedirect("Login.jsp");
+        response.sendRedirect("Wishlist.jsp");
     }
 %>
     

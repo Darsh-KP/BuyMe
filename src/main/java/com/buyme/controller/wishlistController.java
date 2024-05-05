@@ -33,11 +33,11 @@ public class wishlistController {
 
             // Process attributes
             PreparedStatement preparedStatementAttributes = wishlistConnection.prepareStatement(
-                    "INSERT INTO wishlist_attribute (username, date, wishlist_attribute_key, wishlist_attribute_values) VALUES (?, ?, ?, ?);"
+                    "INSERT INTO wishlist_attribute (username, date, wishlist_attribute_key, wishlist_attribute_value) VALUES (?, ?, ?, ?);"
             );
             for (Map.Entry<String, String> entry : wishlistAttributes.entrySet()) {
                 preparedStatementAttributes.setString(1, username);
-                preparedStatement.setTimestamp(2, Timestamp.valueOf(date));
+                preparedStatementAttributes.setTimestamp(2, Timestamp.valueOf(date));
                 preparedStatementAttributes.setString(3, entry.getKey());
                 preparedStatementAttributes.setString(4, entry.getValue());
                 preparedStatementAttributes.executeUpdate();
