@@ -16,7 +16,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Customer Representative</title>
-    <link rel="stylesheet" href="CreateCustRep.css">
+    <link rel="stylesheet" href="CreateCustomerRep.css">
 </head>
 <body>
     <header>
@@ -24,7 +24,7 @@
     </header>
     <main>
         <section class="form-section">
-            <form method="post" action="CreateCustRep.jsp">
+            <form method="post" action="CreateCustomerRep.jsp">
                 <div class="form-group">
                     <label for="firstName">First Name:</label>
                     <input type="text" id="firstName" name="firstName" required autofocus maxlength="20">

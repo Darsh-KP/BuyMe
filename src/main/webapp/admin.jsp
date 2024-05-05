@@ -23,7 +23,7 @@
     </header>
     <main>
         <div class="container">
-            <button class="create-rep-btn" onclick="window.location.href='CreateCustRep.jsp';">Create Customer Representative</button>
+            <button class="create-rep-btn" onclick="window.location.href='CreateCustomerRep.jsp';">Create Customer Representative</button>
             <button class="create-rep-btn" onclick="window.location.href='UpgradeRep.jsp';">Upgrade Customer Representative</button>
             <button class="generate-report-btn" onclick="window.location.href='SalesReport.jsp';">Generate Sales Report</button>
             <button class="create-rep-btn" onclick="window.location.href='LogoutAdmin.jsp';">Log Out</button>
