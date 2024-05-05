@@ -135,7 +135,7 @@
                     <img src="./data/TrendingLogo.png" alt="Logo" class="trending-logo">
                 </div>
 
-                <div class="product-list-container">
+                <div class="trending-product-list-container">
                     <!-- individual product card-->
                     <%
                         // Get all products to display
