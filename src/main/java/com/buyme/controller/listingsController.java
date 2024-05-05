@@ -25,6 +25,7 @@ public class listingsController {
                     "where true ";
             String endQuery = " ;";
             String fullQuery = baseQuery + criteria + endQuery;
+            System.out.println(fullQuery);
             PreparedStatement statement = listingsConnection.prepareStatement(fullQuery);
             ResultSet resultSet = statement.executeQuery();
 
@@ -227,7 +228,7 @@ public class listingsController {
     	
     }
 
-    public static HashMap<String, List<String>> getCurrentAttributes() {
+    public static HashMap<String, ArrayList<String>> getCurrentAttributes() {
         try {
             // Create connection
             myDatabase database = new myDatabase();
@@ -250,7 +251,7 @@ public class listingsController {
                     allCurrentAttributes.get(attributeKey).add(attributeValue);
                 } else {
                     // If the key doesn't exist, create a new list and add the attribute value to it
-                    ArrayList<String> attributeValues = new ArrayList<>();
+                    ArrayList<String> attributeValues = new ArrayList<String>();
                     attributeValues.add(attributeValue);
                     allCurrentAttributes.put(attributeKey, attributeValues);
                 }
