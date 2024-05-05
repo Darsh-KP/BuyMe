@@ -1,4 +1,23 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="com.buyme.controller.*" %>
+<%@ page import="com.buyme.database.myDatabase" %>
 
+<%
+    HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
+    if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
+        response.sendRedirect("Login.jsp");
+        return;
+    }
+
+    String customerRepChecker = (String) session.getAttribute("user");
+    if (!loginController.checkIfCustomerRep(customerRepChecker)) {
+        response.sendRedirect("Home.jsp");
+        return;
+    }
+%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -28,7 +47,12 @@
             <div class="dropdown-content">
                 <label><a href="Alerts.jsp">Notifications</a></label>
                 <label><a href="ParticipationHistory.jsp">My History</a></label>
-                
+                <%
+                    String usernameChecker = (String) session.getAttribute("user");
+                    if (loginController.checkIfCustomerRep(usernameChecker)) {
+                        out.print("<label><a href=\"CustRepPanel.jsp\">Customer Rep</a></label>");
+                    }
+                %>
                 <label><a href="Logout.jsp">Log Out</a></label>
             </div>
         </div>

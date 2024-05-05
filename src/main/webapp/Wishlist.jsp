@@ -2,6 +2,14 @@
 <%@ page import="javax.servlet.http.*, javax.servlet.*"%>
 <%@ page import="com.buyme.controller.*" %>
 
+<%
+    HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
+    if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
+        response.sendRedirect("Login.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
