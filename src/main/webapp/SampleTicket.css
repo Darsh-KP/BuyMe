@@ -4,20 +4,20 @@ body {
     margin: 0;
     padding: 0;
     font-family: Arial, sans-serif;
-    background-color: #F8D2C2; /* Light Gray */
+    background-color: #F8D2C2; 
 }
 
 .chatbox {
     max-width: 600px;
     margin: 50px auto;
-    background-color: #decfc8; /* Blue */
+    background-color: #decfc8; 
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .chat-header {
     padding: 20px;
-    background-color: #000409; /* Dark Blue */
+    background-color: #000409; 
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
@@ -44,13 +44,13 @@ body {
 }
 
 .sent {
-    background-color: #FCA6A9; /* Light Blue */
+    background-color: #FCA6A9; 
     color: #050404;
     float: left;
 }
 
 .received {
-    background-color: #D66978; /* Lighter Blue */
+    background-color: #D66978; 
     color: #000;
     float: right;
 }
@@ -67,7 +67,7 @@ body {
 
 .chat-footer {
     padding: 20px;
-    background-color: #430F1B; /* Dark Blue */
+    background-color: #430F1B;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -81,7 +81,7 @@ body {
 
 .chat-footer button {
     padding: 10px 20px;
-    background-color: #A14258; /* Light Blue */
+    background-color: #A14258; 
     color: #fff;
     border: none;
     border-radius: 5px;
@@ -89,5 +89,5 @@ body {
 }
 
 .chat-footer button:hover {
-    background-color: #1F4E79; /* Dark Blue */
+    background-color: #1F4E79; 
 }
