@@ -22,19 +22,19 @@ header {
     color: white;
     padding: 20px;
     display: flex;
-    align-items: center; /* Align items vertically */
+    align-items: center;
 }
 
 .title {
     text-align: center;
-    flex-grow: 1; /* This will make the title take up the remaining space */
-    margin: 0; /* Reset margin to avoid any unexpected spacing */
+    flex-grow: 1; 
+    margin: 0;
 }
 
 .back-btn {
-    background-color: #A14258; /* Change color as needed */
-    color: #f8f3f3; /* Change color as needed */
-    padding: 10px 20px; /* Adjust padding as needed */
+    background-color: #A14258; 
+    color: #f8f3f3;
+    padding: 10px 20px; 
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -87,7 +87,7 @@ main {
     transition: transform 0.3s ease;
 }
 
-/* Styles for the buttons to resemble report cards */
+
 .report a {
     text-decoration: none;
     color: inherit;
@@ -117,5 +117,5 @@ a {
 
 .report.earnings-per-item:hover p,
 .report.earnings-per-end-user:hover p {
-    color: var(--secondary); /* Or any other text color you prefer */
+    color: var(--secondary); 
 }

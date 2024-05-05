@@ -5,7 +5,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F8D2C2; /* Light Coral */
+    background-color: #F8D2C2; 
 }
 
 .container {
@@ -19,7 +19,7 @@ body {
 
 h1 {
     text-align: center;
-    color: #430F1B; /* Maroon */
+    color: #430F1B;
 }
 
 form {
@@ -28,7 +28,7 @@ form {
 
 label {
     font-weight: bold;
-    color: #430F1B; /* Maroon */
+    color: #430F1B; 
 }
 
 textarea {
@@ -54,23 +54,23 @@ textarea {
 }
 
 .submit-button {
-    background-color: #D66978; /* Light Maroon */
+    background-color: #D66978; 
     color: #fff;
     margin-right: 10px;
     transition: background-color 0.3s ease;
 }
 
 .submit-button:hover {
-    background-color: #FCA6A9; /* Light Coral */
+    background-color: #FCA6A9;
 }
 
 .cancel-button {
-    background-color: #FCA6A9; /* Light Coral */
+    background-color: #FCA6A9; 
     color: #fff;
     transition: background-color 0.3s ease;
 }
 
 .cancel-button:hover {
-    background-color: #D66978; /* Light Maroon */
+    background-color: #D66978; 
 }
 

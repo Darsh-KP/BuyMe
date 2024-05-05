@@ -2,22 +2,22 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F8D2C2; /* Use your color palette */
+    background-color: #F8D2C2; 
 }
 
 .container {
     max-width: 600px;
     margin: 100px auto;
     padding: 20px;
-    border: 1px solid #D66978; /* Use your color palette */
+    border: 1px solid #D66978;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    background-color: #ffffff; /* Use your color palette */
+    background-color: #ffffff;
 }
 
 .title {
     text-align: center;
-    color: #D66978; /* Use your color palette */
+    color: #D66978; 
 }
 
 .input-container {
@@ -27,9 +27,9 @@ body {
 .input-container input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #D66978; /* Use your color palette */
+    border: 1px solid #D66978; 
     border-radius: 5px;
-    outline: none; /* Remove outline */
+    outline: none; 
 }
 
 .button-container {
@@ -45,33 +45,33 @@ body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 16px;
-    transition: background-color 0.3s ease; /* Add transition effect */
+    transition: background-color 0.3s ease; 
 }
 
 .remove-button {
-    background-color: #ea6460; /* Use your color palette */
-    color: #ffffff; /* Use your color palette */
+    background-color: #ea6460; 
+    color: #ffffff; 
 }
 
 .upgrade-button {
-    background-color: #427e40; /* Use your color palette */
-    color: #ffffff; /* Use your color palette */
+    background-color: #427e40; 
+    color: #ffffff; 
 }
 
 .create-button {
-    background-color: #f09598; /* Use your color palette */
-    color: #ffffff; /* Use your color palette */
+    background-color: #f09598;
+    color: #ffffff; 
 }
 
 .create-button:hover,
 .remove-button:hover,
 .upgrade-button:hover {
-    background-color: #A14258; /* Use your color palette */
+    background-color: #A14258; 
 }
 
 .back-btn {
-    background-color: #A14258; /* Change color as needed */
-    color: #f8f3f3; /* Change color as needed */
+    background-color: #A14258;
+    color: #f8f3f3; 
     padding: 10px 10px;
     border: none;
     border-radius: 10px;
