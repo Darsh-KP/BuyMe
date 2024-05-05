@@ -28,53 +28,52 @@ nav {
     cursor: pointer;
 }
 
+/* Adjusted styles for the profile picture dropdown */
 .dropdown {
     position: relative;
     display: inline-block;
+    margin-right: 20px; /* Increased margin for better spacing */
 }
 
 .dropbtn {
-    background-color: transparent; /* Remove background color */
-    color: var(--extra2);
+    background-color: transparent;
+    color: #fff;
     padding: 5px;
-    border: none; /* Remove border */
+    border: none;
     cursor: pointer;
-    margin-left: 2px;
 }
 
 .dropbtn img {
     height: 30px;
+    width: 30px; /* Added width for consistency */
     border-radius: 50%;
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #D66978;
+    background-color: #430F1B; /* Maroon */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
-    padding: 0; /* Adjusted padding */
-    right: 0; /* Align to the right */
-    color: #000; /* Black text color */
-    border: 1px solid #000; /* Add border */
+    padding: 10px 0; /* Adjusted padding */
+    right: 0;
+    color: #fff; /* White text color */
+    border: 1px solid #430F1B; /* Maroon border */
+    border-radius: 5px; /* Added border radius for a softer look */
 }
 
 .dropdown-content a {
     display: block;
     padding: 8px 16px;
     text-decoration: none;
-    color: inherit; /* Inherit text color */
+    color: #fff; /* White text color */
 }
 
 .dropdown-content a:hover {
-    background-color: #FCA6A9;
+    background-color: #D66978; /* Light Maroon on hover */
 }
 
 .dropdown:hover .dropdown-content {
     display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #430F1B;
 }
