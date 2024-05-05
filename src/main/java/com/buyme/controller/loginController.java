@@ -4,6 +4,7 @@ import com.buyme.database.myDatabase;
 import com.buyme.database.passwordSecurity;
 
 import java.sql.*;
+import java.util.HashMap;
 
 public class loginController {
     private loginController() {}
@@ -121,5 +122,76 @@ public class loginController {
         }
 
         return false;
+    }
+
+    public static boolean userExists(String username){
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection customerRepConnection = database.newConnection();
+
+            // Get user
+            PreparedStatement preparedStatement = customerRepConnection.prepareStatement(
+                    "select username from user where username = ?;");
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Check if the user is customer rep
+            boolean isUser = false;
+            if (resultSet.next()) {
+                isUser = true;
+            }
+
+            //Close connection
+            resultSet.close();
+            preparedStatement.close();
+            customerRepConnection.close();
+
+            return isUser;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error checking if user exists...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
+    public static HashMap<String, String> getUserInfo(String username){
+
+
+        HashMap<String, String> userInfo = new HashMap<String, String>();
+
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection customerRepConnection = database.newConnection();
+
+            // Get user
+            PreparedStatement preparedStatement = customerRepConnection.prepareStatement(
+                    "select first_name, last_name, email, address from user where username = ?;");
+            preparedStatement.setString(1, username);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+
+            if (resultSet.next()) {
+                userInfo.put("username", username);
+                userInfo.put("fName", resultSet.getString("first_name"));
+                userInfo.put("lName", resultSet.getString("last_name"));
+                userInfo.put("email", resultSet.getString("email"));
+                userInfo.put("address", resultSet.getString("address"));
+
+            }
+
+
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error checking if user exists...");
+                e.printStackTrace();
+            }
+        }
+
+        return userInfo;
     }
 }
