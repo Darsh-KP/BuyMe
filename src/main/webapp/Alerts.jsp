@@ -27,49 +27,6 @@
 </head>
 <body>
 
-6px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: 0; /* Adjusted padding */
-    right: 0; /* Align to the right */
-    color: #000; /* Black text color */
-    border: 1px solid #000; /* Add border */
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 8px 16px;
-    text-decoration: none;
-    color: inherit; /* Inherit text color */
-}
-
-.dropdown-content a:hover {
-    background-color: #FCA6A9;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #430F1B;
-}
-
-
-
-.logout-button {
-    padding: 10px 20px;
-    background-color: #A14258;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
-}
-
-.logout-button:hover {
-    background-color: #A14258;
-}
-
     <!-- Nav Bar -->
     <nav>
         <div class="logo">
