@@ -7,7 +7,6 @@
     <link rel="stylesheet" href="CreateCustRep.css">
 </head>
 <body>
-
     <header>
         <h1>Create Customer Representative</h1>
     </header>

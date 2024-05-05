@@ -37,6 +37,14 @@
         String username = request.getParameter("username").trim();
         String password = request.getParameter("password").trim();
 
+        // Check for admin login
+        if (username.equals("admin")) {
+            if (loginController.checkAdminPassword(password)) {
+                session.setAttribute("adminLoggedIn", true);
+                response.sendRedirect("admin.jsp");
+            }
+        }
+
         // Attempt log in
         if (!loginController.attemptLogin(username, password)) {
             // User doesn't exist, back to log in

@@ -1,4 +1,4 @@
-<%@ page import="com.buyme.controller.participationHistoryController" %>
+<%@ page import="com.buyme.controller.*" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.buyme.database.myDatabase" %>

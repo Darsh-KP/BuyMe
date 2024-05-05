@@ -91,4 +91,35 @@ public class loginController {
 
         return false;
     }
+
+    public static boolean checkAdminPassword (String password) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection adminConnection = database.newConnection();
+
+            // Get user
+            PreparedStatement preparedStatement = adminConnection.prepareStatement(
+                    "select property_value from properties where property_key = \"admin_password\" and property_value = ?;");
+            preparedStatement.setString(1, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            // Check if the user is customer rep
+            boolean isAdmin = resultSet.next();
+
+            //Close connection
+            resultSet.close();
+            preparedStatement.close();
+            adminConnection.close();
+
+            return isAdmin;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error checking if customer rep...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 }

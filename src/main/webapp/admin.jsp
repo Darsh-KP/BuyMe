@@ -1,3 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="com.buyme.controller.*" %>
+
+<%
+    HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
+    if (sessionChecker == null || sessionChecker.getAttribute("adminLoggedIn") == null) {
+        response.sendRedirect("Login.jsp");
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

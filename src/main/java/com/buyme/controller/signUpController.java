@@ -9,7 +9,13 @@ public class signUpController {
     private signUpController() {}
 
     public static boolean attemptSignUp(String firstName, String lastName, String username, String password, String email, String address) {
-    	try {
+    	// Check if username provided is admin
+        if (username.equalsIgnoreCase("admin")) {
+            if (myDatabase.debug) System.out.println("Cannot have admin as username.");
+            return false;
+        }
+
+        try {
             // Create connection
             myDatabase database = new myDatabase();
             Connection SignUpConnection = database.newConnection();
