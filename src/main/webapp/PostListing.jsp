@@ -14,6 +14,7 @@
     HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
     if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
         response.sendRedirect("Login.jsp");
+        return;
     }
 %>
 

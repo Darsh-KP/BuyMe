@@ -16,6 +16,7 @@
     String criteria = request.getParameter("criteria");
     if (criteria == null) {
         response.sendRedirect("SalesReport.jsp");
+        return;
     }
 
     List<HashMap<String, String>> earningsPer = null;

@@ -4,7 +4,10 @@
 <%@ page import="com.buyme.controller.*"%>
 
 <%
-    if (session.getAttribute("user") != null) response.sendRedirect("Home.jsp");
+    if (session.getAttribute("user") != null) {
+        response.sendRedirect("Home.jsp");
+        return;
+    }
 %>
 
 <!DOCTYPE html>
