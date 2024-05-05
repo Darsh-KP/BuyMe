@@ -1,6 +1,7 @@
 package com.buyme.controller;
 
 import com.buyme.database.myDatabase;
+import com.mysql.jdbc.Statement;
 import com.buyme.database.*;
 
 import java.sql.*;
@@ -76,5 +77,57 @@ public class signUpController {
         }
 
         return false;
+    }
+    
+    public static boolean changePassword(String username, String newPassword){
+    	try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection changePassConnection = database.newConnection();
+
+            // Check if the username is taken
+            PreparedStatement redundancypreparedStatement = changePassConnection.prepareStatement(
+                    "SELECT COUNT(*) as userExists FROM User WHERE username = ?");
+            redundancypreparedStatement.setString(1, username);
+            ResultSet resultSet = redundancypreparedStatement.executeQuery();
+            boolean passwordUpdated = false;
+            if (resultSet.next()) {
+                int userExists = resultSet.getInt("userExists");
+
+                if ((userExists) >= 1) {
+                	String passwordSalt = passwordSecurity.generateSalt();
+                    String passwordHash = passwordSecurity.hashPassword(newPassword, passwordSalt);
+                    
+                    if (passwordHash == null) {
+                        if (myDatabase.debug) System.out.println("Password hash is null.");
+                        return false;
+                    }
+                    
+                    PreparedStatement preparedStatement = changePassConnection.prepareStatement(
+                    		"UPDATE `user`"
+                    		+ "SET password_hash = ?, password_salt = ? \n"
+                    		+ "WHERE username = ?;"
+                    		);
+	                    preparedStatement.setString(1, passwordHash);
+	                    preparedStatement.setString(2, passwordSalt);
+	                    preparedStatement.setString(3, username);
+	                    preparedStatement.executeUpdate();
+	                    passwordUpdated = true;
+                }
+            }
+            resultSet.close();
+            redundancypreparedStatement.close();
+            changePassConnection.close();
+            
+    	
+    	
+	    	return passwordUpdated;
+	    }catch (SQLException e) {
+		        if (myDatabase.debug) {
+		            System.out.println("Error Signing Up...");
+		            e.printStackTrace();
+		        }
+		    }
+    	return false;
     }
 }

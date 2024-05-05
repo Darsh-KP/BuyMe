@@ -15,7 +15,7 @@ public class ticketController {
 
     
     //Gets all tickets for selected user
-    public static List<HashMap<String, String>> getAllListingsTicketsDisplayStrings(String username) {
+    public static List<HashMap<String, String>> getAllListingsTicketsDisplayStrings(String username, String criteria) {
     
     	try {
             // Create connection
@@ -23,8 +23,12 @@ public class ticketController {
     	    Connection ticketConnection = database.newConnection();
 
     	    // Prepare the SQL statement for execution
-    	    PreparedStatement statement = ticketConnection.prepareStatement(
-    	        "SELECT ticket_ID, created_by, comment, created_at FROM tickets WHERE created_by = ?");
+    	    String baseQuery = "SELECT ticket_ID, created_by, comment, created_at FROM tickets WHERE created_by = ? ";
+    	    String endQuery = " ;";
+    	    String fullQuery= baseQuery + criteria + endQuery;  
+    	    
+    	    
+    	    PreparedStatement statement = ticketConnection.prepareStatement(fullQuery);
     	    statement.setString(1, username);
     	    
     	    // Execute the query
