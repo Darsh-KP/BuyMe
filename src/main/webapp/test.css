@@ -1,12 +1,123 @@
-/* NavBar CSS */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #F8D2C2; /* Light Coral */
+}
+
+.container {
+    max-width: 800px;
+    margin: 50px auto; /* Keep the original margin */
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    display: flex; /* Change display to flex */
+    flex-wrap: wrap; /* Allow flex items to wrap */
+    justify-content: space-between; /* Spread items evenly along the main axis */
+}
+
+h1 {
+    color: #430F1B; /* Maroon */
+}
+
+.ticket-cards {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+}
+
+.ticket-card {
+    flex-basis: calc(30% - 20px); /* Adjusted width to accommodate margin */
+    margin-bottom: 20px; /* Added margin between ticket blocks */
+    padding: 20px;
+    background-color: #FCA6A9; /* Light Coral */
+    border-radius: 10px;
+    text-align: left;
+    text-decoration: none;
+    color: #430F1B;
+    transition: background-color 0.3s ease;
+    box-sizing: border-box; /* Include padding and border in the box's total width */
+}
+
+
+.ticket-card:hover {
+    background-color: #D66978; /* Light Maroon */
+}
+
+.ticket-card p {
+    margin: 0;
+    margin-bottom: 10px;
+}
+
+.create-ticket-button {
+    display: block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    background-color: #D66978; /* Light Maroon */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.create-ticket-button:hover {
+    background-color: #FCA6A9; /* Light Coral */
+}
+
+/* TicketPage.css */
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    text-align: center;
+    color: #333; /* Main text color */
+}
+
+.search-bar {
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.search-bar input[type="text"] {
+    padding: 8px;
+    width: 200px;
+    border-radius: 5px;
+    border: 1px solid #ccc; /* Gray border */
+    margin-right: 10px;
+}
+
+.search-bar button {
+    padding: 8px 16px;
+    background-color: #D66978; /* Primary color */
+    color: #fff; /* Text color */
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-bar button:hover {
+    background-color: #FCA6A9; /* Primary color - lighter shade */
+}
+
+
+/* NavBar CSS */ 
+
 nav {
     background-color: #430F1B; /* Maroon */
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 5px 20px; /* Padding adjusted */
-    width: 100%;
+    padding: 10px 20px;
 }
 
 .logo img {
@@ -22,72 +133,25 @@ nav {
     background-color: #D66978; /* Light Maroon */
 }
 
+
 .profile {
     display: flex;
     align-items: center;
-    position: relative; /* Set position to relative */
 }
 
-.profile-img {
-    height: 40px;
-    border-radius: 50%;
-    margin-right: 30px;
-    cursor: pointer;
-}
-/* Dropdown */
-/* Dropdown */
-.dropdown {
-    position: relative;
-    display: inline-block;
-}
-
-.dropbtn {
-    background-color: transparent; /* Remove background color */
-    color: var(--extra2);
-    padding: 5px;
-    border: none; /* Remove border */
-    cursor: pointer;
-    margin-left: 2px;
-}
-
-.dropbtn img {
+.profile img {
     height: 30px;
     border-radius: 50%;
+    margin-right: 10px;
 }
 
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #D66978;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    padding: 0; /* Adjusted padding */
-    right: 0; /* Align to the right */
-    color: #000; /* Black text color */
-    border: 1px solid #000; /* Add border */
-}
-
-.dropdown-content a {
-    display: block;
-    padding: 8px 16px;
+.profile a {
     text-decoration: none;
-    color: inherit; /* Inherit text color */
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background-color: #430F1B; /* Maroon */
 }
-
-.dropdown-content a:hover {
-    background-color: #FCA6A9;
-}
-
-.dropdown:hover .dropdown-content {
-    display: block;
-}
-
-.dropdown:hover .dropbtn {
-    background-color: #430F1B;
-}
-
-
 
 .logout-button {
     padding: 10px 20px;
@@ -98,7 +162,19 @@ nav {
     cursor: pointer;
     text-decoration: none;
 }
-
 .logout-button:hover {
     background-color: #A14258;
+}
+
+/* Ensure that there's enough space between the items when wrapping */
+@media screen and (max-width: 800px) {
+    .ticket-card {
+        flex-basis: calc(50% - 20px); /* Adjusted width for smaller screens */
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .ticket-card {
+        flex-basis: calc(100% - 20px); /* Adjusted width for even smaller screens */
+    }
 }

@@ -21,8 +21,9 @@ h1 {
 
 .ticket-cards {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     margin-top: 30px;
+    flex-wrap: wrap;
 }
 
 .ticket-card {
