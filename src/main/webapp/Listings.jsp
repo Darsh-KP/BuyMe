@@ -14,7 +14,6 @@
     }
 %>
 
-
 <%
     notificationsController.checkListingWinners();
 %>
@@ -100,15 +99,31 @@
                 </div>
             </div>
             
-            <!-- Size Filter -->
+            <!-- Attribute Filter -->
+            <%
+                HashMap<String, List<String>> allCurrentAttributes = listingsController.getCurrentAttributes();
+                for (String attributeKey : allCurrentAttributes.keySet()) {
+                    out.print("<div class=\"filter-option\">\n" +
+                            "   <label>" + attributeKey + ":</label>\n" +
+                            "   <div class=\"dropdown-fltr\">\n" +
+                            "       <button class=\"dropbtn-fltr\">&#9660;</button>\n" +
+                            "       <div class=\"dropdown-content-fltr\">");
+
+                    for (String attributeValue : allCurrentAttributes.get(attributeKey)) {
+
+                    }
+
+                    out.print("     </div>\n" +
+                            "   </div>\n" +
+                            "</div>");
+                }
+            %>
             <div class="filter-option">
                 <label>Size:</label>
                 <div class="dropdown-fltr">
                     <button class="dropbtn-fltr">&#9660;</button>
                     <div class="dropdown-content-fltr">
                         <label><input type="checkbox" name="size" value="S"> Small</label>
-                        <label><input type="checkbox" name="size" value="M"> Medium</label>
-                        <label><input type="checkbox" name="size" value="L"> Large</label>
                     </div>
                 </div>
             </div>

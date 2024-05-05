@@ -227,7 +227,7 @@ public class listingsController {
     	
     }
 
-    public static HashMap<String, ArrayList<String>> getCurrentAttributes() {
+    public static HashMap<String, List<String>> getCurrentAttributes() {
         try {
             // Create connection
             myDatabase database = new myDatabase();
@@ -235,25 +235,25 @@ public class listingsController {
 
             // Get all attributes
             Statement statement = attibutesConnection.createStatement();
-            ResultSet resultSet = statement.executeQuery("select * from properties WHERE property_key like 'attribute%' order by property_key");
+            ResultSet resultSet = statement.executeQuery("select distinct attribute_key, attribute_value from product_attribute;");
 
             // Store the results
-            HashMap<String, ArrayList<String>> defaultAttributes = new HashMap<String, ArrayList<String>>();
-            String mostRecentKey = "";
+            HashMap<String, ArrayList<String>> allCurrentAttributes = new HashMap<String, ArrayList<String>>();
             while (resultSet.next()) {
-                // If key then add the key to hashmap
-                if (resultSet.getString("property_key").contains("key")) {
-                    defaultAttributes.put(resultSet.getString("property_value"), null);
-                    mostRecentKey = resultSet.getString("property_value");
-                    continue;
-                }
+                // Retrieve attribute key and value from the current row
+                String attributeKey = resultSet.getString("attribute_key");
+                String attributeValue = resultSet.getString("attribute_value");
 
-                // Otherwise, it is a value
-                // Check if arraylist is already created
-                if(defaultAttributes.get(mostRecentKey) == null) {
-                    defaultAttributes.put(mostRecentKey,new ArrayList<String>());
+                // Check if the attribute key already exists in the HashMap
+                if (allCurrentAttributes.containsKey(attributeKey)) {
+                    // If the key exists, add the attribute value to the existing list
+                    allCurrentAttributes.get(attributeKey).add(attributeValue);
+                } else {
+                    // If the key doesn't exist, create a new list and add the attribute value to it
+                    ArrayList<String> attributeValues = new ArrayList<>();
+                    attributeValues.add(attributeValue);
+                    allCurrentAttributes.put(attributeKey, attributeValues);
                 }
-                defaultAttributes.get(mostRecentKey).add(resultSet.getString("property_value"));
             }
 
             //Close connection
@@ -262,7 +262,7 @@ public class listingsController {
             attibutesConnection.close();
 
             // Return the strings to display
-            return defaultAttributes;
+            return allCurrentAttributes;
         } catch (SQLException e) {
             if (myDatabase.debug) {
                 System.out.println("Error getting all listings...");
