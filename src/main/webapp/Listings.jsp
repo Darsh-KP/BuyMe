@@ -87,7 +87,7 @@
             <div class="filter-option">
                 <label>Category:</label>
                 <div class="dropdown-fltr">
-                    <button class="dropbtn-fltr">&#9660;</button>
+                    <div class="dropbtn-fltr">&#9660;</div>
                     <div class="dropdown-content-fltr">
                         <%
                             List<String> allSubCategories = postListingController.getAllSubCategories();
@@ -106,7 +106,7 @@
                     out.print("<div class=\"filter-option\">\n" +
                             "   <label>" + attributeKey + ":</label>\n" +
                             "   <div class=\"dropdown-fltr\">\n" +
-                            "       <button class=\"dropbtn-fltr\">&#9660;</button>\n" +
+                            "       <div class=\"dropbtn-fltr\">&#9660;</div>\n" +
                             "       <div class=\"dropdown-content-fltr\">");
 
                     for (String attributeValue : allCurrentAttributes.get(attributeKey)) {

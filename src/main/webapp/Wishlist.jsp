@@ -52,6 +52,7 @@
     <header>
         <h1>My Wishlist</h1>
     </header>
+    <a href="PostWishlist.jsp">Add To Wishlist</a>
     
     <div class="wishlist-container">
 
