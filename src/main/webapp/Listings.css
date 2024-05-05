@@ -214,6 +214,7 @@ a {
     margin-bottom: 20px;
     float: left;
     overflow-y: auto;
+    height: 500px;
 }
 
 .filter-title {
@@ -310,6 +311,7 @@ a {
     margin-right: 10px;
     cursor: pointer;
     border-radius: 5px;
+    margin-top: 122px;
 }
 
 .reset-button:hover, .submit-button:hover {
