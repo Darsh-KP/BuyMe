@@ -226,4 +226,50 @@ public class listingsController {
     	return true;
     	
     }
+
+    public static HashMap<String, ArrayList<String>> getCurrentAttributes() {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection attibutesConnection = database.newConnection();
+
+            // Get all attributes
+            Statement statement = attibutesConnection.createStatement();
+            ResultSet resultSet = statement.executeQuery("select * from properties WHERE property_key like 'attribute%' order by property_key");
+
+            // Store the results
+            HashMap<String, ArrayList<String>> defaultAttributes = new HashMap<String, ArrayList<String>>();
+            String mostRecentKey = "";
+            while (resultSet.next()) {
+                // If key then add the key to hashmap
+                if (resultSet.getString("property_key").contains("key")) {
+                    defaultAttributes.put(resultSet.getString("property_value"), null);
+                    mostRecentKey = resultSet.getString("property_value");
+                    continue;
+                }
+
+                // Otherwise, it is a value
+                // Check if arraylist is already created
+                if(defaultAttributes.get(mostRecentKey) == null) {
+                    defaultAttributes.put(mostRecentKey,new ArrayList<String>());
+                }
+                defaultAttributes.get(mostRecentKey).add(resultSet.getString("property_value"));
+            }
+
+            //Close connection
+            resultSet.close();
+            statement.close();
+            attibutesConnection.close();
+
+            // Return the strings to display
+            return defaultAttributes;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting all listings...");
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
 }

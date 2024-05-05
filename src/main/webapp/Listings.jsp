@@ -93,7 +93,7 @@
                         <%
                             List<String> allSubCategories = postListingController.getAllSubCategories();
                             for (String subCategory : allSubCategories) {
-                                out.print("<label><input type=\"radio\" name=\"category\" value=\"" + subCategory + "\">" + subCategory + "</label>");
+                                out.print("<label><input type=\"checkbox\" name=\"category\" value=\"" + subCategory + "\">" + subCategory + "</label>");
                             }
                         %>
                     </div>
@@ -178,11 +178,14 @@
                         else if ((request.getMethod().equalsIgnoreCase("GET")) && (request.getParameter("filter_submit_button") != null)) {
                             // Check and add category filter
                             if (request.getParameterValues("category") != null) {
+                                criteria += " and (false ";
+
                                 // Get all the selected categories
                                 String[] selectedCategories = request.getParameterValues("category");
                                 for (String selectedCategory : selectedCategories) {
-                                    criteria += "and subcategory = \"" + selectedCategory + "\"";
+                                    criteria += "or subcategory = \"" + selectedCategory + "\"";
                                 }
+                                criteria += " ) ";
                             }
 
                             // Check for and add each filter option
