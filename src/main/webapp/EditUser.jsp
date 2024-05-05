@@ -1,3 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="com.buyme.controller.*"%>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.InputStream" %>
+<%@ page import="java.util.HashMap" %>
+
+
+
+<% String userSearch = (String) request.getParameter("username");%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -37,25 +53,32 @@
         </div>
     </nav>
 
+<%
+	HashMap<String, String> userInfo = new HashMap<String, String>();
+	userInfo = loginController.getUserInfo(userSearch);
+
+%>
+
 
 <div class="container">
-    <h2>Edit User</h2>
+    <h2>Edit User <%out.print(userInfo.get("username")); %></h2>
     <form action="#" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" value="UrMom" required>
+        <label for="First Name">First Name:</label>
+        <input type="text" id="firstName" name="firstName" value="<%out.print(userInfo.get("fName")); %>" required>
+        
+        <label for="Last Name">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" value="<%out.print(userInfo.get("lName")); %>" required>
         
         <label for="address">Address:</label>
-        <input type="text" id="address" name="address" value="123 Avenue, City, Country" required>
-        
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" value="********" required>
+        <input type="text" id="address" name="address" value= "<%out.print(userInfo.get("address")); %>" required>
         
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="urmom@example.com" required>
-        
+        <input type="text" id="email" name="email" value="<%out.print(userInfo.get("email")); %>" required>
         <input type="submit" value="Save Changes">
     </form>
 </div>
+
+
 
 </body>
 </html>

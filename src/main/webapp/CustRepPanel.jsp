@@ -55,7 +55,7 @@
         <form method = "post" action = "CustRepPanel.jsp" class="bid-info"> 
             <label for="searchListing">Search User:</label>
             <input type="text" id="searchUser" name="searchUser">
-           <input type ="submit" value = "Remove Listing" name = "remove_listing" class = "button">
+           <input type ="submit" value = "Edit User" name = "edit_user" class = "button">
         </form>
             
             
@@ -94,6 +94,26 @@
             return;
         }
 		response.sendRedirect("CustRepPanel.jsp");
+		
+	}
+	
+	if (request.getMethod().equalsIgnoreCase("POST") && (request.getParameter("edit_user")!=null)) {
+		String username = request.getParameter("searchUser");
+		
+		
+		if(!loginController.userExists(username)) {
+            %>
+            <script>alert("User does not exist.")</script>
+            <%
+            return;
+        }
+		out.print("<script>\n" +
+                "   // Create link to be clicked\n" +
+                "   var link = document.createElement('a');\n" +
+                "   link.href = \"EditUser.jsp?username=" + username + "\";\n" +
+                "   document.body.appendChild(link)\n" +
+                "   link.click()\n" +
+                "</script>");
 		
 	}
 	
