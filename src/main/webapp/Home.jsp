@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*, javax.servlet.*"%>
 <%@ page import="com.buyme.database.*" %>
+<%@ page import="com.buyme.controller.*"%>
 
 <%
     HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
@@ -37,6 +38,12 @@
             <div class="dropdown-content">
                 <label><a href="Alerts.jsp">Notifications</a></label>
                 <label><a href="ParticipationHistory.jsp">My History</a></label>
+                <%
+                    String username = (String) session.getAttribute("user");
+                    if (loginController.checkIfCustomerRep(username)) {
+                        out.print("<label><a href=\"CustRepPanel.jsp\">Customer Rep</a></label>");
+                    }
+                %>
                 <label><a href="Logout.jsp">Log Out</a></label>
             </div>
         </div>
