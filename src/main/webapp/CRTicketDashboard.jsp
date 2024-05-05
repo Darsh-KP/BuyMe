@@ -11,6 +11,12 @@
         response.sendRedirect("Login.jsp");
         return;
     }
+
+    String customerRepChecker = (String) session.getAttribute("user");
+    if (!loginController.checkIfCustomerRep(customerRepChecker)) {
+        response.sendRedirect("Home.jsp");
+        return;
+    }
 %>
 
 <!DOCTYPE html>

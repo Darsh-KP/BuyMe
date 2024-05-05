@@ -10,6 +10,20 @@
 <%@ page import="java.io.InputStream" %>
 <%@ page import="java.util.HashMap" %>
 
+<%
+    HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
+    if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
+        response.sendRedirect("Login.jsp");
+        return;
+    }
+
+    String customerRepChecker = (String) session.getAttribute("user");
+    if (!loginController.checkIfCustomerRep(customerRepChecker)) {
+        response.sendRedirect("Home.jsp");
+        return;
+    }
+%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
