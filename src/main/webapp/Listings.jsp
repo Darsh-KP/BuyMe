@@ -101,7 +101,7 @@
             
             <!-- Attribute Filter -->
             <%
-                HashMap<String, List<String>> allCurrentAttributes = listingsController.getCurrentAttributes();
+                HashMap<String, ArrayList<String>> allCurrentAttributes = listingsController.getCurrentAttributes();
                 for (String attributeKey : allCurrentAttributes.keySet()) {
                     out.print("<div class=\"filter-option\">\n" +
                             "   <label>" + attributeKey + ":</label>\n" +
@@ -110,7 +110,7 @@
                             "       <div class=\"dropdown-content-fltr\">");
 
                     for (String attributeValue : allCurrentAttributes.get(attributeKey)) {
-
+                        out.print("<label><input type=\"checkbox\" name=\"" + attributeKey + "\" value=\"" + attributeValue + "\">" + attributeValue + "</label>");
                     }
 
                     out.print("     </div>\n" +
@@ -118,15 +118,6 @@
                             "</div>");
                 }
             %>
-            <div class="filter-option">
-                <label>Size:</label>
-                <div class="dropdown-fltr">
-                    <button class="dropbtn-fltr">&#9660;</button>
-                    <div class="dropdown-content-fltr">
-                        <label><input type="checkbox" name="size" value="S"> Small</label>
-                    </div>
-                </div>
-            </div>
 
             <div class="filter-buttons">
                 <button type="button" id="resetButton" class="reset-button" onclick="window.location.href='Listings.jsp';">Reset</button>
@@ -204,7 +195,19 @@
                             }
 
                             // Check for and add each filter option
+                            for (String attributeKey : allCurrentAttributes.keySet()) {
+                                // Check and add category filter
+                                if (request.getParameterValues(attributeKey) != null) {
+                                    criteria += " and (false ";
 
+                                    // Get all the selected categories
+                                    String[] selectedValues = request.getParameterValues(attributeKey);
+                                    for (String selectedValue : selectedValues) {
+                                        criteria += "or (attribute_key = \"" + attributeKey + "\" and attribute_value = \"" + selectedValue + "\") ";
+                                    }
+                                    criteria += " ) ";
+                                }
+                            }
 
                             // Check if there is any sorting that is required
                             if (request.getParameter("sort") != null) {
