@@ -53,6 +53,18 @@ input[type="password"] {
     border-radius: 5px;
 }
 
+
+.back-btn {
+    background-color: var(--primary);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    transition: background-color 0.3s ease;
+}
+
 .submit-btn {
     background-color: var(--primary);
     color: white;
@@ -65,5 +77,8 @@ input[type="password"] {
 }
 
 .submit-btn:hover {
+    background-color: var(--extra1);
+}
+.back-btn:hover {
     background-color: var(--extra1);
 }

@@ -69,4 +69,16 @@ body {
     background-color: #A14258; /* Use your color palette */
 }
 
+.back-btn {
+    background-color: #A14258; /* Change color as needed */
+    color: #f8f3f3; /* Change color as needed */
+    padding: 10px 10px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 12px;
+}
 
+.back-btn:hover {
+    background-color: #c87979;
+}

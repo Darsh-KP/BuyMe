@@ -12,6 +12,7 @@
 
 
     <div class="container">
+        <button class="back-btn">Go Back</button>
         <h1 class="title">Admin Panel</h1>
         <div class="input-container">
             <input type="text" placeholder="User Input">

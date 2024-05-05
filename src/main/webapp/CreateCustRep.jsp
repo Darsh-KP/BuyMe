@@ -33,6 +33,7 @@
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <button type="button" class="back-btn">Go Back</button>
                 <button type="submit" class="submit-btn">Create Representative</button>
             </form>
         </section>
