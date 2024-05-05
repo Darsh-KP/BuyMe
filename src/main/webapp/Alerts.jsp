@@ -89,8 +89,8 @@
                 <label><a href="Alerts.jsp">Notifications</a></label>
                 <label><a href="ParticipationHistory.jsp">My History</a></label>
                 <%
-                    String username = (String) session.getAttribute("user");
-                    if (loginController.checkIfCustomerRep(username)) {
+                    String usernameChecker = (String) session.getAttribute("user");
+                    if (loginController.checkIfCustomerRep(usernameChecker)) {
                         out.print("<label><a href=\"CustRepPanel.jsp\">Customer Rep</a></label>");
                     }
                 %>
