@@ -24,7 +24,7 @@ public class ticketController {
 
     	    // Prepare the SQL statement for execution
     	    PreparedStatement statement = ticketConnection.prepareStatement(
-    	        "SELECT ticket_ID, created_by, resolved_by, comment, creation FROM tickets WHERE created_by = ?");
+    	        "SELECT ticket_ID, created_by, resolved_by, comment, created_at FROM tickets WHERE created_by = ?");
     	    statement.setString(1, username);
     	    
     	    // Execute the query
@@ -47,11 +47,15 @@ public class ticketController {
                 
 
                 // Comment
-                ticket.put("comment", resultSet.getString("comment"));
+                String comment = resultSet.getString("comment");
+                if (comment.length() > 25) {
+                    comment = comment.substring(0, 22).trim() + "...";
+                }
+                ticket.put("comment", comment);
                 
 
                 // creation DT
-                LocalDateTime creationDateTime = resultSet.getTimestamp("creation").toLocalDateTime();
+                LocalDateTime creationDateTime = resultSet.getTimestamp("created_at").toLocalDateTime();
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' HH:mm:ss");
                 String formattedDateTime = creationDateTime.format(formatter);
                 ticket.put("creation", formattedDateTime);
@@ -85,18 +89,18 @@ public class ticketController {
 
     	    // Prepare the SQL statement for execution
     	    PreparedStatement statement = ticketConnection.prepareStatement(
-    	    		"INSERT INTO tickets (created_by, comment, creation)" +
+    	    		"INSERT INTO tickets (created_by, comment, created_at)" +
                             "VALUES (?, ?, ?);");
     	    statement.setString(1, username);
-    	    statement.setString(2, comment);
+    	    statement.setString(2, comment.trim());
     	    Timestamp timestamp = Timestamp.valueOf(creation);
     	    statement.setTimestamp(3, timestamp);
     	    statement.executeUpdate();
     	    
     	
-    	//Close connection
-        statement.close();
-        ticketConnection.close();
+            //Close connection
+            statement.close();
+            ticketConnection.close();
 
 	    } catch (SQLException e) {
 	        if (myDatabase.debug) {

@@ -72,14 +72,9 @@
                               "</div>");
                   }
               %>
-        	
-        
-        
-        
+
         </div>
-        <a href="NewTicket.jsp">
-        <button class="create-ticket-button">+ Create a new ticket</button>
-        </a>
+        <button class="create-ticket-button" onclick="window.location.href='NewTicket.jsp';">+ Create a new ticket</button>
     </div>
     
         <script>
