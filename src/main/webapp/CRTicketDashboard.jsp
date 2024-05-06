@@ -57,33 +57,28 @@
             </div>
         </div>
     </nav>
-
-
-
-
-   
+    
     <div class="container">
         <h1>Customer Representative Ticketing Center</h1>
 
 
         <div class="ticket-cards">
          	<%
-       				String username = (String) session.getAttribute("user");
+                String username = (String) session.getAttribute("user");
 
-                  // Get all products to display
-                  List<HashMap<String, String>> allTicketDisplay = ticketController.getAllTickets();
+                // Get all products to display
+                List<HashMap<String, String>> allTicketDisplay = ticketController.getAllTickets();
 
 
-                  // Display each product
-                  for (HashMap<String, String> ticketDisplay : allTicketDisplay) {
-                	  out.print("<div onclick=\"ticketClicked(this)\" class=\"ticket-card\" data-ticket-id = \"\">\n" +
-                              "   <p class=\"ticket-number\">#" + ticketDisplay.get("ticketID") + "</p>\n" +
-                              "   <p class=\"ticket-date\">Date Created: " + ticketDisplay.get("creation") + "</p>\n" +
-                              "   <p class=\"ticket-description\">" + ticketDisplay.get("comment") + "</p>\n" +
-                       		  "   <p class=\"ticket-user\">" + ticketDisplay.get("created_by") + "</p>\n" +
-                              
-                              "</div>");
-                  }
+                // Display each product
+                for (HashMap<String, String> ticketDisplay : allTicketDisplay) {
+                    out.print("<div onclick=\"ticketClicked(this)\" class=\"ticket-card\" data-ticket-id = \"" + ticketDisplay.get("ticketID") + "\">\n" +
+                            "   <p class=\"ticket-number\">#" + ticketDisplay.get("ticketID") + "</p>\n" +
+                            "   <p class=\"ticket-date\">Date Created: " + ticketDisplay.get("creation") + "</p>\n" +
+                            "   <p class=\"ticket-description\">" + ticketDisplay.get("comment") + "</p>\n" +
+                            "   <p class=\"ticket-user\">" + ticketDisplay.get("created_by") + "</p>\n" +
+                            "</div>");
+                }
               %>
 
         </div>

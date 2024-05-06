@@ -177,8 +177,82 @@ public class ticketController {
     	return true;
     	
     }
-    
-    
-    
 
+    public static boolean postMessage(int ticketID, String messageFrom, String message, LocalDateTime creation){
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection wishlistConnection = database.newConnection();
+
+            // Send the message
+            PreparedStatement statement = wishlistConnection.prepareStatement(
+                    "insert into ticket_reply (ticket_id, message_from, message, message_at) values (?, ?, ?, ?);");
+            statement.setInt(1, ticketID);
+            statement.setString(2, messageFrom);
+            statement.setString(3, message);
+            statement.setTimestamp(4, Timestamp.valueOf(creation));
+            statement.executeUpdate();
+
+            // Close connections
+            statement.close();
+            wishlistConnection.close();
+
+            return true;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error sending ticket message...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
+
+    public static List<HashMap<String, String>> getTicketMessageHistory(int ticketID) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection wishlistConnection = database.newConnection();
+
+            // Get the messages for the ticket
+            PreparedStatement statement = wishlistConnection.prepareStatement(
+                    "SELECT message, message_from, message_at\n" +
+                            "FROM (\n" +
+                            "    SELECT comment AS message, created_by AS message_from, created_at AS message_at FROM tickets WHERE ticket_id = ?\n" +
+                            "    UNION\n" +
+                            "    SELECT message, message_from, message_at FROM ticket_reply WHERE ticket_id = ?\n" +
+                            ") AS combined_messages\n" +
+                            "ORDER BY message_at;"
+            );
+            statement.setInt(1, ticketID);
+            statement.setInt(2, ticketID);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Store the messages in a hashmap
+            List<HashMap<String, String>> messageHistory = new ArrayList<HashMap<String,String>>();
+            while (resultSet.next()) {
+                // Get each message
+                HashMap<String, String> message = new HashMap<String,String>();
+
+                // Check if message from user or rep
+                message.put("message", resultSet.getString("message"));
+                message.put("messageFrom", resultSet.getString("message_from"));
+                messageHistory.add(message);
+            }
+
+            // Close connection
+            resultSet.close();
+            statement.close();
+            wishlistConnection.close();
+
+            return messageHistory;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error sending ticket message...");
+                e.printStackTrace();
+            }
+        }
+
+        return null;
+    }
 }

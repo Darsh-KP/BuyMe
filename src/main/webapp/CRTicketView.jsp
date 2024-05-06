@@ -4,6 +4,7 @@
 <%@ page import="java.util.HashMap" %>
 <%@ page import="com.buyme.controller.*" %>
 <%@ page import="com.buyme.database.myDatabase" %>
+<%@ page import="java.time.LocalDateTime" %>
 
 <%
     HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
@@ -62,38 +63,85 @@
         <div class="chat-header">
             <h1> Chat Logs </h1>
         </div>
-        <div class="chat-container">
+        <div class="chat-container" id="chatContainer">
             <div class="chat-messages">
-                <div class="message sent">
-                    <p class="sender">adventureseeker</p>
-                    <p class="content">I would like to remove a bid.</p>
-                </div>
-                <div class="message received">
-                    <p class="sender">Customer Representative</p>
-                    <p class="content">Sure, please provide a listing number. </p>
-                </div>
-                <div class="message sent">
-                  <p class="sender">adventureseeker</p>
-                  <p class="content">The listing number is 30. </p>
-              </div>
-              <div class="message received">
-                <p class="sender">Customer Representative</p>
-                <p class="content">What is the reason to delete the bid? </p>
+                <%
+                    // Get message history
+                    String username = (String) session.getAttribute("user");
+                    List<HashMap<String, String>> messageHistory = ticketController.getTicketMessageHistory(Integer.parseInt(request.getParameter("ticketID")));
+                    if (messageHistory != null) {
+                        for (HashMap<String, String> message : messageHistory) {
+                            if (message.get("messageFrom").equals(username)) {
+                                // Message from user
+                                out.print("<div class=\"message received\">\n" +
+                                        "   <p class=\"sender\">YOU</p>\n" +
+                                        "   <p class=\"content\">" + message.get("message") + "</p>\n" +
+                                        "</div>");
+                            } else {
+                                // Message from rep
+                                out.print("<div class=\"message sent\">\n" +
+                                        "   <p class=\"sender\">User</p>\n" +
+                                        "   <p class=\"content\">" + message.get("message") + "</p>\n" +
+                                        "</div>");
+                            }
+                        }
+                    }
+                %>
+
+                <script>
+                    // Get the chat container element
+                    var chatContainer = document.getElementById('chatContainer');
+
+                    // Scroll to the bottom of the chat container
+                    chatContainer.scrollTop = chatContainer.scrollHeight;
+                </script>
             </div>
-            <div class="message sent">
-              <p class="sender">adventureseeker</p>
-              <p class="content">My dog clicked my computer and bidded for me. I cannot afford a $2000 fur coat, even if it is Kendrick Lamar's. </p>
-          </div>
-          <div class="message received">
-            <p class="sender">Customer Representative</p>
-            <p class="content"> Alright, I'll get on it! </p>
         </div>
-            </div>
-        </div>
-        <div class="chat-footer">
-            <input type="text" placeholder="Type your message here...">
-            <button>Submit</button>
-        </div>
+        <form class="chat-footer" action="SampleTicket.jsp" method="post">
+            <input type="text" placeholder="Type your message here..." name="message">
+            <input type="submit" value="Submit" name="post_message_button">
+            <input type="hidden" name="ticketID" value=<%out.print(request.getParameter("ticketID"));%>>
+        </form>
     </div>
+
+<%
+    if ((request.getMethod().equalsIgnoreCase("POST")) && (request.getParameter("post_message_button") != null)) {
+        // Get info to pass
+        int ticketID = Integer.parseInt(request.getParameter("ticketID"));
+        String message = request.getParameter("message");
+        if (message.trim().equals("")) return;
+        LocalDateTime created = LocalDateTime.now();
+
+        // Post message
+        if (!ticketController.postMessage(ticketID, username, message, created)) {
+            %>
+                <script>alert("Message not posted.")</script>
+            <%
+            return;
+        }
+
+        // Reload the page
+        out.print("<script>" +
+                "// Get ticketID from the card that was clicked\n" +
+                "\n" +
+                "// Create form in order to POST id\n" +
+                "var form = document.createElement(\"form\");\n" +
+                "form.setAttribute(\"method\", \"post\");\n" +
+                "form.setAttribute(\"action\", \"SampleTicket.jsp\");\n" +
+                "\n" +
+                "// Attach ticketID\n" +
+                "var input = document.createElement(\"input\");\n" +
+                "input.setAttribute(\"type\", \"hidden\");\n" +
+                "input.setAttribute(\"name\", \"ticketID\");\n" +
+                "input.setAttribute(\"value\", " + ticketID + ");\n" +
+                "\n" +
+                "// Submit Form\n" +
+                "form.appendChild(input);\n" +
+                "document.body.appendChild(form);\n" +
+                "form.submit();" +
+                "</script>");
+    }
+%>
+
 </body>
 </html>

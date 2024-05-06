@@ -52,10 +52,6 @@
         </div>
     </nav>
 
-
-
-
-   
     <div class="container">
         <h1>Welcome to our Ticketing Center</h1>
 
@@ -79,24 +75,22 @@
                   // Get all products to display
                   List<HashMap<String, String>> allTicketDisplay = ticketController.getAllListingsTicketsDisplayStrings(username, criteria);
 
-
                   // Display each product
                   for (HashMap<String, String> ticketDisplay : allTicketDisplay) {
-                	  out.print("<div onclick=\"ticketClicked(this)\" class=\"ticket-card\" data-ticket-id = \"\">\n" +
+                	  out.print("<div onclick=\"ticketClicked(this)\" class=\"ticket-card\" data-ticket-id = \"" + ticketDisplay.get("ticketID") + "\">\n" +
                               "   <p class=\"ticket-number\">#" + ticketDisplay.get("ticketID") + "</p>\n" +
                               "   <p class=\"ticket-date\">Date Created: " + ticketDisplay.get("creation") + "</p>\n" +
                               "   <p class=\"ticket-description\">" + ticketDisplay.get("comment") + "</p>\n" +
                               "</div>");
                   }
               %>
-
         </div>
         <button class="create-ticket-button" onclick="window.location.href='NewTicket.jsp';">+ Create a new ticket</button>
     </div>
     
-        <script>
+    <script>
         function ticketClicked(element){
-            // Get productID from the card that was clicked
+            // Get ticketID from the card that was clicked
             var ticketID = element.getAttribute('data-ticket-id');
 
             // Create form in order to POST id
@@ -104,7 +98,7 @@
             form.setAttribute("method", "post");
             form.setAttribute("action", "SampleTicket.jsp");
 
-            // Attach productID
+            // Attach ticketID
             var input = document.createElement("input");
             input.setAttribute("type", "hidden");
             input.setAttribute("name", "ticketID");
