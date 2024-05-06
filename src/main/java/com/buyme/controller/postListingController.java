@@ -71,6 +71,7 @@ public class postListingController {
 
             // Success
             if (myDatabase.debug) System.out.println("Posted a Listing...");
+            notificationsController.checkWishlistAlerts(generatedId);
             return true;
         } catch (SQLException e) {
             if (myDatabase.debug) {

@@ -287,4 +287,8 @@ public class notificationsController {
             }
         }
     }
+
+    public static void checkWishlistAlerts (int productID) {
+        
+    }
 }
