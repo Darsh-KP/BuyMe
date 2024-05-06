@@ -1,9 +1,16 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+        pageEncoding="UTF-8"%>
+<%@ page import="javax.servlet.http.*,javax.servlet.*"%>
+<%@ page import="com.buyme.controller.*"%>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
+<%@ page import="java.time.LocalDateTime" %>
 <%@ page import="java.util.List" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.io.InputStream" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="com.buyme.controller.*" %>
-<%@ page import="com.buyme.database.myDatabase" %>
+<%@ page import="com.buyme.database.*" %>
+
 <%
     HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
     if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
@@ -74,12 +81,25 @@
 
 
             // Display each product
+            int i = 1;
             for (HashMap<String, String> wishlistDisplay : allWishlistDisplay) {
           	  out.print("<div class= \"wishlist-item \">\n" +
-                        "   <p class=\"Category\">#" + wishlistDisplay.get("subcategory") + "</p>\n" +
-                        "   <p class=\"ticket-date\">Date Created: " + wishlistDisplay.get("price_threshold") + "</p>\n" +
+            			"<h3>Wish #" + i + "</h3>"+
+                        "   <p class=\"SubCategory\">SubCategory: " + wishlistDisplay.get("subcategory") + "</p>\n" +
+                        "   <p class=\"ticket-date\">Max Threshold: " + wishlistDisplay.get("price_threshold") + "</p>\n" +
                         		"<button class=\"remove-btn\">Remove</button>" +
                         "</div>");
+          	  
+          		out.print("Date: " + wishlistDisplay.get("date"));
+          		String rawDate = wishlistDisplay.get("rawDate");
+          		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+                LocalDateTime localDateTime = LocalDateTime.parse(rawDate, formatter);
+                
+          	  	List<HashMap<String, String>> allWishlistAttributes = wishlistController.getWishlistAttributes(usernameChecker, localDateTime);
+		          	  for (HashMap<String, String> attribute : allWishlistAttributes) {
+		                  out.print("<br>" + attribute.get("attributeKey") + ": " + attribute.get("attributeValue"));
+		              }
+          	  
             }
             
             

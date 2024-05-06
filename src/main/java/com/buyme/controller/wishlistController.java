@@ -70,15 +70,20 @@ public class wishlistController {
 
             // Get all listings
             PreparedStatement statement = attributesConnection.prepareStatement(
-                    "SELECT (date, subcategory, price_threshold) FROM wishlist WHERE username = ?");
+                    "SELECT date, subcategory, price_threshold FROM wishlist WHERE username = ?");
             statement.setString(1, username);
             ResultSet resultSet = statement.executeQuery();
 
+            
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MMM dd, yyyy 'at' HH:mm:ss");
+            
+            
             // Store the results
             List<HashMap<String, String>> allAttributes = new ArrayList<HashMap<String, String>>();
             while (resultSet.next()) {
                 HashMap<String, String> attribute = new HashMap<String, String>();
-                attribute.put("date", LocalDateTime.parse(resultSet.getString("date"), DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+                attribute.put("date", resultSet.getTimestamp("date").toLocalDateTime().format(formatter));
+                attribute.put("rawDate", resultSet.getTimestamp("date").toString());
                 attribute.put("subcategory", resultSet.getString("subcategory"));
                 attribute.put("price_threshold", resultSet.getString("price_threshold"));
 
