@@ -180,7 +180,9 @@
                         // Check is a keyword is searched
                         if ((request.getMethod().equalsIgnoreCase("GET")) && (request.getParameter("search_submit_button") != null)) {
                             if (request.getParameter("search_keyword") != null) {
-                                criteria = "where product_name like \"%" + request.getParameter("search_keyword") + "%\" ";
+                                if (!request.getParameter("search_keyword").equals("")) {
+                                    criteria = "where product_name like \"%" + request.getParameter("search_keyword") + "%\" ";
+                                }
                             }
                         }
                         // Check if criteria was passed

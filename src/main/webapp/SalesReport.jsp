@@ -21,7 +21,7 @@
 </head>
 <body>
     <header>
-        <button class="back-btn" onclick="window.location.href='#';">Go Back</button>
+        <button class="back-btn" onclick="window.location.href='admin.jsp';">Go Back</button>
         <h1 class="title">Sales Report</h1>
     </header>
     <main>
