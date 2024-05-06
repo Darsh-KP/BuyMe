@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="javax.servlet.http.*, javax.servlet.*"%>
+<%@ page import="java.util.List" %>
+<%@ page import="java.util.HashMap" %>
 <%@ page import="com.buyme.controller.*" %>
-
+<%@ page import="com.buyme.database.myDatabase" %>
 <%
     HttpSession sessionChecker = request.getSession(false); // Passing false to avoid creating a new session if one doesn't exist
     if (sessionChecker == null || sessionChecker.getAttribute("user") == null) {
@@ -66,12 +68,22 @@
         </div>
 
         <div class="wishlist-item">
-            <h3>Wish #2</h3>
-            <p>Category: Pants</p>
-            <p>Max Threshold: $200</p>
-            <p>Size: N/A</p>
-            <p>Color: Black</p>
-            <button class="remove-btn">Remove</button>
+            <%
+            
+            List<HashMap<String, String>> allWishlistDisplay = wishlistController.getWishlist(usernameChecker);
+
+
+            // Display each product
+            for (HashMap<String, String> wishlistDisplay : allWishlistDisplay) {
+          	  out.print("<div class= \"wishlist-item \">\n" +
+                        "   <p class=\"Category\">#" + wishlistDisplay.get("subcategory") + "</p>\n" +
+                        "   <p class=\"ticket-date\">Date Created: " + wishlistDisplay.get("price_threshold") + "</p>\n" +
+                        		"<button class=\"remove-btn\">Remove</button>" +
+                        "</div>");
+            }
+            
+            
+            %>
         </div>
         
     </div>
