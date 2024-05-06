@@ -108,8 +108,6 @@ public class wishlistController {
         return null;
     }
 
-    
-    
     public static List<HashMap<String, String>> getWishlistAttributes(String username, LocalDateTime date) {
         try {
             // Create connection
@@ -118,7 +116,7 @@ public class wishlistController {
 
             // Get all listings
             PreparedStatement statement = attributesConnection.prepareStatement(
-                    "SELECT wishlist_attribute_key, wishlist_attribute_value FROM wishlist_attribute WHERE username = ? and date = ");
+                    "SELECT wishlist_attribute_key, wishlist_attribute_value FROM wishlist_attribute WHERE username = ? and date = ?");
             statement.setString(1, username);
             statement.setTimestamp(2, Timestamp.valueOf(date));
             ResultSet resultSet = statement.executeQuery();
@@ -152,5 +150,32 @@ public class wishlistController {
         return null;
     }
 
+    public static boolean deleteWishlist(String username, LocalDateTime date) {
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection deleteWishConnection = database.newConnection();
 
+            // Delete the given wishlist
+            PreparedStatement preparedStatement = deleteWishConnection.prepareStatement(
+                    "DELETE FROM wishlist WHERE username = ? and date=?"
+            );
+            preparedStatement.setString(1, username);
+            preparedStatement.setTimestamp(2, Timestamp.valueOf(date));
+            preparedStatement.executeUpdate();
+
+            // Close connection
+            preparedStatement.close();
+            deleteWishConnection.close();
+
+            return true;
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error getting all attributes...");
+                e.printStackTrace();
+            }
+        }
+
+        return false;
+    }
 }

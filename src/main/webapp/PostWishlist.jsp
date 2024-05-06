@@ -62,10 +62,10 @@
 
     <div class="container">
         <h1>New Wishlist</h1>
-        <form action="PostWishlist.jsp" method= "post" onclick="return enableKeyInputs()">
+        <form action="PostWishlist.jsp" method= "post" onsubmit="return enableKeyInputs()">
             <div class="form-group">
                 <label for="subcategory">Category:</label>
-                <select id="subcategory" name="subcategory">
+                <select id="subcategory" name="subcategory" required>
                     <option value="">--Please choose an option--</option>
 			        <% 
 			            List<String> subCategories = postListingController.getAllSubCategories();
@@ -78,8 +78,8 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="maxThreshold">Max Threshold:</label>
-                <input type="number" id="maxThreshold" name="maxThreshold" placeholder="Enter max value">
+                <label for="maxThreshold">Max Threshold ($):</label>
+                <input type="number" id="maxThreshold" name="maxThreshold" placeholder="Enter max value" min="0" required>
             </div>
             <div>
                 <label>Attributes:</label>
