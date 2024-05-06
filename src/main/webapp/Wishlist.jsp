@@ -61,7 +61,11 @@
     <header>
         <h1>My Wishlist</h1>
     </header>
-    <a href="PostWishlist.jsp">Add To Wishlist</a>
+    
+    
+    
+    <a href="PostWishlist.jsp" class="add-to-wishlist-link">Add To Wishlist</a>
+    
     
     <div class="wishlist-container">
         <%
@@ -86,7 +90,7 @@
                       }
 
                 out.print("<form method=\"post\" action=\"Wishlist.jsp\">\n" +
-                        "            <input type=\"submit\" name=\"removeWish\" value=\"Remove\">\n" +
+                        "           <input type="submit" name="removeWish" value="Remove" class="remove-button"> +
                         "            <input type=\"hidden\" value=\"" + rawDate + "\" name=\"wishDate\">\n" +
                         "   </form>" +
                         "</div>");

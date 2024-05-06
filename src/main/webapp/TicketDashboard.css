@@ -83,6 +83,7 @@ h1 {
     color: #333; 
 }
 
+/* Search Bar Styles */
 .search-bar {
     margin-bottom: 20px;
     text-align: center;
@@ -92,19 +93,20 @@ h1 {
     padding: 8px;
     width: 200px;
     border-radius: 5px;
-    border: 1px solid #ccc; 
+    border: 1px solid #ccc;
     margin-right: 10px;
 }
 
-.search-bar button {
+.search-bar .search-button {
     padding: 8px 16px;
-    background-color: #D66978; 
-    color: #fff; 
+    background-color: #D66978;
+    color: #fff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.search-bar button:hover {
-    background-color: #FCA6A9; 
+.search-bar .search-button:hover {
+    background-color: #FCA6A9;
 }

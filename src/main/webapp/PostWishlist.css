@@ -70,22 +70,28 @@ button:hover {
 }
 
 
-#attributes {
-    margin-bottom: 30px;
+/* CSS for the attribute section */
+#attributeInputs {
+    margin-bottom: 30px; 
 }
 
-#attributes label {
+#attributeInputs label {
     display: inline-block;
     margin-right: 10px;
+    color: var(--primary); 
 }
 
-#addAttribute {
+#attributeInputs button {
     background-color: var(--primary);
     color: white;
     border: none;
     padding: 5px 10px;
-    border-radius: 80px;
+    border-radius: 5px;
     cursor: pointer;
+}
+
+#attributeInputs button:hover {
+    background-color: var(--extra1); 
 }
 
 .attribute {
@@ -94,19 +100,19 @@ button:hover {
     margin-bottom: 10px;
 }
 
-.attribute select {
-    flex: 1;
-    margin-right: 10px;
-}
-
+.attribute select,
 .attribute input[type="text"] {
     flex: 1;
     margin-right: 10px;
+    padding: 8px; 
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
 }
 
 .remove-attribute {
-    background-color: #A14258;
-    color: #fff;
+    background-color: var(--extra2); 
+    color: white;
     border: none;
     padding: 5px 10px;
     border-radius: 5px;
@@ -114,8 +120,21 @@ button:hover {
 }
 
 .remove-attribute:hover {
-    background-color: #6E1C2D;
+    background-color: #6E1C2D; 
 }
 
+.cancel-button {
+    background-color: #D66978; 
+    color: white;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 20px; /* Add some top margin */
+}
 
+.cancel-button:hover {
+    background-color: #ec6d7e; 
+}
 
