@@ -10,7 +10,7 @@ import java.util.Properties;
 
 // Class used to make connection to the database
 public class myDatabase {
-	public static final boolean debug = true;
+	public static final boolean debug = false;
 
 	public myDatabase() {}
 

@@ -32,7 +32,7 @@
             </div>
             <a class="report earnings-per-item" href="SalesReportPer.jsp?criteria=Item">
                 <h2>Earnings per Item</h2>
-                <p>Click to view full report.</p>
+                <p><u>Click to view full report.</u></p>
             </a>
             <div class="report earnings-per-item-type">
                 <h2>Earnings per Item Subcategory</h2>
@@ -46,7 +46,7 @@
             </div>
             <a class="report earnings-per-end-user" href="SalesReportPer.jsp?criteria=Seller">
                 <h2>Earnings per Seller</h2>
-                <p>Click to view full report.</p>
+                <p><u>Click to view full report.</u></p>
             </a>
             <div class="report best-selling-items">
                 <h2>Best-selling Items</h2>
