@@ -1,13 +1,4 @@
-
-
-:root {
-    /* Your color palette */
-    --background: #F8D2C2;
-    --primary: #D66978;
-    --secondary: #430F1B;
-    --extra1: #FCA6A9;
-    --extra2: #A14258;
-}
+@import "default.css";
 
 body {
     background-color: var(--background);

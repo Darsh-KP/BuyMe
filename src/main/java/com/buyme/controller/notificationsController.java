@@ -325,7 +325,7 @@ public class notificationsController {
                 // Post alert
                 postAlert(resultSet.getString("username"), LocalDateTime.now(),
                         "A product from your wishlist just got posted: #" + productID + ", \"" + getProductName(productID) + "\".");
-                System.out.println("Posted a wishlist alert...");
+                if (myDatabase.debug) System.out.println("Posted a wishlist alert...");
             }
 
             // Close connection

@@ -47,10 +47,12 @@ public class passwordSecurity {
         String enteredPassword = "password123";
         boolean passwordCorrect = verifyPassword(enteredPassword, hashedPassword, salt);
 
-        if (passwordCorrect) {
-            System.out.println("Password is correct.");
-        } else {
-            System.out.println("Password is incorrect.");
+        if (myDatabase.debug) {
+            if (passwordCorrect) {
+                System.out.println("Password is correct.");
+            } else {
+                System.out.println("Password is incorrect.");
+            }
         }
     }
 }

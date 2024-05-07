@@ -1,5 +1,6 @@
+@import "default.css";
+
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #F8D2C2; 
@@ -9,7 +10,7 @@ body {
     max-width: 600px;
     margin: 100px auto;
     padding: 20px;
-    border: 1px solid #D66978;
+    border: 1px solid var(--primary);
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     background-color: #ffffff;
@@ -17,7 +18,7 @@ body {
 
 .title {
     text-align: center;
-    color: #D66978; 
+    color: var(--primary);
 }
 
 .input-container {
@@ -27,7 +28,7 @@ body {
 .input-container input {
     width: 100%;
     padding: 10px;
-    border: 1px solid #D66978; 
+    border: 1px solid var(--primary);
     border-radius: 5px;
     outline: none; 
 }
@@ -66,11 +67,11 @@ body {
 .create-button:hover,
 .remove-button:hover,
 .upgrade-button:hover {
-    background-color: #A14258; 
+    background-color: var(--extra2);
 }
 
 .back-btn {
-    background-color: #A14258;
+    background-color: var(--extra2);
     color: #f8f3f3; 
     padding: 10px 10px;
     border: none;
