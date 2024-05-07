@@ -90,7 +90,7 @@
                       }
 
                 out.print("<form method=\"post\" action=\"Wishlist.jsp\">\n" +
-                        "           <input type="submit" name="removeWish" value="Remove" class="remove-button"> +
+                        "            <input type=\"submit\" name=\"removeWish\" value=\"Remove\" class=\"remove-button\">\n" +
                         "            <input type=\"hidden\" value=\"" + rawDate + "\" name=\"wishDate\">\n" +
                         "   </form>" +
                         "</div>");

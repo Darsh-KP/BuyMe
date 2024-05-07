@@ -25,7 +25,6 @@ public class listingsController {
                     "where true ";
             String endQuery = " ;";
             String fullQuery = baseQuery + criteria + endQuery;
-            System.out.println(fullQuery);
             PreparedStatement statement = listingsConnection.prepareStatement(fullQuery);
             ResultSet resultSet = statement.executeQuery();
 

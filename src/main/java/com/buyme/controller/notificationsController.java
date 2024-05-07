@@ -289,6 +289,52 @@ public class notificationsController {
     }
 
     public static void checkWishlistAlerts (int productID) {
-        
+        try {
+            // Create connection
+            myDatabase database = new myDatabase();
+            Connection wishlistAlertConnection = database.newConnection();
+
+            // Get the users with fulfilled wishlist
+            PreparedStatement statement = wishlistAlertConnection.prepareStatement(
+                    "SELECT DISTINCT u.username\n" +
+                            "FROM user u\n" +
+                            "JOIN wishlist w ON u.username = w.username\n" +
+                            "JOIN listing l ON w.subcategory = l.subcategory\n" +
+                            "JOIN product_attribute pa ON l.product_id = pa.product_id\n" +
+                            "WHERE w.price_threshold > l.initial_price\n" +
+                            "AND l.product_id = ?\n" +
+                            "AND NOT EXISTS (\n" +
+                            "    SELECT 1\n" +
+                            "    FROM wishlist_attribute wa\n" +
+                            "    WHERE wa.username = w.username\n" +
+                            "    AND wa.date = w.date\n" +
+                            "    AND NOT EXISTS (\n" +
+                            "        SELECT 1\n" +
+                            "        FROM product_attribute pa2\n" +
+                            "        WHERE pa2.product_id = l.product_id\n" +
+                            "        AND pa2.attribute_key = wa.wishlist_attribute_key\n" +
+                            "        AND pa2.attribute_value = wa.wishlist_attribute_value\n" +
+                            "    )\n" +
+                            ");"
+            );
+            statement.setInt(1, productID);
+            ResultSet resultSet = statement.executeQuery();
+
+            // Alert the users about the new listing
+            while (resultSet.next()) {
+                // Post alert
+                postAlert(resultSet.getString("username"), LocalDateTime.now(),
+                        "A product from your wishlist just got posted: #" + productID + ", \"" + getProductName(productID) + "\".");
+                System.out.println("Posted a wishlist alert...");
+            }
+
+            // Close connection
+            wishlistAlertConnection.close();
+        } catch (SQLException e) {
+            if (myDatabase.debug) {
+                System.out.println("Error posting winner...");
+                e.printStackTrace();
+            }
+        }
     }
 }

@@ -86,32 +86,7 @@
                 <button onclick="addAttribute()">Add New</button><br>
 
                 <div id="attributeInputs">
-                    <%
-                        // Get default attributes
-                        HashMap<String, ArrayList<String>> defaultAttributes = postListingController.getDefaultAttributes();
 
-                        for (String attributeKey : defaultAttributes.keySet()) {
-                            // Print an input box for attribute key which is disabled
-                            out.print("<input type=\"text\" name=\"attributeKey\" value=\"" + attributeKey + "\" disabled>");
-
-                            // If there are no values for this key, have an input box
-                            if (defaultAttributes.get(attributeKey) == null) {
-                                out.print("<input type=\"text\" name=\"attributeValue\" placeholder=\"Value\" required maxlength=\"100\">");
-                                continue;
-                            }
-
-                            // Otherwise create a dropdown with the values
-                            out.print("<select type=\"text\" name=\"attributeValue\" required>");
-                            out.print("<option value=\"\">--Choose an option--</option>");
-
-                            // Autofill the dropdown options
-                            for (String attributeValue : defaultAttributes.get(attributeKey)) {
-                                out.print("<option value=\"" + attributeValue + "\">" + attributeValue + "</option>");
-                            }
-
-                            out.print("</select>");
-                        }
-                    %>
                 </div>
 
                 <script>
