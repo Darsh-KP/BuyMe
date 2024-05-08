@@ -37,23 +37,33 @@
 <body>
 
      <!-- Nav Bar -->
-
      <nav>
-        <div class="logo">
-            <img src="./data/LogoFinal.png" alt="BuyMe Logo">
-        </div>
-        <div class="nav-links">
-            <a href="">Home</a>
-            <a href="">Tickets</a>
-            <a href="Listings.jsp">Listings</a>
-            <a href="">Wishlist</a>
-        </div>
-        <div class="profile">
-            <img src="./data/Defaultpfp.jpg" alt="Profile Picture">
-            <a href="#">Notifications</a>
-            <a href="#" class="logout-button">Log Out</a>
-        </div>
-    </nav>
+         <div class="logo">
+             <img src="./data/LogoFinal.png" alt="BuyMe Logo">
+         </div>
+         <div class="nav-links">
+             <a href="Home.jsp">Home</a>
+             <a href="TicketDashboard.jsp">Tickets</a>
+             <a href="Listings.jsp">Listings</a>
+             <a href="Wishlist.jsp">Wishlist</a>
+         </div>
+         <div class="dropdown">
+             <button class="dropbtn">
+                 <img src="./data/Defaultpfp.jpg" alt="Profile Picture" class="profile-img">
+             </button>
+             <div class="dropdown-content">
+                 <label><a href="Alerts.jsp">Notifications</a></label>
+                 <label><a href="ParticipationHistory.jsp">My History</a></label>
+                 <%
+                     String usernameChecker = (String) session.getAttribute("user");
+                     if (loginController.checkIfCustomerRep(usernameChecker)) {
+                         out.print("<label><a href=\"CustRepPanel.jsp\">Customer Rep</a></label>");
+                     }
+                 %>
+                 <label><a href="Logout.jsp">Log Out</a></label>
+             </div>
+         </div>
+     </nav>
 
 <%
 	HashMap<String, String> userInfo = new HashMap<String, String>();
