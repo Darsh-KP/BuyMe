@@ -1,7 +1,17 @@
 Login Credentials
-----------------
-username: stock
-password: password
+-----------------
+username: naturelover21
+password: GreenThumb21@
+
+Customer Rep Credentials
+------------------------
+username: mgarcia
+password: Database336
+
+Admin Credentials
+-----------------
+username: admin
+password: password336
 
 
 SETUP Instructions
@@ -12,4 +22,5 @@ SETUP Instructions
     username=
     password=
 3. Fill in the respective username and password for your mySQL server.
-4. Make sure to run the database SQL script provided.
+4. Make sure to run the database SQL script provided!!!
+	Note: Drop any other database name "buyme" before running the script.
