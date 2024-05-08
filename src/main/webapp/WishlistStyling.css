@@ -1,15 +1,7 @@
+@import "default.css";
 @import "navbar.css";
 
-:root {
-    --background: #F8D2C2;
-    --primary: #D66978;
-    --secondary: #430F1B;
-    --extra1: #FCA6A9;
-    --extra2: #A14258;
-}
-
 body {
-    font-family: 'Poppins', sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background);
@@ -57,7 +49,7 @@ header {
 }
 
 .remove-button {
-    background-color: #D66978; 
+    background-color: var(--primary);
     color: white;
     padding: 8px 20px;
     border: none;
@@ -71,7 +63,7 @@ header {
 }
 
 .add-to-wishlist-link {
-    background-color: #D66978; 
+    background-color: var(--primary);
     color: white;
     padding: 8px 20px;
     border: none;

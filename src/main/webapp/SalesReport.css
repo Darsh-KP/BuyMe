@@ -23,7 +23,7 @@ header {
 }
 
 .back-btn {
-    background-color: #A14258; 
+    background-color: var(--extra2);
     color: #f8f3f3;
     padding: 10px 20px; 
     border: none;

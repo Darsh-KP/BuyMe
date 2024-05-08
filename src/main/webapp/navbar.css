@@ -1,11 +1,12 @@
+@import "default.css";
+
 nav {
-    background-color: #430F1B; /* Maroon */
+    background-color: var(--secondary); /* Maroon */
     color: #fff;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px 20px; /* Padding  */
-    width: 100%;
 }
 
 .logo img {
@@ -18,7 +19,7 @@ nav {
     padding: 5px 10px;
     border-radius: 5px;
     margin-right: 10px;
-    background-color: #D66978; /* Light Maroon */
+    background-color: var(--primary); /* Light Maroon */
 }
 
 .profile-img {
@@ -52,14 +53,14 @@ nav {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #430F1B; /* Maroon */
+    background-color: var(--secondary); /* Maroon */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     padding: 10px 0; /*  padding */
     right: 0;
     color: #fff; 
-    border: 1px solid #430F1B; /* Maroon  */
+    border: 1px solid var(--secondary); /* Maroon  */
     border-radius: 5px; 
 }
 
@@ -71,7 +72,7 @@ nav {
 }
 
 .dropdown-content a:hover {
-    background-color: #D66978; /* Light Maroon on hover */
+    background-color: var(--primary); /* Light Maroon on hover */
 }
 
 .dropdown:hover .dropdown-content {

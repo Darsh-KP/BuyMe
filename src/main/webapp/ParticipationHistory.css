@@ -1,10 +1,10 @@
+@import "default.css";
 @import "navbar.css";
 
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #F8D2C2;
+    background-color: var(--background);
 }
 
 .container {
@@ -27,7 +27,7 @@ th, td {
 }
 
 th {
-    background-color: #FCA6A9;
+    background-color: var(--extra1);
 }
 
 tr:nth-child(even) {

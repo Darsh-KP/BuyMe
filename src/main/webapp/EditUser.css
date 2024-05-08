@@ -1,15 +1,7 @@
+@import "default.css";
 @import "navbar.css";
 
-:root {
-    --background: #F8D2C2;
-    --primary: #D66978;
-    --secondary: #430F1B;
-    --extra1: #FCA6A9;
-    --extra2: #A14258;
-}
-
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: var(--background);

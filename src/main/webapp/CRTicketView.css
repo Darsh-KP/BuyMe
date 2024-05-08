@@ -1,10 +1,10 @@
+@import "default.css";
 @import "navbar.css";
 
 body {
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    background-color: #F8D2C2; /* Light Gray */
+    background-color: var(--background); /* Light Gray */
 }
 
 .chatbox {
@@ -44,13 +44,13 @@ body {
 }
 
 .sent {
-    background-color: #FCA6A9; /* Light Blue */
+    background-color: var(--extra1); /* Light Blue */
     color: #050404;
     float: left;
 }
 
 .received {
-    background-color: #D66978; /* Lighter Blue */
+    background-color: var(--primary); /* Lighter Blue */
     color: #000;
     float: right;
 }
@@ -67,7 +67,7 @@ body {
 
 .chat-footer {
     padding: 20px;
-    background-color: #430F1B; /* Dark Blue */
+    background-color: var(--secondary); /* Dark Blue */
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
 }
@@ -81,7 +81,7 @@ body {
 
 .chat-footer button {
     padding: 10px 20px;
-    background-color: #A14258; /* Light Blue */
+    background-color: var(--extra2); /* Light Blue */
     color: #fff;
     border: none;
     border-radius: 5px;

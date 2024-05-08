@@ -31,7 +31,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #FCA6A9;
+    background-color: var(--extra1);
     width: 25vw;
     height: 70vh;
     padding: 2% 2%;

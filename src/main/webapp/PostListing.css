@@ -1,12 +1,5 @@
+@import "default.css";
 @import "navbar.css";
-
-:root {
-    --background: #F8D2C2;
-    --primary: #D66978;
-    --secondary: #430F1B;
-    --extra1: #FCA6A9;
-    --extra2: #A14258;
-}
 
 body {
     background-color: var(--background);
@@ -75,7 +68,7 @@ button:hover {
 }
 
 .remove-attribute {
-    background-color: #A14258;
+    background-color: var(--extra2);
     color: #fff;
     border: none;
     padding: 5px 10px;

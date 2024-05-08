@@ -3,7 +3,7 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #F8D2C2; 
+    background-color: var(--background);
 }
 
 .container {
